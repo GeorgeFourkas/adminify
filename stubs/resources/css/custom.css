@@ -1,0 +1,291 @@
+
+::selection {
+    background: #6254e7;
+    color: white;
+}
+
+.bubbles {
+    transform: translateY(-999999px);
+    animation: floatAround 15s linear infinite;
+    animation-duration: calc(400s / var(--i));
+    visibility: visible;
+}
+
+#get-in-touch {
+    font-family: Rubik, sans-serif;
+}
+
+#what-web-digital-agency-thessaloniki-should-offer h1, h2, h3, h4, h5, p {
+    font-family: 'Nunito', sans-serif;
+}
+
+#progress-bars h1 {
+    font-family: 'Nunito', sans-serif;
+}
+
+.bubbles:nth-child(1) {
+    animation-delay: 4s;
+}
+
+.bubbles:nth-child(2) {
+    animation-delay: 2s;
+}
+
+.bubbles:nth-child(3) {
+    animation-delay: 9s;
+}
+
+.bubbles:nth-child(4) {
+    animation-delay: 11s;
+}
+
+/*.hero-bg {*/
+/*    background-image: url("../images/home09_bg.jpg");*/
+/*}*/
+
+
+.hero-bg-digital {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 360px;
+    font-weight: 1000;
+    background: linear-gradient(to right, #141e48, #282a70, #141e48);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.-mt-105 {
+    margin-top: -460px;
+}
+
+/*.bg-web-apps {*/
+/*    background-size: cover;*/
+/*    background: url("/images/web_apps.png") no-repeat center;*/
+/*}*/
+
+#our-mission h1 {
+    font-family: "Nunito", sans-serif;
+}
+
+#our-mission h2, h3, h4, h5, p, a {
+    font-family: "Rubik", sans-serif;
+}
+
+.post_container:hover {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--path) no-repeat center;
+    transition: background-image 3s;
+    background-size: 110% 110%;
+
+    animation: shrink 1s linear;
+}
+
+#clouds {
+    animation: clouds 25s linear infinite;
+}
+
+@media only screen and (max-width: 640px) {
+    .hero-bg-digital {
+        margin-top: 50px;
+        font-size: 80px;
+    }
+
+    .-mt-105 {
+        margin-top: 10px;
+    }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 640px) {
+    .hero-bg-digital {
+        margin-top: 50px;
+        font-size: 130px;
+        overflow-x: hidden;
+    }
+
+    .-mt-105 {
+        margin-top: -40px;
+    }
+}
+
+@keyframes shrink {
+    0% {
+        background-size: 100% 100%;
+    }
+    100% {
+        background-size: 110% 110%;
+    }
+}
+
+@keyframes floatAround {
+    0% {
+        transform: translateY(0);
+    }
+    10% {
+        transform: translateY(-10vh) translateX(10px);
+    }
+    20% {
+        transform: translateY(-20vh) translateX(5px);
+    }
+    30% {
+        transform: translateY(-30vh) translateX(10px);
+    }
+    40% {
+        transform: translateY(-40vh) translateX(5px);
+    }
+    50% {
+        transform: translateY(-50vh) translateX(10px);
+    }
+    60% {
+        transform: translateY(-60vh) translateX(5px);
+
+    }
+    70% {
+        transform: translateY(-70vh) translateX(10px);
+
+    }
+    80% {
+        transform: translateY(-80vh) translateX(5px);
+
+    }
+    90% {
+        transform: translateY(-90vh) translateX(10px);
+
+    }
+    100% {
+        transform: translateY(-100vh) translateX(0);
+    }
+}
+
+@keyframes clouds {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
+/*
+ * Container style
+ */
+.ps {
+    overflow: hidden !important;
+    overflow-anchor: none;
+    -ms-overflow-style: none;
+    touch-action: auto;
+    -ms-touch-action: auto;
+}
+
+/*
+   * Scrollbar rail styles
+   */
+.ps__rail-x {
+    display: none;
+    opacity: 0;
+    transition: background-color 0.2s linear, opacity 0.2s linear;
+    -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+    height: 15px;
+    /* there must be 'bottom' or 'top' for ps__rail-x */
+    bottom: 0px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__rail-y {
+    display: none;
+    opacity: 0;
+    transition: background-color 0.2s linear, opacity 0.2s linear;
+    -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+    width: 15px;
+    /* there must be 'right' or 'left' for ps__rail-y */
+    right: 0;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps--active-x > .ps__rail-x,
+.ps--active-y > .ps__rail-y {
+    display: block;
+    background-color: transparent;
+}
+
+.ps:hover > .ps__rail-x,
+.ps:hover > .ps__rail-y,
+.ps--focus > .ps__rail-x,
+.ps--focus > .ps__rail-y,
+.ps--scrolling-x > .ps__rail-x,
+.ps--scrolling-y > .ps__rail-y {
+    opacity: 0.6;
+}
+
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+    background-color: #eee;
+    opacity: 0.9;
+}
+
+/*
+   * Scrollbar thumb styles
+   */
+.ps__thumb-x {
+    background-color: #aaa;
+    border-radius: 6px;
+    transition: background-color 0.2s linear, height 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s linear, height 0.2s ease-in-out;
+    height: 6px;
+    /* there must be 'bottom' for ps__thumb-x */
+    bottom: 2px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__thumb-y {
+    background-color: #aaa;
+    border-radius: 6px;
+    transition: background-color 0.2s linear, width 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s linear, width 0.2s ease-in-out;
+    width: 6px;
+    /* there must be 'right' for ps__thumb-y */
+    right: 2px;
+    /* please don't change 'position' */
+    position: absolute;
+}
+
+.ps__rail-x:hover > .ps__thumb-x,
+.ps__rail-x:focus > .ps__thumb-x,
+.ps__rail-x.ps--clicking .ps__thumb-x {
+    background-color: #999;
+    height: 11px;
+}
+
+.ps__rail-y:hover > .ps__thumb-y,
+.ps__rail-y:focus > .ps__thumb-y,
+.ps__rail-y.ps--clicking .ps__thumb-y {
+    background-color: #999;
+    width: 11px;
+}
+
+.ck.ck-editor__main .ck-content {
+    height: 400px !important;
+}
+
+.ck.ck-editor {
+    width: 100% !important;
+}
+
+
+/* MS supports */
+@supports (-ms-overflow-style: none) {
+    .ps {
+        overflow: auto !important;
+    }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .ps {
+        overflow: auto !important;
+    }
+}
+
