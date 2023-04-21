@@ -7,12 +7,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class DeleteUserRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return $this->user()->can(Permissions::DELETE_USERS);
     }
-
 
     public function rules(): array
     {

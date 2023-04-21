@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class TableHeading extends Component
 {
     public string $text;
+
     public bool $pl;
 
     public function __construct($text, $pl = false)

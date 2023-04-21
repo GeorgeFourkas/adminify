@@ -21,7 +21,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            config('app.fallback_locale').'.name' => 'required'
+            config('app.fallback_locale').'.name' => 'required',
         ];
     }
 

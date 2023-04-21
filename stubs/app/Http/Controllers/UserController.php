@@ -40,21 +40,21 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $this->authorize('update', \Auth::user());
+
         return view('admin.users.edit', [
             'user' => $user->load(['roles' => function ($query) {
                 $query
                     ->select('name')
                     ->first();
             }]),
-            'locales' => $this->getAllDeclaredLanguages()
+            'locales' => $this->getAllDeclaredLanguages(),
         ]);
     }
-
 
     public function passwordUpdate(UpdateUsersPasswordRequest $request, User $user)
     {
         $user->update([
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
         ]);
 
         return redirect()
@@ -73,15 +73,15 @@ class UserController extends Controller
 
         return redirect()
             ->route('users')
-            ->with('success', __("User Updated Successfully"));
+            ->with('success', __('User Updated Successfully'));
     }
-
 
     public function destroy(DeleteUserRequest $request, User $user)
     {
         $user->delete();
+
         return redirect()
             ->route('users')
-            ->with('success', __("User Deleted Successfully "));
+            ->with('success', __('User Deleted Successfully '));
     }
 }

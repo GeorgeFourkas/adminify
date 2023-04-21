@@ -11,15 +11,13 @@ class InPublishedLanguagesArray implements Rule
 
     public function __construct()
     {
-        
-    }
 
+    }
 
     public function passes($attribute, $value): bool
     {
         return in_array($value, $this->getPublishedLanguages());
     }
-
 
     public function message(): string
     {

@@ -8,7 +8,6 @@ use Illuminate\View\Component;
 
 class sources extends Component
 {
-
     public string $source;
 
     public function __construct($source)

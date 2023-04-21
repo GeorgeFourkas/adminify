@@ -11,6 +11,7 @@ class RemoveLanguageService
     use Multilingual;
 
     protected array $availableLocales;
+
     protected string $language;
 
     public function setLanguageName(string $language): static
@@ -44,7 +45,6 @@ class RemoveLanguageService
     public function redirect(): RedirectResponse
     {
         return $this->redirectLanguageChange()
-            ->with('success', Locale::getDisplayLanguage($this->language) . __('successfully removed from translations list'));
+            ->with('success', Locale::getDisplayLanguage($this->language).__('successfully removed from translations list'));
     }
 }
-

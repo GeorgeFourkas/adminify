@@ -37,7 +37,6 @@ class SettingsController extends Controller
             ->redirect();
     }
 
-
     public function changeDefaultLanguage(ChangeDefaultLanguageRequest $request, DefaultLanguageService $service)
     {
         return $service

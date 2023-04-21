@@ -8,10 +8,9 @@ use Illuminate\View\Component;
 
 class RadioToggler extends Component
 {
-
     public string $label;
-    public string $value;
 
+    public string $value;
 
     public function __construct(string $label, string $value)
     {

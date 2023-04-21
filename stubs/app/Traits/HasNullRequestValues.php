@@ -10,13 +10,12 @@ trait HasNullRequestValues
     {
         return collect($data)
             ->filter(function ($item, $key) {
-                if (!is_array($item) || !in_array($key, $this->getAllDeclaredLanguages())) {
+                if (! is_array($item) || ! in_array($key, $this->getAllDeclaredLanguages())) {
                     return true;
                 }
-                return !empty(array_filter($item));
+
+                return ! empty(array_filter($item));
             })
             ->toArray();
     }
-
-
 }

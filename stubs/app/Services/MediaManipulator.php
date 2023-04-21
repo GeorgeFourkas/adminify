@@ -7,13 +7,14 @@ use Illuminate\Http\UploadedFile;
 
 class MediaManipulator
 {
-
     protected UploadedFile $file;
+
     protected Media $mediaModel;
 
     public function setUploadedFile(UploadedFile $file)
     {
         $this->file = $file;
+
         return $this;
     }
 

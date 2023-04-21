@@ -12,7 +12,6 @@ class Comment extends Model
 
     protected $guard_name = 'web';
 
-
     protected $fillable = ['body'];
 
     public function user(): BelongsTo

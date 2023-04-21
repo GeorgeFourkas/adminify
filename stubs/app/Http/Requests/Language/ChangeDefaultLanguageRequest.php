@@ -25,7 +25,7 @@ class ChangeDefaultLanguageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'default_locale' => [new InRegistedLanguagesArray()]
+            'default_locale' => [new InRegistedLanguagesArray()],
         ];
     }
 }

@@ -5,14 +5,11 @@ namespace App\Providers;
 use App\Traits\Multilingual;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-
-
     use Multilingual;
 
     public const HOME = '/master/admin/dashboard';
@@ -26,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            if (!$this->translationsAreEnabled()) {
+            if (! $this->translationsAreEnabled()) {
                 Route::middleware('web')
                     ->group(base_path('routes/web.php'));
             } else {
@@ -44,7 +41,6 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
-
     private function preg($str)
     {
 
@@ -52,7 +48,7 @@ class RouteServiceProvider extends ServiceProvider
 
         preg_match_all($regex, $str, $matches, PREG_SET_ORDER);
 
-        $languages = array();
+        $languages = [];
         foreach ($matches as $match) {
             $language = $match[1];
             if (isset($match[3])) {
@@ -60,10 +56,9 @@ class RouteServiceProvider extends ServiceProvider
             } else {
                 $qvalue = 1.0;
             }
-            $languages[] = array('language' => $language, 'qvalue' => $qvalue);
+            $languages[] = ['language' => $language, 'qvalue' => $qvalue];
         }
 
         return $languages;
     }
-
 }

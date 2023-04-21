@@ -11,6 +11,7 @@ class DeletePostRequest extends FormRequest
     {
         return $this->user()->can(Permissions::DELETE_POSTS);
     }
+
     public function rules(): array
     {
         return [];

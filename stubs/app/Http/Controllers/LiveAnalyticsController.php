@@ -16,18 +16,18 @@ class LiveAnalyticsController extends Controller
     {
         $totalActiveUsers = 0;
         $devices = [];
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . config('laravel-google-analytics.service_account_credentials_json'));
+        putenv('GOOGLE_APPLICATION_CREDENTIALS='.config('laravel-google-analytics.service_account_credentials_json'));
         $client = new BetaAnalyticsDataClient();
         $response = $client->runRealtimeReport([
-            'property' => 'properties/' . config('laravel-google-analytics.property_id'),
+            'property' => 'properties/'.config('laravel-google-analytics.property_id'),
             'metrics' => [
                 new Metric(
                     [
-                        'name' => 'activeUsers'
+                        'name' => 'activeUsers',
                     ]
-                )
+                ),
             ],
-            'dimensions' => [new Dimension(['name' => 'deviceCategory'])]
+            'dimensions' => [new Dimension(['name' => 'deviceCategory'])],
         ]);
 
         foreach ($response->getRows() as $row) {
@@ -39,16 +39,15 @@ class LiveAnalyticsController extends Controller
             }
 
         }
+
         return response()->json([
             'activeUsers' => $totalActiveUsers,
-            'devices' => $devices
+            'devices' => $devices,
         ]);
     }
-
 
     protected function isDesktopMobileOrTablet($deviceName)
     {
         return in_array($deviceName, ['desktop', 'mobile', 'tablet']);
     }
-
 }

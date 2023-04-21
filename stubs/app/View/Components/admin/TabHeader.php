@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class TabHeader extends Component
 {
     public string $id;
+
     public string $tabName;
 
     public function __construct(string $id, string $tabName)

@@ -24,16 +24,16 @@ class AdminController extends Controller
     {
         return view('admin.dashboard', [
             'posts_count' => Post::count(),
-            'published_languages' => $this->getPublishedLanguages()
+            'published_languages' => $this->getPublishedLanguages(),
         ]);
     }
 
     public function posts()
     {
         return view('admin.posts.index', [
-            "posts" => Post::with(['user.roles', 'comments', 'translation'])
+            'posts' => Post::with(['user.roles', 'comments', 'translation'])
                 ->latest()
-                ->paginate(20)
+                ->paginate(20),
         ]);
     }
 
@@ -41,15 +41,13 @@ class AdminController extends Controller
     {
         return view('admin.comments.index', [
             'comments' => Comment::with(['post', 'user.roles'])
-                ->paginate()
+                ->paginate(),
         ]);
     }
-
 
     public function settings()
     {
         $languages = collect($this->getStore()->get('locales'));
-
 
         return view('admin.settings', [
             'settings' => $this->getStore()->all(),
@@ -73,14 +71,14 @@ class AdminController extends Controller
     public function users()
     {
         return view('admin.users.index', [
-            'users' => User::with('roles')->paginate()
+            'users' => User::with('roles')->paginate(),
         ]);
     }
 
     public function media()
     {
         return view('admin.media', [
-            'media' => Media::with('uploader:id,name')->latest()->paginate(49)
+            'media' => Media::with('uploader:id,name')->latest()->paginate(49),
         ]);
     }
 
@@ -95,10 +93,9 @@ class AdminController extends Controller
     public function categories()
     {
         return view('admin.categories', [
-            'categories' => Category::with(['translation', 'translations'])->tree()->get()
+            'categories' => Category::with(['translation', 'translations'])->tree()->get(),
         ]);
     }
-
 
     private function orderPermissionsByModelOperations()
     {
@@ -107,10 +104,11 @@ class AdminController extends Controller
         foreach ($permissions as $perm) {
             $segments = explode('-', $perm->name);
             $model = end($segments);
-            if (str_contains($perm->name, $model) || str_contains($perm->name, $model . 's')) {
+            if (str_contains($perm->name, $model) || str_contains($perm->name, $model.'s')) {
                 $grouped[$model][] = $perm->name;
             }
         }
+
         return $grouped;
     }
 
@@ -127,6 +125,7 @@ class AdminController extends Controller
                 unset($languages[$selectedLocale]);
             }
         }
+
         return $languages;
     }
 
@@ -134,6 +133,4 @@ class AdminController extends Controller
     {
         return File::exists($directory) && File::isDirectory($directory) && (count(File::allFiles($directory)) == 0);
     }
-
-
 }

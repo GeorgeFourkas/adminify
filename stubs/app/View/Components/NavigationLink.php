@@ -13,8 +13,8 @@ use Illuminate\View\Component;
 class NavigationLink extends Component
 {
     public string $link;
-    public string $text;
 
+    public string $text;
 
     public function __construct(string $link, string $text)
     {
@@ -22,7 +22,6 @@ class NavigationLink extends Component
         $this->text = $text;
 
     }
-
 
     public function render(): View|Factory|Response|Htmlable|bool|string|Closure|Application
     {

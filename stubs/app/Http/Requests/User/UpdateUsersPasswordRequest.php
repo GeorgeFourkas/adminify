@@ -8,12 +8,10 @@ use Illuminate\Validation\Rules\Password;
 
 class UpdateUsersPasswordRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return $this->user()->can(Permissions::UPDATE_USERS_PASSWORDS);
     }
-
 
     public function rules(): array
     {

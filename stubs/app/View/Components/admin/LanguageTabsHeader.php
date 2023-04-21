@@ -6,7 +6,6 @@ use Illuminate\View\Component;
 
 class LanguageTabsHeader extends Component
 {
-
     public array $locales;
 
     public function __construct(array $locales)

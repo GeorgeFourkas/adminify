@@ -9,8 +9,6 @@ class AddLanguageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -25,7 +23,7 @@ class AddLanguageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'lang' => [new NotAlreadySelectedLanguage()]
+            'lang' => [new NotAlreadySelectedLanguage()],
         ];
     }
 }

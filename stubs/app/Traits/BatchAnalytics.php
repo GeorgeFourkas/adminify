@@ -13,8 +13,6 @@ use Illuminate\Support\Carbon;
 
 trait BatchAnalytics
 {
-
-
     public function getQueryPeriod(Period $default, string $startRequestIndex = 'start', string $endRequestIndex = 'end'): Period
     {
         if (\Request::has($startRequestIndex) && \Request::has($endRequestIndex)) {
@@ -23,6 +21,7 @@ trait BatchAnalytics
                 Carbon::createFromFormat('d-m-Y', \Request::get($endRequestIndex))->endOfDay()
             );
         }
+
         return $default;
     }
 
@@ -39,27 +38,28 @@ trait BatchAnalytics
                 Carbon::yesterday()->subDays(2)->endOfDay()
             );
         }
+
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
                         ->setStartDate($period->startDate->toDateString())
-                        ->setEndDate($period->endDate->toDateString())
+                        ->setEndDate($period->endDate->toDateString()),
                 ])
             ->setDimensions(
                 [
-                    (new Dimension())->setName('sessionSource')
+                    (new Dimension())->setName('sessionSource'),
                 ]
             )->setMetrics(
                 [
-                    (new Metric())->setName('totalUsers')
+                    (new Metric())->setName('totalUsers'),
                 ]
             )->setOrderBys(
                 [
                     (new OrderBy())
-                        ->setDesc(TRUE)
-                        ->setMetric((new MetricOrderBy())->setMetricName('totalUsers'))
+                        ->setDesc(true)
+                        ->setMetric((new MetricOrderBy())->setMetricName('totalUsers')),
                 ]
             );
     }
@@ -77,29 +77,30 @@ trait BatchAnalytics
                 Carbon::yesterday()->subDays()->endOfDay()
             );
         }
+
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
                         ->setStartDate($period->startDate->toDateString())
-                        ->setEndDate($period->endDate->toDateString())
+                        ->setEndDate($period->endDate->toDateString()),
                 ])
             ->setDimensions(
                 [
-                    (new Dimension())->setName('date')
+                    (new Dimension())->setName('date'),
                 ]
             )->setMetrics(
                 [
-                    (new Metric())->setName('totalUsers')
+                    (new Metric())->setName('totalUsers'),
                 ]
             )->setOrderBys(
                 [
                     (new OrderBy())
-                        ->setDesc(FALSE)
-                        ->setDimension((new OrderBy\DimensionOrderBy())->setDimensionName('date'))
+                        ->setDesc(false)
+                        ->setDimension((new OrderBy\DimensionOrderBy())->setDimensionName('date')),
                 ]
-            )->setKeepEmptyRows(TRUE);
+            )->setKeepEmptyRows(true);
     }
 
     public function usersDifferenceStatistic(): RunReportRequest
@@ -114,7 +115,7 @@ trait BatchAnalytics
         );
 
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
@@ -122,12 +123,12 @@ trait BatchAnalytics
                         ->setEndDate($period1->endDate->toDateString()),
                     (new DateRange())
                         ->setStartDate($period2->startDate->toDateString())
-                        ->setEndDate($period2->endDate->toDateString())
+                        ->setEndDate($period2->endDate->toDateString()),
                 ]
             )
             ->setMetrics(
                 [
-                    (new Metric())->setName('totalUsers')
+                    (new Metric())->setName('totalUsers'),
                 ]
             );
     }
@@ -144,7 +145,7 @@ trait BatchAnalytics
         );
 
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
@@ -152,11 +153,11 @@ trait BatchAnalytics
                         ->setEndDate($period1->endDate->toDateString()),
                     (new DateRange())
                         ->setStartDate($period2->startDate->toDateString())
-                        ->setEndDate($period2->endDate->toDateString())
+                        ->setEndDate($period2->endDate->toDateString()),
                 ])
             ->setMetrics(
                 [
-                    (new Metric())->setName('averageSessionDuration')
+                    (new Metric())->setName('averageSessionDuration'),
                 ]
             );
     }
@@ -168,8 +169,9 @@ trait BatchAnalytics
             Carbon::today()->subMonths(12)->startOfDay(),
             Carbon::today()->endOfDay()
         );
+
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
@@ -178,7 +180,7 @@ trait BatchAnalytics
                 ]
             )->setMetrics(
                 [
-                    (new Metric())->setName('screenPageViews')
+                    (new Metric())->setName('screenPageViews'),
                 ]
             )->setDimensions([
                 (new Dimension())->setName('pageTitle'),
@@ -188,11 +190,8 @@ trait BatchAnalytics
                 (new OrderBy())
                     ->setMetric((new MetricOrderBy())
                         ->setMetricName('screenPageViews'))
-                    ->setDesc(TRUE)
+                    ->setDesc(true),
             ])
             ->setLimit($limit);
     }
 }
-
-
-

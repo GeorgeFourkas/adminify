@@ -2,12 +2,10 @@
 
 namespace App\Rules;
 
-use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Contracts\Validation\Rule;
 
 class FileOrString implements Rule
 {
-
     public function __construct()
     {
 
@@ -17,7 +15,6 @@ class FileOrString implements Rule
     {
         return \File::isFile($value) || is_string($value) || is_int($value);
     }
-
 
     public function message(): string
     {

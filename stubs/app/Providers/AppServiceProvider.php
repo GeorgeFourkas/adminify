@@ -5,11 +5,9 @@ namespace App\Providers;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use Spatie\Valuestore\Valuestore;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
 
     }
 
-
     public function boot(Request $request): void
     {
         if ($this->translationsAreEnabled() && $request->segment(1) && in_array($request->segment(1), array_keys($this->getStore()->get('locales')))) {
@@ -40,4 +37,3 @@ class AppServiceProvider extends ServiceProvider
 
     }
 }
-
