@@ -2,9 +2,9 @@
 
 namespace Nalcom\Adminify;
 
+use Nalcom\Adminify\Commands\AdminifyCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Nalcom\Adminify\Commands\AdminifyCommand;
 
 class AdminifyServiceProvider extends PackageServiceProvider
 {
