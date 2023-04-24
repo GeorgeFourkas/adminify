@@ -35,7 +35,6 @@ Route::middleware(['auth:sanctum'])->group(callback: function () {
         });
     });
 
-
     Route::prefix('/tags')->group(callback: function () {
         Route::controller(TagController::class)->group(function () {
             Route::get('/search', 'show')
@@ -48,7 +47,6 @@ Route::middleware(['auth:sanctum'])->group(callback: function () {
                 ->name('tags.delete');
         });
     });
-
 
     Route::get('analytics/real-time', LiveAnalyticsController::class)
         ->name('live.analytics');
@@ -86,7 +84,6 @@ Route::middleware(['auth:sanctum'])->group(callback: function () {
                     Route::delete('/delete/{media}', 'destroy')
                         ->name('media.destroy');
                 });
-
 
             Route::controller(PostController::class)->group(function () {
                 Route::get('/posts/create', 'create')

@@ -138,5 +138,5 @@ return [
         'format' => \Astrotomic\Translatable\Validation\RuleFactory::FORMAT_ARRAY,
         'prefix' => '%',
         'suffix' => '%',
-    ]
+    ],
 ];

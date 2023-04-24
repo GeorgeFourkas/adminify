@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
-
 class Post extends Model implements TranslatableContract
 {
     use Translatable, HasFactory;
@@ -19,8 +18,6 @@ class Post extends Model implements TranslatableContract
     protected $guard_name = 'web';
 
     public $translatedAttributes = ['title', 'body', 'featured_image_url', 'slug'];
-
-
 
     protected $fillable = ['published', 'user_id'];
 
@@ -44,5 +41,4 @@ class Post extends Model implements TranslatableContract
     {
         return $this->morphToMany(Category::class, 'categoryable');
     }
-
 }

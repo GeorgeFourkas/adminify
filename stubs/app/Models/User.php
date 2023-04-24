@@ -28,12 +28,10 @@ class User extends Authenticatable
         'name',
     ];
 
-
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
 
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -48,6 +46,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
-
-
 }

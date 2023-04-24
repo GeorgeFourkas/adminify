@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Adminify;
 
-
 use App\Http\Requests\User\CreateUserModelRequest;
 use App\Http\Requests\User\DeleteUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
