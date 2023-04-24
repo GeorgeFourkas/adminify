@@ -3,7 +3,7 @@
         -translate-x-full flex-wrap items-center justify-between  rounded-2xl mb-2 border-0 p-0 antialiased
          shadow-soft-2xl transition-transform duration-200 xl:left-0 xl:translate-x-0 lg:w-percent-15 overflow-auto">
     <div class="h-19.5 flex items-center justify-center">
-        <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-slate-700" href="{{route('home')}}"
+        <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-slate-700" href="{{ \Illuminate\Support\Facades\Route::has('home') ? route('home') : '#' }}"
            target="_blank">
             <img src="{{Vite::asset('resources/images/nalcom_logo_black.png')}}"
                  class="inline  h-16 max-w-full transition-all duration-200 ease-nav-brand"

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
 use App\Http\Requests\StoreAnalyticsCredentialsFileRequest;
 use Illuminate\Http\Request;

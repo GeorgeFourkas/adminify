@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
 use App\Http\Requests\Tag\DeleteTagRequest;
-use App\Models\Tag;
+use App\Models\Adminify\Tag;
 use App\Services\TagService;
 use App\Traits\HasNullRequestValues;
 use App\Traits\Multilingual;

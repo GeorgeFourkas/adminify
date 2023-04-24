@@ -2,29 +2,80 @@
 
 namespace Nalcom\Adminify\Commands;
 
+use App\Constants\Permissions;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
+
 
 class AdminifyCommand extends Command
 {
+
     public $signature = 'adminify:install';
 
-    public $description = 'My command';
+    public $description = 'Installs the nalcom adminify laravel package';
+
+    protected const ROUTE_MIDDLEWARE_ARRAY = 'protected $middlewareAliases = [';
 
     public function handle(): int
     {
-        //Controllers
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
-        (new Filesystem)->copyDirectory(__DIR__ . '../../stubs/app/Http/Controllers', app_path('Http/Controllers/Adminify'));
 
-        // Requests...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
-        (new Filesystem)->copyDirectory(__DIR__ . '../../stubs/app/Http/Requests', app_path('Http/Requests'));
+        $this->call('breeze:install', [
+            'stack' => 'blade'
+        ]);
+        $this->installNodeDependencies();
+        $this->call('storage:link');
+        $this
+            ->installModels()
+            ->installControllers()
+            ->installRequests()
+            ->installTraits()
+            ->installServiceClasses()
+            ->installValidationRules()
+            ->installPolicies()
+            ->installFrontEndResources()
+            ->installProviders()
+            ->installSettings()
+            ->publishConstants()
+            ->installMiddleware()
+            ->addMiddlewareToHttpKernel()
+            ->installRoutesFile();
 
-        // Views...
-        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
-        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/default/resources/views', resource_path('views'));
 
+
+
+
+      copy(__DIR__ . '/../../stubs/config/translatable.php', config_path('translatable.php'));
+
+        $this->call('vendor:publish', [
+            '--tag' => 'adminify-migrations'
+        ]);
+
+
+        $this->call('migrate:fresh');
+        exec('npm install');
+        exec('npm run build');
+        $this->info('Seeding Roles and Permissions');
+        $this->initializeRolesAndPermissions();
+        $this->info('Package Installed successfully');
+        return self::SUCCESS;
+    }
+
+
+    protected function replaceInFile($search, $replace, $path)
+    {
+        file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
+    }
+
+
+    protected function installNodeDependencies()
+    {
 
         $this->updateNodePackages(function ($packages) {
             return [
@@ -55,11 +106,10 @@ class AdminifyCommand extends Command
                     "google-charts" => "^2.0.0",
                     "micromodal" => "^0.4.10",
                     "moment" => "^2.29.4",
-                    "typewriter-effect" => "^2.19.0"
+                    "typewriter-effect" => "^2.19.0",
+                    "lodash" => "*"
                 ] + $packages;
         });
-
-        return self::SUCCESS;
     }
 
 
@@ -86,10 +136,211 @@ class AdminifyCommand extends Command
         );
     }
 
-    protected function replaceInFile($search, $replace, $path)
+
+
+    public function installControllers()
     {
-        file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
+        //Controllers
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Http/Controllers', app_path('Http/Controllers/Adminify'));
+
+        return $this;
     }
 
+    public function installTraits()
+    {
+        (new Filesystem)->ensureDirectoryExists(app_path('Traits'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Traits', app_path('Traits'));
+        return $this;
+    }
+
+    public function installServiceClasses()
+    {
+        //Services
+        (new Filesystem)->ensureDirectoryExists(app_path('Services'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Services', app_path('Services'));
+        return $this;
+    }
+
+    public function installValidationRules()
+    {
+        //Rules
+        (new Filesystem)->ensureDirectoryExists(app_path('Rules'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Rules', app_path('Rules'));
+
+        return $this;
+    }
+
+    public function installModels(): static
+    {
+        (new Filesystem)->ensureDirectoryExists(app_path('Models'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Models', app_path('Models'));
+        return $this;
+    }
+
+    public function installRequests(): static
+    {
+        //Requests
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Requests'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Http/Requests', app_path('Http/Requests'));
+        return $this;
+    }
+
+    public function publishConstants(): static
+    {
+        (new Filesystem)->ensureDirectoryExists(app_path('Constants'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Constants', app_path('Constants'));
+        return $this;
+    }
+
+    public function installPolicies(): static
+    {
+
+        (new Filesystem)->ensureDirectoryExists(app_path('Policies'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/Policies', app_path('Policies'));
+        return $this;
+    }
+
+    public function installFrontEndResources(): static
+    {
+
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path());
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/resources', resource_path());
+
+
+
+        //App-folder-views
+        (new Filesystem)->ensureDirectoryExists(app_path('View'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/app/View', app_path('View'));
+
+        //Javascript Files...
+        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/resources/js', resource_path('js'));
+
+        //CSS Files...
+        (new Filesystem)->ensureDirectoryExists(resource_path('css'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/resources/css', resource_path('css'));
+
+
+        copy(__DIR__ . '/../../stubs/tailwind.config.js', base_path('tailwind.config.js'));
+        copy(__DIR__ . '/../../stubs/vite.config.js', base_path('vite.config.js'));
+
+
+        (new Filesystem)->ensureDirectoryExists(resource_path('images'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/resources/images', resource_path('images'));
+
+
+        return $this;
+    }
+
+    public function installProviders()
+    {
+        //Providers
+        copy(__DIR__ . '/../../stubs/app/Providers/AppServiceProvider.php', app_path('Providers/AppServiceProvider.php'));
+        copy(__DIR__ . '/../../stubs/app/Providers/RouteServiceProvider.php', app_path('Providers/RouteServiceProvider.php'));
+
+        return $this;
+    }
+
+
+    public function installSettings()
+    {
+        //Settings json file
+        (new Filesystem)->ensureDirectoryExists(storage_path('app/settings'));
+        (new Filesystem)->copyDirectory(__DIR__ . '/../../stubs/storage/app/settings', storage_path('app/settings'));
+
+        return $this;
+    }
+
+    public function installMiddleware()
+    {
+        //Middleware Files...
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Middleware'));
+        copy(__DIR__ . '/../../stubs/app/Http/Middleware/Language.php', app_path('Http/Middleware/Language.php'));
+
+        return $this;
+    }
+
+    public function addMiddlewareToHttpKernel()
+    {
+        $kernelContent = file_get_contents(app_path('Http/Kernel.php'));
+        if (!Str::contains($kernelContent, "'adminify.locale' =>")) {
+            $this->replaceInFile(self::ROUTE_MIDDLEWARE_ARRAY,
+                self::ROUTE_MIDDLEWARE_ARRAY . PHP_EOL .
+                '        //This Middleware is responsible for handling the internationalized routes' . PHP_EOL .
+                "        'adminify.locale' =>  \App\Http\Middleware\Language::class,", app_path('Http/Kernel.php'));
+
+        }
+        return $this;
+    }
+
+
+    public function installMigrations()
+    {
+
+    }
+
+    public function installRoutesFile()
+    {
+        //Routes
+        (new Filesystem)->ensureDirectoryExists(base_path('routes'));
+        copy(__DIR__ . '/../../stubs/routes/adminify.php', base_path('routes/adminify.php'));
+        File::put(base_path('routes/web.php'), "<?php" . PHP_EOL .
+            "require __DIR__ . '/adminify.php';" . PHP_EOL .
+            "require __DIR__ . '/auth.php';" . PHP_EOL
+        );
+
+        return $this;
+    }
+
+
+    protected function initializeRolesAndPermissions()
+    {
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
+
+        $role = Role::create(['name' => 'contributor']);
+        $permissions[] = Permission::create(['name' => Permissions::READ_POSTS]);
+        $role->givePermissionTo($permissions);
+        $role = Role::create(['name' => 'author']);
+        $permissions[] = Permission::create(['name' => Permissions::CREATE_POSTS]);
+        $permissions[] = Permission::create(['name' => Permissions::UPDATE_POSTS]);
+        $permissions[] = Permission::create(['name' => Permissions::DELETE_POSTS]);
+        $role->givePermissionTo($permissions);
+        $role = Role::create(['name' => 'moderator']);
+
+        $permissions[] = Permission::create(['name' => Permissions::APPROVE_COMMENTS]);
+        $permissions[] = Permission::create(['name' => Permissions::DELETE_COMMENTS]);
+        $permissions[] = Permission::create(['name' => Permissions::READ_SETTINGS]);
+        $permissions[] = Permission::create(['name' => Permissions::READ_USERS]);
+        $permissions[] = Permission::create(['name' => Permissions::CREATE_USERS]);
+        $permissions[] = Permission::create(['name' => Permissions::UPDATE_USERS]);
+
+        $permissions[] = Permission::create(['name' => Permissions::UPDATE_CATEGORIES]);
+        $permissions[] = Permission::create(['name' => Permissions::CREATE_CATEGORIES]);
+        $permissions[] = Permission::create(['name' => Permissions::DELETE_CATEGORIES]);
+        $permissions[] = Permission::create(['name' => Permissions::CREATE_TAGS]);
+        $permissions[] = Permission::create(['name' => Permissions::UPDATE_TAGS]);
+        $permissions[] = Permission::create(['name' => Permissions::DELETE_TAGS]);
+        $role->givePermissionTo($permissions);
+
+
+        $role = Role::create(['name' => 'administrator']);
+        $permissions[] = Permission::create(['name' => Permissions::DELETE_USERS]);
+        $permissions[] = Permission::create(['name' => Permissions::CHANGE_SETTINGS]);
+        $permissions[] = Permission::create(['name' => Permissions::UPDATE_USERS_PASSWORDS]);
+        $role->givePermissionTo($permissions);
+
+        User::firstOrCreate(
+            [
+                'email' => 'giorgosfourkas.98@gmail.com'
+            ],
+            [
+                'name' => "george fourkas",
+                'email' => "giorgosfourkas.98@gmail.com",
+                'password' => Hash::make('123456789')
+            ]
+        )->assignRole('administrator');
+    }
 
 }

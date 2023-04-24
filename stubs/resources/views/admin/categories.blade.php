@@ -95,5 +95,5 @@
             </div>
         </div>
     </div>
-    <x-admin.posts.delete-post-modal></x-admin.posts.delete-post-modal>
+    <x-admin.delete-action-confirmation-modal></x-admin.delete-action-confirmation-modal>
 </x-layouts.admin>

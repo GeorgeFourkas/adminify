@@ -172,7 +172,7 @@
                     class="relative flex h-full min-w-0 flex-col break-words rounded-xl border-0 border-solid bg-white bg-clip-border border-black/12.5 shadow-soft-xl">
                     <div class="mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0 border-black/12.5">
                         <h6>
-                            {{  __('Page View in 2 months:') }}
+                            {{  __('Page Views in 2 months:') }}
                         </h6>
                     </div>
                     <div class="flex-auto p-4">

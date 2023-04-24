@@ -2,11 +2,10 @@
 
 namespace App\Traits;
 
-use App\Models\Media;
+use App\Models\Adminify\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use JetBrains\PhpStorm\NoReturn;
 
 trait FileUploadOrSync
 {

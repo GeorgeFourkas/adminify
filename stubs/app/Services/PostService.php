@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Post;
+use App\Models\Adminify\Post;
 use App\Traits\FileUploadOrSync;
 use App\Traits\HasNullRequestValues;
 use App\Traits\Multilingual;

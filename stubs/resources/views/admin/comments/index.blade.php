@@ -122,7 +122,8 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <x-admin.posts.delete-post-modal id="comment"/>
+                            <x-admin.delete-action-confirmation-modal id="comments"></x-admin.delete-action-confirmation-modal>
+
                             <div class="mx-auto flex w-2/3 flex-col">
                                 {{ $comments->links() }}
                             </div>

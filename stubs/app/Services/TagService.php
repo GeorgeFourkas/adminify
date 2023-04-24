@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Tag;
+use App\Models\Adminify\Tag;
 use App\Traits\HasNullRequestValues;
 
 class TagService

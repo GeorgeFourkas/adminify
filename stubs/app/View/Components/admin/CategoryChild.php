@@ -2,7 +2,7 @@
 
 namespace App\View\Components\admin;
 
-use App\Models\Category;
+use App\Models\Adminify\Category;
 use Illuminate\View\Component;
 
 class CategoryChild extends Component
@@ -10,7 +10,7 @@ class CategoryChild extends Component
     public Category $category;
     public string $parentId;
     public string $parentName;
-    
+
 
     public function __construct(Category $category, string $parentId, string $parentName,)
     {

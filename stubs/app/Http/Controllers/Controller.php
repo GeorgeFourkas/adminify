@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
 use App\Http\Requests\ContactFormMessageRequest;
 use App\Http\Requests\CreateProjectFormRequest;
 use App\Http\Requests\Langauge\LanguageSwtichRequest;
 use App\Mail\ContactFormMessage;
 use App\Mail\NewProjectInquiry;
-use App\Models\Post;
+use App\Models\Adminify\Post;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

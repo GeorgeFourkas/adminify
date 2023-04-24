@@ -2,7 +2,7 @@
 
 namespace App\View\Components\admin;
 
-use App\Models\Category;
+use App\Models\Adminify\Category;
 use Illuminate\View\Component;
 
 class CategoryCheckBox extends Component

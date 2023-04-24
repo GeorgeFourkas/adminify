@@ -15,14 +15,14 @@
                 <x-input-label for="email" :value="__('Email')"/>
                 <x-text-input id="email" class="mt-1 block w-full" type="email" name="email"
                               :value="old('email')" required autofocus/>
-                                <x-input-error :messages="$errors->get('email') ?? ''" class="mt-2"/>
+                <x-input-error :messages="$errors->get('email') ?? ''" class="mt-2"/>
             </div>
             <!-- Password -->
             <div class="w-full mt-3">
                 <x-input-label for="password" :value="__('Password')"/>
                 <x-text-input id="password" class="mt-1 block w-full" type="password" name="password"
                               :value="old('password')" required autofocus/>
-                                <x-input-error :messages="$errors->get('password') ?? ''" class="mt-2"/>
+                <x-input-error :messages="$errors->get('password') ?? ''" class="mt-2"/>
 
             </div>
             <div class="my-6 block">
@@ -35,10 +35,12 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-                <a class="my-2 md:my-0 underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                   href="{{ route('register.form') }}">
-                    {{ __('Dont have an account?') }}
-                </a>
+                @if(\Illuminate\Support\Facades\Route::has('register.form'))
+                    <a class="my-2 md:my-0 underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                       href="{{ \Illuminate\Support\Facades\Route::has('register') ? route('register') : '#' }}">
+                        {{ __('Dont have an account?') }}
+                    </a>
+                @endif
             </div>
             <div class=" mt-4">
                 <input type="submit" value="{{__('Login')}}"

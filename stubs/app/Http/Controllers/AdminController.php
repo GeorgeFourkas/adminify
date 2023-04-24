@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Media;
-use App\Models\Post;
-use App\Models\Tag;
+use App\Models\Adminify\Category;
+use App\Models\Adminify\Comment;
+use App\Models\Adminify\Media;
+use App\Models\Adminify\Post;
+use App\Models\Adminify\Tag;
 use App\Models\User;
 use App\Traits\Multilingual;
 use Illuminate\Support\Facades\App;

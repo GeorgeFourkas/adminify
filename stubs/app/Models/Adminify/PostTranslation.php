@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Adminify;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;

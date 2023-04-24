@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-
-
     use Multilingual;
 
     public const HOME = '/master/admin/dashboard';
@@ -30,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider
                 Route::middleware('web')
                     ->group(base_path('routes/web.php'));
             } else {
-                Route::middleware(['locale', 'web'])
+                Route::middleware(['adminify.locale', 'web'])
                     ->prefix('{locale?}')
                     ->group(base_path('routes/web.php'));
             }

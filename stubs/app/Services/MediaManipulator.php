@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Media;
+use App\Models\Adminify\Media;
 use Illuminate\Http\UploadedFile;
 
 class MediaManipulator

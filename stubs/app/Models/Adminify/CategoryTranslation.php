@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Adminify;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TagTranslation extends Model
+class CategoryTranslation extends Model
 {
     use HasFactory;
 

@@ -68,7 +68,7 @@
                                                         alt="user1"/>
                                                 </div>
                                                 <div class="flex flex-col justify-center">
-                                                    <a href="{{route('post.show', $post->slug ?? '#')}}"
+                                                    <a href="{{\Illuminate\Support\Facades\Route::has('post.show') ? route('post.show', $post->slug ?? '#') : route('posts.edit', $post)}}"
                                                        class="mb-0 text-sm leading-normal hover:underline hover:underline-offset-2 font-normal">
                                                         {{Str::limit($post->title, 20 , '...')}}
                                                     </a>
@@ -135,7 +135,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <x-admin.posts.delete-post-modal></x-admin.posts.delete-post-modal>
+                            <x-admin.delete-action-confirmation-modal></x-admin.delete-action-confirmation-modal>
                             <div class="mx-auto flex w-2/3 flex-col">
                                 {{ $posts->links() }}
                             </div>

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
+
 
 use App\Http\Requests\User\CreateUserModelRequest;
 use App\Http\Requests\User\DeleteUserRequest;

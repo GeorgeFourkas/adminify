@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
 use App\Http\Requests\Post\CreatePostModelRequest;
 use App\Http\Requests\Post\DeletePostRequest;
 use App\Http\Requests\Post\UpdatePostModelRequest;
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Adminify\Category;
+use App\Models\Adminify\Post;
 use App\Services\PostService;
 use App\Traits\FileUploadOrSync;
 use App\Traits\Multilingual;

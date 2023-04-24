@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const createPostForm = document.getElementById('create_post_form')
 const suggestContainer = document.getElementById('tag-suggest');
 const tagArea = document.getElementById('drawed-tags')
@@ -23,7 +25,7 @@ input.addEventListener('input', () => {
     }
     if (!pendingRequest) {
         pendingRequest = true;
-        axios.get('/en/tags/search', {
+        axios.get('/tags/search', {
             params: {
                 search: input.value
             }

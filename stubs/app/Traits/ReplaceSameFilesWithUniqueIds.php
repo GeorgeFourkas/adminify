@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Models\Post;
+use App\Models\Adminify\Post;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;

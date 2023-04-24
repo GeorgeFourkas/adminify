@@ -1,0 +1,33 @@
+<?php
+
+use App\Models\Adminify\Post;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up()
+    {
+        Schema::create('post_translations', function (Blueprint $table) {
+            $table->id();
+            $table->string('locale')->index();
+            $table->string('title');
+            $table->text('body');
+            $table->string('slug')->index();
+            $table->unique(['post_id', 'locale']);
+            $table->foreignIdFor(Post::class)
+                ->constrained()
+                ->cascadeOnDelete();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('post_translations');
+    }
+};

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
-use App\Models\Comment;
-use App\Models\Post;
+use App\Models\Adminify\Comment;
+use App\Models\Adminify\Post;
 use GPBMetadata\Google\Api\Auth;
 use Illuminate\Http\Request;
 

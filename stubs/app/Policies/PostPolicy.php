@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Constants\Permissions;
-use App\Models\Post;
+use App\Models\Adminify\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;

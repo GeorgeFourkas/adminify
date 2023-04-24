@@ -122,7 +122,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <x-admin.posts.delete-post-modal></x-admin.posts.delete-post-modal>
+                            <x-admin.delete-action-confirmation-modal></x-admin.delete-action-confirmation-modal>
                             <div class="mx-auto flex w-2/3 flex-col">
                                 {{ $users->links() }}
                             </div>

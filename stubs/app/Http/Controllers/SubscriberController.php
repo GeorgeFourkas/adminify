@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
-use App\Models\Subscriber;
+use App\Models\Adminify\Subscriber;
 use Illuminate\Http\Request;
 
 class SubscriberController extends Controller

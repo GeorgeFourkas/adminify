@@ -32,5 +32,5 @@
     </div>
     <x-admin.media-details-modal></x-admin.media-details-modal>
     <x-admin.upload-media-modal></x-admin.upload-media-modal>
-    <x-admin.posts.delete-post-modal></x-admin.posts.delete-post-modal>
+    <x-admin.delete-action-confirmation-modal></x-admin.delete-action-confirmation-modal>
 </x-layouts.admin>

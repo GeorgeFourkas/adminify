@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
 use App\Http\Requests\Category\CreateCategoryRequest;
 use App\Http\Requests\Category\DeleteCategoryRequest;
-use App\Models\Category;
+use App\Models\Adminify\Category;
 use App\Services\CategoryService;
 use App\Traits\Multilingual;
 

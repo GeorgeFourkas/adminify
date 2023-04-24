@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Category;
+use App\Models\Adminify\Category;
 use App\Traits\HasNullRequestValues;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;

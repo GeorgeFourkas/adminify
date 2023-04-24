@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Adminify;
 
-use App\Models\Media;
+use App\Models\Adminify\Media;
 use App\Traits\FileUploadOrSync;
 use Illuminate\Http\Request;
 

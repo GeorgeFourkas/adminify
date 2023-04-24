@@ -1,3 +1,11 @@
+{{--        $this->label = $label;
+        $this->value = $value;--}}
+@props( [
+    'label' => '',
+    'value' => '',
+])
+
+
 <div class="">
     <label class="relative inline-flex cursor-pointer items-center">
         <input type="checkbox" id="{{$attributes->has('id') ? $attributes->get('id') : 'checkbox'}}"

@@ -14,9 +14,6 @@
     @vite([
         'resources/css/app.css',
         'resources/css/custom.css',
-        'resources/js/burger.js',
-        'resources/js/app.js',
-        'resources/js/font-family-switcher.js'
     ])
     {{$head ?? ''}}
 </head>
