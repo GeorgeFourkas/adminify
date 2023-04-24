@@ -10,26 +10,29 @@ class TagService
     use HasNullRequestValues;
 
     private array $data;
+
     private array|string $presentLocales;
 
     private Tag $tag;
 
-
     public function setTag(Tag $tag): static
     {
         $this->tag = $tag;
+
         return $this;
     }
 
     public function setData(array $requestData): static
     {
         $this->data = $requestData;
+
         return $this;
     }
 
     public function getPresentLocales(): static
     {
         $this->presentLocales = $this->removeNullLanguageRequestIndex($this->data);
+
         return $this;
     }
 
@@ -44,5 +47,4 @@ class TagService
     {
         $this->tag->update($this->presentLocales);
     }
-
 }

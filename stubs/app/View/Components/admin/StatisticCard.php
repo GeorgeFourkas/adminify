@@ -6,8 +6,8 @@ use Illuminate\View\Component;
 
 class StatisticCard extends Component
 {
-
     public string $title;
+
     public string $type;
 
     public function __construct(string $title, string $type)

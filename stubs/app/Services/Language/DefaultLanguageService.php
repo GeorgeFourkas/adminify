@@ -11,6 +11,7 @@ class DefaultLanguageService
     use Multilingual;
 
     private string $language;
+
     private array $locales;
 
     public function setLanguage(string $language): static
@@ -18,9 +19,9 @@ class DefaultLanguageService
         $this->language = $language;
 
         $this->getStore()->put('default_locale', $this->language);
+
         return $this;
     }
-    
 
     public function getLocales(): static
     {
@@ -50,6 +51,4 @@ class DefaultLanguageService
         return $this->redirectLanguageChange()
             ->with('success', __('Default Locale Changed'));
     }
-
-
 }

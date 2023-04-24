@@ -11,6 +11,7 @@ class AddLanguageService
     use Multilingual;
 
     protected string $language;
+
     protected array $availableLocales;
 
     public function setLanguageName(string $name): static
@@ -45,6 +46,6 @@ class AddLanguageService
     {
         return
             $this->redirectLanguageChange()
-                ->with('success', Locale::getDisplayLanguage($this->language) . __('successfully added to translations list'));
+                ->with('success', Locale::getDisplayLanguage($this->language).__('successfully added to translations list'));
     }
 }

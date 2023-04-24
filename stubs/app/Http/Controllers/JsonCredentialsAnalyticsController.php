@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Adminify;
 
 use App\Http\Requests\StoreAnalyticsCredentialsFileRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class JsonCredentialsAnalyticsController extends Controller

@@ -15,7 +15,6 @@ class Media extends Model
 
     protected $hidden = ['pivot'];
 
-
     public function users(): MorphToMany
     {
         return $this->morphedByMany(User::class, 'mediable');
@@ -30,6 +29,4 @@ class Media extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-
 }

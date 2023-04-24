@@ -47,7 +47,6 @@ class CategoryController extends Controller
         return $this->redirection(__('Category Deleted Successfully'));
     }
 
-
     private function redirection(string $message)
     {
         return redirect()

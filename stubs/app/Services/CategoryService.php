@@ -7,15 +7,15 @@ use App\Traits\HasNullRequestValues;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;
 
-
 class CategoryService
 {
     use HasNullRequestValues, Multilingual;
 
     private array $data;
-    private Request $request;
-    private Category $category;
 
+    private Request $request;
+
+    private Category $category;
 
     public function setRequest($request): static
     {
@@ -30,7 +30,6 @@ class CategoryService
 
         return $this;
     }
-
 
     public function setValues(): static
     {

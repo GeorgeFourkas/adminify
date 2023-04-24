@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Rule;
 class NotAlreadySelectedLanguage implements Rule
 {
     use Multilingual;
-    
+
     public function __construct()
     {
         //
@@ -16,9 +16,8 @@ class NotAlreadySelectedLanguage implements Rule
 
     public function passes($attribute, $value): bool
     {
-        return !in_array($value, $this->getAllDeclaredLanguages());
+        return ! in_array($value, $this->getAllDeclaredLanguages());
     }
-
 
     public function message(): string
     {

@@ -7,10 +7,10 @@ use Illuminate\View\Component;
 
 class CategoryCheckBox extends Component
 {
-
-
     public Category $category;
+
     public $selected;
+
     public ?bool $tobeChecked;
 
     public function __construct(Category $category, bool|null $tobeChecked = null, $selected = [])
@@ -20,10 +20,8 @@ class CategoryCheckBox extends Component
         $this->tobeChecked = $tobeChecked;
     }
 
-
     public function render()
     {
         return view('components.admin.category-check-box');
     }
-
 }

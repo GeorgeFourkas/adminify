@@ -8,19 +8,16 @@ class StoreAnalyticsCredentialsFileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
         return true;
     }
 
-    
     public function rules(): array
     {
         return [
-            'credentials' => ['required', 'file', 'mimetypes:application/json']
+            'credentials' => ['required', 'file', 'mimetypes:application/json'],
         ];
     }
 }

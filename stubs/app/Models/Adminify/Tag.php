@@ -14,6 +14,4 @@ class Tag extends Model implements TranslatableContract
     public $translatedAttributes = ['name'];
 
     protected $hidden = ['pivot'];
-
-
 }

@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class MediaController extends Controller
 {
-
     use FileUploadOrSync;
 
     public function show()
@@ -36,7 +35,7 @@ class MediaController extends Controller
         $media = $this->createMediaModel($request->upload, 'public/media');
 
         return response()->json([
-            'url' => $media->url
+            'url' => $media->url,
         ]);
     }
 

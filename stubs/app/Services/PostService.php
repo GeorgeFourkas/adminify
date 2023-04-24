@@ -12,19 +12,21 @@ use Illuminate\Support\Collection;
 
 class PostService
 {
-
     use Multilingual, ReplaceSameFilesWithUniqueIds, FileUploadOrSync, HasNullRequestValues;
 
     private Request $request;
-    private Post $post;
-    private bool $published;
-    private array|Collection $data;
 
+    private Post $post;
+
+    private bool $published;
+
+    private array|Collection $data;
 
     public function setRequest(Request $request): static
     {
         $this->request = $request;
         $this->data = collect($this->request->all());
+
         return $this;
     }
 
@@ -123,8 +125,8 @@ class PostService
     public function updateMedia(): static
     {
         collect($this->request->all())
-            ->filter(fn($value, $key) => in_array($key, $this->getAllDeclaredLanguages()))
-            ->filter(fn($value) => isset($value['featured_image_url']))
+            ->filter(fn ($value, $key) => in_array($key, $this->getAllDeclaredLanguages()))
+            ->filter(fn ($value) => isset($value['featured_image_url']))
             ->each(function ($item, $languageKey) {
                 $this->createOrSync(
                     $this->post->translations->where('locale', $languageKey)->first(),

@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Storage;
 
 trait FileUploadOrSync
 {
-
     public function createOrSync(Model $model, UploadedFile|string $item, $folder = 'public/posts'): void
     {
         is_string($item)
@@ -31,26 +30,23 @@ trait FileUploadOrSync
             );
     }
 
-
     public function createMediaModel(UploadedFile $item, $folder)
     {
 
         $url = Storage::url(Storage::put($folder, $item));
 
         $name = \Arr::last(explode('/', $url));
-        $fileSize = getimagesize(storage_path('/app/' . $folder . '/' . $name));
+        $fileSize = getimagesize(storage_path('/app/'.$folder.'/'.$name));
 
         return Media::create([
-                'url' => $url,
-                'size' => $item->getSize(),
-                'extension' => $item->extension(),
-                'original_name' => $item->getClientOriginalName(),
-                'width' => $fileSize[0],
-                'height' => $fileSize[1],
-                'user_id' => \Auth::id()
-            ]
+            'url' => $url,
+            'size' => $item->getSize(),
+            'extension' => $item->extension(),
+            'original_name' => $item->getClientOriginalName(),
+            'width' => $fileSize[0],
+            'height' => $fileSize[1],
+            'user_id' => \Auth::id(),
+        ]
         );
     }
-
-
 }

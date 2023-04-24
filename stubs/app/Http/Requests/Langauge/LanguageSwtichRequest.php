@@ -25,7 +25,7 @@ class LanguageSwtichRequest extends FormRequest
     public function rules()
     {
         return [
-            'lang' => ['required', new InPublishedLanguagesArray()]
+            'lang' => ['required', new InPublishedLanguagesArray()],
         ];
     }
 }

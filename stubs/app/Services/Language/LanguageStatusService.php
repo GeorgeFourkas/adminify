@@ -12,7 +12,9 @@ class LanguageStatusService
     use Multilingual;
 
     private bool $enabled;
+
     private string $name;
+
     private array $languages;
 
     public function isEnabled($status): static
@@ -74,12 +76,11 @@ class LanguageStatusService
             if (Str::contains($path, \app()->getLocale())) {
                 return redirect()->to($path)->with('success', __('Successfully changed locale settings'));
             } else {
-                return redirect()->to(app()->getLocale() . $path)->with('success', __('Successfully changed locale settings'));
+                return redirect()->to(app()->getLocale().$path)->with('success', __('Successfully changed locale settings'));
             }
         }
+
         return redirect()->route('settings')->with('success', __('Successfully changed locale settings'));
 
     }
-
-
 }

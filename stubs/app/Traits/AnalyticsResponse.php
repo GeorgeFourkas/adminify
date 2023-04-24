@@ -15,7 +15,7 @@ trait AnalyticsResponse
             'facebook' => 0,
             'instagram' => 0,
             'google' => 0,
-            'bing' => 0
+            'bing' => 0,
         ];
         foreach ($table as $item) {
             switch ($item['sessionSource']) {
@@ -33,6 +33,7 @@ trait AnalyticsResponse
                     break;
             }
         }
+
         return array_merge(
             ['result' => $table], $sources
         );
@@ -41,7 +42,7 @@ trait AnalyticsResponse
     public function formatTraffic(array $table): array
     {
         foreach ($table as &$item) {
-            if (!isset($item['sessionSource'])) {
+            if (! isset($item['sessionSource'])) {
                 continue;
             }
             $item['date'] = Carbon::parse($item['sessionSource'])->format('d-m-Y');
@@ -58,7 +59,7 @@ trait AnalyticsResponse
 
         return [
             'today' => $yesterday['totalUsers'] ?? 0,
-            'percentage' => $this->createPercentage($yesterday['totalUsers'] ?? 0, $dayBefore['totalUsers'] ?? 0)
+            'percentage' => $this->createPercentage($yesterday['totalUsers'] ?? 0, $dayBefore['totalUsers'] ?? 0),
 
         ];
     }
@@ -69,13 +70,14 @@ trait AnalyticsResponse
             ->reject(function ($item) {
                 return $item['pageTitle'] ?? $item['sessionSource'] == '(not set)';
             })->map(function ($item) {
-                if (!isset($item['sessionSource']) && !isset($item['date'])) {
+                if (! isset($item['sessionSource']) && ! isset($item['date'])) {
                     return $item;
                 }
                 $item['pageTitle'] = $item['sessionSource'];
                 $item['fullPageUrl'] = $item['date'];
                 unset($item['date']);
                 unset($item['sessionSource']);
+
                 return $item;
             })
             ->values()
@@ -85,7 +87,7 @@ trait AnalyticsResponse
     public function formatAverageSessionTime(array $table): array
     {
         foreach ($table as &$dateRange) {
-            if (!isset($dateRange['sessionSource']) && !isset($dateRange['totalUsers'])) {
+            if (! isset($dateRange['sessionSource']) && ! isset($dateRange['totalUsers'])) {
                 continue;
             }
             $dateRange['dateRange'] = $dateRange['sessionSource'];
@@ -100,7 +102,7 @@ trait AnalyticsResponse
         return [
             'new' => round($yesterday['averageSessionDuration'] ?? 0.00, 2),
             'old' => round($dayBefore['averageSessionDuration'] ?? 0.00, 2),
-            'percentage' => $this->createPercentage($yesterday['averageSessionDuration'] ?? 0, $dayBefore['averageSessionDuration'] ?? 0)
+            'percentage' => $this->createPercentage($yesterday['averageSessionDuration'] ?? 0, $dayBefore['averageSessionDuration'] ?? 0),
         ];
     }
 }

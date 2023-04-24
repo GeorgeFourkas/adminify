@@ -9,7 +9,6 @@ use Spatie\Valuestore\Valuestore;
 
 trait Multilingual
 {
-
     public function getStore()
     {
         return Valuestore::make(storage_path('app/settings/settings.json'));
@@ -44,11 +43,12 @@ trait Multilingual
     {
         if ($this->getStore()) {
             return collect($this->getStore()->get('locales'))->reject(function ($item) {
-                return !in_array('published', $item);
+                return ! in_array('published', $item);
             })->map(function ($item, $key) {
                 return $key;
             });
         }
+
         return collect();
     }
 
@@ -61,7 +61,6 @@ trait Multilingual
     {
         return $this->getPublishedLanguagesCount() > 1;
     }
-
 
     private function redirectLanguageChange()
     {
@@ -77,10 +76,10 @@ trait Multilingual
             if (Str::contains($path, \app()->getLocale())) {
                 return redirect()->to($path);
             } else {
-                return redirect()->to(app()->getLocale() . $path);
+                return redirect()->to(app()->getLocale().$path);
             }
         }
+
         return redirect()->route('settings');
     }
-
 }

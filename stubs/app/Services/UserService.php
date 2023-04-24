@@ -12,6 +12,7 @@ class UserService
     use FileUploadOrSync;
 
     private Request $request;
+
     private User $user;
 
     public function setRequest($request): static
@@ -27,7 +28,6 @@ class UserService
 
         return $this;
     }
-
 
     public function setRole(): static
     {
@@ -69,6 +69,4 @@ class UserService
 
         return $this;
     }
-
-
 }

@@ -17,30 +17,24 @@ class PostPolicy
         //
     }
 
-
     public function view(User $user, Post $post)
     {
         //
     }
 
-
     public function create(User $user): Response|bool
     {
-        return ($user->can(Permissions::CREATE_POSTS));
+        return $user->can(Permissions::CREATE_POSTS);
 
     }
-
 
     public function update(User $user, Post $post)
     {
         return $user->can(Permissions::UPDATE_POSTS);
     }
 
-
     public function delete(User $user, Post $post)
     {
         return $user->can(Permissions::DELETE_POSTS);
     }
-
-
 }

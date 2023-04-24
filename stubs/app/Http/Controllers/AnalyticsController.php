@@ -35,6 +35,7 @@ class AnalyticsController extends Controller
     {
         $period = $this->getQueryPeriod(Period::months(2));
         $result = LaravelGoogleAnalytics::getTotalUsersByDate($period);
+
         return response()->json($this->formatTraffic($result));
     }
 
@@ -81,12 +82,14 @@ class AnalyticsController extends Controller
             $this->getQueryPeriod(Period::days(30), 5)
         );
         $result = $this->formatMostViewedPages($response);
+
         return response()->json($result);
     }
 
     public function countries()
     {
         $period = $this->getQueryPeriod(Period::years(1));
+
         return response()->json(
             LaravelGoogleAnalytics::getTotalUsersByCountry($period)
         );
@@ -103,8 +106,8 @@ class AnalyticsController extends Controller
         ];
         $response = LaravelGoogleAnalytics::getClient()->batchRunReports(
             [
-                "property" => "properties/" . config('laravel-google-analytics.property_id'),
-                "requests" => [
+                'property' => 'properties/'.config('laravel-google-analytics.property_id'),
+                'requests' => [
                     $this->sessionsSourcesRequest(),
                     $this->getTraffic(),
                     $this->usersDifferenceStatistic(),
@@ -127,5 +130,3 @@ class AnalyticsController extends Controller
         return response()->json($table);
     }
 }
-
-

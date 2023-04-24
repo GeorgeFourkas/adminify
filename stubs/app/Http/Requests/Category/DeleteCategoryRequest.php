@@ -12,7 +12,6 @@ class DeleteCategoryRequest extends FormRequest
         return $this->user()->can(Permissions::DELETE_CATEGORIES);
     }
 
-
     public function rules(): array
     {
         return [];

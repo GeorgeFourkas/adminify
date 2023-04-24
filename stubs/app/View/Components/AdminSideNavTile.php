@@ -6,8 +6,8 @@ use Illuminate\View\Component;
 
 class AdminSideNavTile extends Component
 {
-
     public $link;
+
     public $text;
 
     public function __construct($link, $text)
@@ -15,7 +15,6 @@ class AdminSideNavTile extends Component
         $this->link = $link;
         $this->text = $text;
     }
-
 
     public function render()
     {

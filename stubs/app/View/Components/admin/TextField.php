@@ -8,16 +8,16 @@ use Illuminate\View\Component;
 
 class TextField extends Component
 {
-
     public string $label;
+
     public string $name;
+
     public ?string $value;
+
     public string $id;
 
     /**
-     * @param string $label
-     * @param string $name
-     * @param string $value
+     * @param  string  $value
      */
     public function __construct(string $label, string $name, string $id, string|null $value = null)
     {
@@ -26,7 +26,6 @@ class TextField extends Component
         $this->value = $value;
         $this->id = $id;
     }
-
 
     /**
      * Get the view / contents that represent the component.

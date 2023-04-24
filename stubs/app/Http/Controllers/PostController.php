@@ -41,12 +41,13 @@ class PostController extends Controller
     public function create()
     {
         $this->authorize('create', Post::class);
+
         return view('admin.posts.create', [
             'locales' => ($this->getStore()->get('locales')),
             'categories' => Category::with(['translation', 'translations'])
                 ->tree()
                 ->get()
-                ->toTree()
+                ->toTree(),
         ]);
     }
 
@@ -76,12 +77,13 @@ class PostController extends Controller
             $post->translations->put($item->locale, $item);
             $post->translations->forget($key);
         });
+
         return view('admin.posts.update', [
             'post' => $post,
             'categories' => Category::with(['translation', 'translations'])
                 ->tree()
                 ->get()
-                ->toTree()
+                ->toTree(),
         ]);
     }
 
@@ -101,7 +103,7 @@ class PostController extends Controller
 
         return redirect()
             ->route('posts')
-            ->with('success', __("Post Updated Successfully"));
+            ->with('success', __('Post Updated Successfully'));
 
     }
 
@@ -111,15 +113,15 @@ class PostController extends Controller
 
         return redirect()
             ->route('posts')
-            ->with('success', __("Post Deleted Successfully "));
+            ->with('success', __('Post Deleted Successfully '));
     }
 
     public function search(Request $request)
     {
         return view('admin.posts.index', [
-            "posts" => Post::whereTranslationLike('title', '%' . $request->search . '%', \App::getLocale())
-                ->orWhereTranslationLike('body', '%' . $request->search . '%', \App::getLocale())
-                ->paginate(15)
+            'posts' => Post::whereTranslationLike('title', '%'.$request->search.'%', \App::getLocale())
+                ->orWhereTranslationLike('body', '%'.$request->search.'%', \App::getLocale())
+                ->paginate(15),
         ]);
     }
 }

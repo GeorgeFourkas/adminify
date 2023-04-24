@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
-
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -32,7 +31,7 @@ class Controller extends BaseController
                 ->translatedIn(\App::getLocale())
                 ->latest()
                 ->limit(3)
-                ->get()
+                ->get(),
         ]);
     }
 
@@ -54,7 +53,7 @@ class Controller extends BaseController
     public function articles()
     {
         return view('posts.index', [
-            'posts' => Post::with('translation.media', 'user')->translatedIn(\App::getLocale())->withCount('comments')->get()
+            'posts' => Post::with('translation.media', 'user')->translatedIn(\App::getLocale())->withCount('comments')->get(),
         ]);
     }
 
@@ -67,8 +66,9 @@ class Controller extends BaseController
     {
         Mail::to(['info@nalcom.gr'])
             ->send(new NewProjectInquiry($request->first_name, $request->last_name, $request->email, $request->phone, $request->project_type, $request->budget, $request->details));
+
         return Redirect::to(URL::previous())
-            ->with('success', "Thank you for your message. We will be in touch");
+            ->with('success', 'Thank you for your message. We will be in touch');
     }
 
     public function contactMessage(ContactFormMessageRequest $request): RedirectResponse
@@ -77,15 +77,16 @@ class Controller extends BaseController
             ->send(new ContactFormMessage(
                 $request->first_name, $request->last_name, $request->email, $request->phone, $request->message
             ));
-        return Redirect::to(URL::previous() . "#contact-form")
-            ->with('success', "Thank you for your message. We will be in touch");
-    }
 
+        return Redirect::to(URL::previous().'#contact-form')
+            ->with('success', 'Thank you for your message. We will be in touch');
+    }
 
     public function switch(LanguageSwtichRequest $request): Redirector|Application|RedirectResponse
     {
         $previousUrlPath = str_replace(url('/'), '', url()->previous());
         $toRedirect = str_replace(\App::getLocale(), $request->lang, $previousUrlPath);
+
         return redirect()->to($toRedirect);
     }
 }
