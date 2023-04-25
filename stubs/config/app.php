@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'debug' => (bool)env('APP_DEBUG', false),
+    'debug' => (bool) env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' =>  Valuestore::make(storage_path('app/settings/settings.json'))->get('default_locale'),
+    'locale' => Valuestore::make(storage_path('app/settings/settings.json'))->get('default_locale'),
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'fallback_locale' =>  Valuestore::make(storage_path('app/settings/settings.json'))->get('default_locale'),
+    'fallback_locale' => Valuestore::make(storage_path('app/settings/settings.json'))->get('default_locale'),
 
     /*
     |--------------------------------------------------------------------------
@@ -183,11 +183,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-
         /*
          * Package Service Providers...
          */
-
 
         /*
          * Application Service Providers...

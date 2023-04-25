@@ -3,7 +3,6 @@
 namespace App\Http\Requests\User;
 
 use App\Constants\Permissions;
-use App\Models\User;
 use App\Rules\NotASingleAdmin;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +13,6 @@ class DeleteUserRequest extends FormRequest
         return $this->user()->can(Permissions::DELETE_USERS);
     }
 
-
     protected function prepareForValidation()
     {
         $this->merge(['user' => $this->route('user')]);
@@ -24,7 +22,7 @@ class DeleteUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user' => [new NotASingleAdmin($this->route('user'))]
+            'user' => [new NotASingleAdmin($this->route('user'))],
         ];
     }
 }
