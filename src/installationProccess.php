@@ -63,7 +63,7 @@ class installationProccess
 
     public function installPolicies()
     {
-//Policies
+        //Policies
         (new Filesystem)->ensureDirectoryExists(app_path('Policies'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Policies', app_path('Policies'));
 
