@@ -18,26 +18,11 @@ module.exports = {
                 'bounce-slow': 'bounce 5s linear infinite'
             },
             backgroundImage: {
-                'transform-business-bg': 'url(/resources/images/transform_bussiness_section_background.png)',
-                'work-with-us-bg': 'url(/resources/images/work_with_us_section_bg.png)',
                 'login': 'url(/resources/images/admin/curved-images/curved6.jpg)',
-                'progress-bars': 'url(/resources/images/progress-bars-bg.png)',
-                'blog-bottom': 'url(/resources/images/blog_bottom_wave.png)',
-                'about-us-hero': 'url(/resources/images/pic_paralax_2.jpg)',
-                'about-progress': 'url(/resources/images/PCC_bg_img.jpg)',
-                'clouds': 'url(/resources/images/bg-clouds_bottom.png)',
-                'hero-bg': 'url(/resources/images/home09_bg.jpg)',
                 'laptop': 'url(/resources/images/admin/ivancik.jpg)'
             },
             colors: {
-                'about-us-light-pink': '#776beb',
                 'paragraphGray': '#696687',
-                'footerPurple': '#0d183f',
-                'about-box-2': '#fffcf6',
-                'about-box-3': '#f0fffc',
-                'about-box-1': '#f9f8ff',
-                'lightPurple': '#6254e7',
-                'darkPurple': '#3b3663',
                 'heroBlue': '#181e47',
                 'orangy': '#FA9D4D',
                 'pinky': '#FF4C6C',
