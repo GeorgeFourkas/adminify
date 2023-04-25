@@ -6,9 +6,9 @@ trait Percentage
 {
     public function createPercentage($newValue, $oldValue): int|float
     {
-//        if ($newValue == 0 && $oldValue == 0) {
-//            return 0;
-//        }
+        //        if ($newValue == 0 && $oldValue == 0) {
+        //            return 0;
+        //        }
         if ($oldValue == 0) {
             return 0;
         }

@@ -4,7 +4,7 @@ namespace App\Constants;
 
 class Permissions
 {
-//    Posts Permissions
+    //    Posts Permissions
     public const CREATE_POSTS = 'create-posts';
 
     public const READ_POSTS = 'read-posts';
@@ -13,7 +13,7 @@ class Permissions
 
     public const DELETE_POSTS = 'delete-posts';
 
-//    Users Permissions
+    //    Users Permissions
     public const CREATE_USERS = 'create-users';
 
     public const READ_USERS = 'read-users';
