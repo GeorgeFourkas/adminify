@@ -3,7 +3,7 @@ const languageBoxes = document.querySelectorAll('[registered-language-form]')
 const input = document.getElementById('language_name')
 const checkbox = document.getElementById('language_status')
 const languageStatusForm = document.getElementById('change_language_status_form')
-modal.querySelector('button').addEventListener('click', (e) => {
+modal.querySelector('button').addEventListener('click', () => {
     modal.classList.toggle('hidden')
 })
 
@@ -16,23 +16,23 @@ modal.addEventListener('click', (e) => {
 
 languageBoxes.forEach((box) => {
     box.addEventListener('click', (e) => {
-        if (e.target === document.querySelector('[deletion-form]') || e.target === document.querySelector('[deletion-form]').querySelector('svg') || e.target === document.querySelector('[deletion-form]').querySelector('svg').querySelector('path')) {
+        if (box.querySelector('[remove-lange-btn]').contains(e.target)) {
             return;
         }
         modal.classList.toggle('hidden')
         const localeData = JSON.parse(box.dataset.locale)
         checkbox.checked = localeData.published;
         input.value = localeData.name;
-        const defaultLangaageElement = document.getElementById('change_default_language')
-        const makeDefaultLanguageForm = defaultLangaageElement.querySelector('form');
+        const defaultLanguageElement = document.getElementById('change_default_language')
+        const makeDefaultLanguageForm = defaultLanguageElement.querySelector('form');
         if (!localeData.default) {
             modal.querySelector('[default_langage_content]').classList.add('hidden')
-            defaultLangaageElement.classList.remove('hidden')
+            defaultLanguageElement.classList.remove('hidden')
             makeDefaultLanguageForm.querySelector('#default_language_name').value = localeData.name;
         } else {
             makeDefaultLanguageForm.querySelector('#default_language_name').value = '';
             modal.querySelector('[default_langage_content]').classList.remove('hidden')
-            defaultLangaageElement.classList.add('hidden')
+            defaultLanguageElement.classList.add('hidden')
         }
     });
 })

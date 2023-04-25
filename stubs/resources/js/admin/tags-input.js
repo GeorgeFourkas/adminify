@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import {appendLocale} from "./locale-prefix-parser";
 const createPostForm = document.getElementById('create_post_form')
 const suggestContainer = document.getElementById('tag-suggest');
 const tagArea = document.getElementById('drawed-tags')
@@ -25,7 +25,7 @@ input.addEventListener('input', () => {
     }
     if (!pendingRequest) {
         pendingRequest = true;
-        axios.get('/tags/search', {
+        axios.get(appendLocale() + 'tags/search', {
             params: {
                 search: input.value
             }
