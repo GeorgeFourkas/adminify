@@ -1,11 +1,11 @@
-\@php use Illuminate\Support\Carbon; @endphp
+@php use Illuminate\Support\Carbon; @endphp
 <x-layouts.admin class="admin">
-    <x-slot:head>
+    <x-slot name="head">
         @vite([
             'resources/js/flash-timeout.js',
             'resources/js/admin/confirm-modal.js',
         ])
-    </x-slot:head>
+    </x-slot>
     <div class="mx-auto w-full px-6 py-6">
         <div class="-mx-3 flex flex-wrap">
             @if(Session::has('success'))
@@ -17,6 +17,25 @@
                     </p>
                 </div>
             @endif
+            @if(Session::has('error'))
+                <div
+                    class="mx-auto flex h-10 w-full items-center justify-center rounded-lg bg-red-500 px-6 text-white"
+                    id="flash-container">
+                    <p class="text-sm">
+                        {{Session::get('error')}}
+                    </p>
+                </div>
+            @endif
+
+            @foreach($errors->all() as $error)
+                <div
+                    class="mx-3 flex h-10 w-full items-center justify-center rounded-lg bg-red-500 px-6 text-white"
+                    id="flash-container">
+                    <p class="text-sm">
+                        {{$error}}
+                    </p>
+                </div>
+            @endforeach
             <div class="w-full max-w-full flex-none px-3">
                 <div
                     class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-white bg-clip-border font-semibold shadow-lg">

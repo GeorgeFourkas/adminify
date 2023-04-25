@@ -27,9 +27,9 @@
     data-availableLocales="{{ json_encode(array_keys($availableLocales)) }}"
 >
 {{--The followind div is not rendered on the DOM, but its rather there for tailwind JIT compiler usage--}}
-<x-admin.sidebar/>
+<x-admin.sidebar />
 <main class="ease-soft-in-out w-full xl:ml-72 relative h-full max-h-screen rounded-xl transition-all duration-200">
-    <x-admin.navbar/>
+    <x-admin.navbar />
     {{$slot}}
 </main>
 </body>

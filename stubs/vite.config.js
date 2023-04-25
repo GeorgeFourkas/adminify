@@ -9,6 +9,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+
+
+
                 'resources/js/admin/CKEditor/ckeditor.js',
                 'resources/js/admin/add-new-language.js',
                 'resources/js/admin/already-update-media-chooser.js',
@@ -37,7 +40,6 @@ export default defineConfig({
                 'resources/js/admin/toggle-permission-submit.js',
                 'resources/js/admin/upload-new-media-modal.js',
                 'resources/js/app.js',
-                'resources/js/bootstrap.js',
                 'resources/js/flash-timeout.js',
                 'resources/css/app.css',
                 'resources/css/custom.css',

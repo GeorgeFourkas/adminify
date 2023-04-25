@@ -7,6 +7,6 @@ import.meta.glob([
     '../images/admin/logos/**',
     '../images/admin/shapes/**',
     '../images/admin/small-logos/**',
-    '../images/logos/**',
+
 ]);
 
