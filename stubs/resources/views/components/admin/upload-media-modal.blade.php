@@ -12,7 +12,7 @@
                     name="uploaded_file"
                     acceptedFileTypes="image/*"
                     id=""
-                    :title="__('Post Featured Image')"
+                    :title="__('Featured Image')"
                     :actionText=" __('Click To Upload')"
                     :description="__('or drag and drop')"
                     :fileTypesText="__('SVG, PNG, JPG or GIF')"

@@ -19,23 +19,23 @@
     <hr class=" mt-0 h-px bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent"/>
     <div class="block max-h-screen w-auto grow basis-full items-center  h-sidenav">
         <ul class=" mt-5 mb-0 flex flex-col pl-0 mb-5">
-            <x-admin-side-nav-tile :link="route('dashboard')" text="{{__('Dashboard')}}">
+            <x-admin-side-nav-tile :link="route('dashboard')" text="{{__('Dashboard')}}" highlight="{{ Str::contains(url()->current(), route('dashboard')) }}">
                 <x-icons.home></x-icons.home>
             </x-admin-side-nav-tile>
 
-            <x-admin-side-nav-tile :link="route('posts')" text="{{__('Posts')}}">
+            <x-admin-side-nav-tile :link="route('posts')" text="{{__('Posts')}}" highlight="{{ Str::contains(url()->current(), route('posts')) }}">
                 <x-icons.post></x-icons.post>
             </x-admin-side-nav-tile>
 
-            <x-admin-side-nav-tile :link="route('users')" text="{{__('Users')}}">
+            <x-admin-side-nav-tile :link="route('users')" text="{{__('Users')}}"  highlight="{{ Str::contains(url()->current(), route('users')) }}">
                 <x-icons.users></x-icons.users>
             </x-admin-side-nav-tile>
 
-            <x-admin-side-nav-tile :link="route('comments')" text="{{__('Comments')}}">
+            <x-admin-side-nav-tile :link="route('comments')" text="{{__('Comments')}}" highlight="{{ Str::contains(url()->current(), route('comments')) }}">
                 <x-icons.comment></x-icons.comment>
             </x-admin-side-nav-tile>
 
-            <x-admin-side-nav-tile :link="route('media')" text="{{__('Media')}}">
+            <x-admin-side-nav-tile :link="route('media')" text="{{__('Media')}}" highlight="{{ Str::contains(url()->current(), route('media')) }}">
                 <x-icons.media></x-icons.media>
             </x-admin-side-nav-tile>
 
@@ -45,11 +45,11 @@
                 </p>
             </li>
 
-            <x-admin-side-nav-tile :link="route('tags')" text="{{__('Tags')}}">
+            <x-admin-side-nav-tile :link="route('tags')" text="{{__('Tags')}}" highlight="{{ Str::contains(url()->current(), route('tags')) }}">
                 <x-icons.taxonomies></x-icons.taxonomies>
             </x-admin-side-nav-tile>
 
-            <x-admin-side-nav-tile :link="route('categories')" text="{{__('Categories')}}">
+            <x-admin-side-nav-tile  :link="route('categories')" text="{{__('Categories')}}" highlight="{{ Str::contains(url()->current(), route('categories')) }}">
                 <x-icons.category></x-icons.category>
             </x-admin-side-nav-tile>
 
@@ -59,7 +59,7 @@
                     {{__('Website Settings')}}
                 </p>
             </li>
-            <x-admin-side-nav-tile :link="route('settings')" text="Settings">
+            <x-admin-side-nav-tile :link="route('settings')" text="Settings" highlight="{{ Str::contains(url()->current(), route('settings')) }}">
                 <x-icons.settings></x-icons.settings>
             </x-admin-side-nav-tile>
         </ul>
@@ -71,6 +71,3 @@
      style="background-color: rgba(0, 0, 0, 0.5);"></div>
 
 
-<script>
-
-</script>

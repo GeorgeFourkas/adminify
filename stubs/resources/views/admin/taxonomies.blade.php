@@ -31,7 +31,7 @@
                                     {{__('Parent id')}}
                                 </th>
                                 <th class="whitespace-nowrap border-b border-gray-200 bg-transparent px-6 py-3 pl-2 text-left align-middle font-bold uppercase text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
-                                    {{__('Create at')}}
+                                    {{__('Created at')}}
                                 </th>
 
                             </tr>

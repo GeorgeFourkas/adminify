@@ -24,7 +24,7 @@ class SettingsController extends Controller
 
         return redirect()
             ->route('settings')
-            ->with('success', 'settings synced successfully');
+            ->with('success', __('settings synced successfully'));
     }
 
     public function addLanguage(AddLanguageRequest $request, AddLanguageService $service)

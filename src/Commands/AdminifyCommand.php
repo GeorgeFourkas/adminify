@@ -38,6 +38,7 @@ class AdminifyCommand extends Command
         $this->callSilently('storage:link');
         $this->bar->advance();
 
+
         $this
             ->installModels()
             ->installControllers()

@@ -34,6 +34,6 @@ class CreateCategoryRequest extends FormRequest
  protected function failedValidation(Validator $validator)
  {
      return redirect()->back()
-         ->with('error', __('Categories name in main locale is required'));
+         ->with('error', __("Category's name in main locale is required"));
  }
 }
