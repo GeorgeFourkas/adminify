@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-img{
-    user-select: none;
-}
-
 .gradient-app-theme {
     @apply bg-gradient-to-tl from-purple-700 to-pink-500
 }
