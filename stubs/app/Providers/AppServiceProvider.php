@@ -23,10 +23,9 @@ class AppServiceProvider extends ServiceProvider
 
     }
 
-
     public function boot(Request $request)
     {
-        if ($this->translationsAreEnabled() && !in_array($request->segment(1), $this->getPublishedLanguages())) {
+        if ($this->translationsAreEnabled() && ! in_array($request->segment(1), $this->getPublishedLanguages())) {
             redirect(implode('/', \Arr::prepend($request->segments(), $this->getStore()->get('default_locale'))))->send();
         }
 
