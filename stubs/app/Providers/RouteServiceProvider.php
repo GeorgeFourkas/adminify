@@ -16,18 +16,22 @@ class RouteServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-
         $this->configureRateLimiting();
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            if (! $this->translationsAreEnabled()) {
+            if (!$this->translationsAreEnabled()) {
+                Route::name($this->getStore()->get('default_locale') . '.')
+                    ->middleware('web')
+                    ->prefix($this->getStore()->get('default_locale'))
+                    ->group(base_path('routes/web.php'));
+
                 Route::middleware('web')
                     ->group(base_path('routes/web.php'));
             } else {
-                Route::middleware(['adminify.locale', 'web'])
+                Route::middleware(['locale', 'web'])
                     ->prefix('{locale?}')
                     ->group(base_path('routes/web.php'));
             }
@@ -39,26 +43,5 @@ class RouteServiceProvider extends ServiceProvider
         RateLimiter::for('api', function ($request) {
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
-    }
-
-    private function preg($str)
-    {
-
-        $regex = '/([a-z]{2}(?:-[A-Z]{2})?)(?:\s*,\s*([a-z]{2}(?:-[A-Z]{2})?)?(?:\s*;\s*q\s*=\s*(\d(?:\.\d{1,3})?))?)?/';
-
-        preg_match_all($regex, $str, $matches, PREG_SET_ORDER);
-
-        $languages = [];
-        foreach ($matches as $match) {
-            $language = $match[1];
-            if (isset($match[3])) {
-                $qvalue = floatval($match[3]);
-            } else {
-                $qvalue = 1.0;
-            }
-            $languages[] = ['language' => $language, 'qvalue' => $qvalue];
-        }
-
-        return $languages;
     }
 }

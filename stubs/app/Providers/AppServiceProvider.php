@@ -23,9 +23,14 @@ class AppServiceProvider extends ServiceProvider
 
     }
 
-    public function boot(Request $request): void
+
+    public function boot(Request $request)
     {
-        if ($this->translationsAreEnabled() && $request->segment(1) && in_array($request->segment(1), array_keys($this->getStore()->get('locales')))) {
+        if ($this->translationsAreEnabled() && !in_array($request->segment(1), $this->getPublishedLanguages())) {
+            redirect(implode('/', \Arr::prepend($request->segments(), $this->getStore()->get('default_locale'))))->send();
+        }
+
+        if ($this->translationsAreEnabled() && $request->segment(1) && in_array($request->segment(1), $this->getPublishedLanguages())) {
             App::setLocale($request->segment(1));
             URL::defaults(['locale' => $this->app->getLocale()]);
         }
