@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 class RoleSeedCommand extends Command
 {
     use SeedsRoles;
+
     protected $signature = 'roles:init';
 
     protected $description = 'this command initializes roles and permissions';
@@ -22,6 +23,4 @@ class RoleSeedCommand extends Command
 
         return self::SUCCESS;
     }
-
-
 }
