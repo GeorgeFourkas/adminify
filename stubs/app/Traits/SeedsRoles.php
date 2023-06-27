@@ -32,7 +32,6 @@ trait SeedsRoles
         $permissions[] = Permission::create(['name' => Permissions::CREATE_USERS]);
         $permissions[] = Permission::create(['name' => Permissions::UPDATE_USERS]);
 
-
         $permissions[] = Permission::create(['name' => Permissions::UPDATE_CATEGORIES]);
         $permissions[] = Permission::create(['name' => Permissions::CREATE_CATEGORIES]);
         $permissions[] = Permission::create(['name' => Permissions::DELETE_CATEGORIES]);
