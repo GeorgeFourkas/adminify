@@ -31,9 +31,9 @@ class CreateCategoryRequest extends FormRequest
         ];
     }
 
- protected function failedValidation(Validator $validator)
- {
-     return redirect()->back()
-         ->with('error', __("Category's name in main locale is required"));
- }
+    protected function failedValidation(Validator $validator)
+    {
+        return redirect()->back()
+            ->with('error', __("Category's name in main locale is required"));
+    }
 }

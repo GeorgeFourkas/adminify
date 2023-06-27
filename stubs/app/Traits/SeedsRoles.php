@@ -11,7 +11,6 @@ use Spatie\Permission\PermissionRegistrar;
 
 trait SeedsRoles
 {
-
     public function initializeRoles()
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
@@ -63,5 +62,4 @@ trait SeedsRoles
             ]
         )->assignRole('administrator');
     }
-
 }
