@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 
 class AdminifyCommand extends Command
 {
-
     public $signature = 'adminify:install';
 
     public $description = 'Installs the nalcom adminify laravel package';
