@@ -20,7 +20,6 @@ class AdminifyServiceProvider extends PackageServiceProvider
         $package
             ->name('adminify')
             ->hasConfigFile()
-            ->hasViews()
             ->hasTranslations()
             ->hasMigrations([
                 '2023_02_06_125056_create_posts_table',
