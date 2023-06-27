@@ -2,7 +2,6 @@
 
 namespace Nalcom\Adminify\Commands;
 
-use App\Traits\SeedsRoles;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
@@ -10,7 +9,6 @@ use Illuminate\Support\Str;
 
 class AdminifyCommand extends Command
 {
-    use SeedsRoles;
 
     public $signature = 'adminify:install';
 
