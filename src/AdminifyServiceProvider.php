@@ -3,14 +3,16 @@
 namespace Nalcom\Adminify;
 
 use Nalcom\Adminify\Commands\AdminifyCommand;
+use Nalcom\Adminify\Commands\PrintResourceFileList;
+use Nalcom\Adminify\Commands\RoleSeedCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class AdminifyServiceProvider extends PackageServiceProvider
 {
+
     public function configurePackage(Package $package): void
     {
-
         $this->loadJsonTranslationsFrom(__DIR__.'/../lang');
 
         $this->publishes([
@@ -36,6 +38,12 @@ class AdminifyServiceProvider extends PackageServiceProvider
                 '2023_03_27_150634_create_category_translations_table',
                 '2023_03_29_184020_create_categoryables_table',
             ])
-            ->hasCommand(AdminifyCommand::class);
+            ->hasCommands(
+                [
+                    AdminifyCommand::class,
+                    RoleSeedCommand::class,
+                    PrintResourceFileList::class,
+                ]
+            );
     }
 }
