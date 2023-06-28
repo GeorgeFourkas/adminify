@@ -10,7 +10,6 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class AdminifyServiceProvider extends PackageServiceProvider
 {
-
     public function configurePackage(Package $package): void
     {
         $this->loadJsonTranslationsFrom(__DIR__.'/../lang');

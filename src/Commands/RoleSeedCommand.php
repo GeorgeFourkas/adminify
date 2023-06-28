@@ -12,6 +12,7 @@ class RoleSeedCommand extends Command
     protected $signature = 'roles:init';
 
     protected $description = 'intializes db';
+
     public function handle(): void
     {
         $this->initializeRoles();
