@@ -3,6 +3,8 @@
 namespace App\Models\Adminify;
 
 use App\Models\User;
+use App\Traits\HasCategories;
+use App\Traits\HasTags;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Post extends Model implements TranslatableContract
 {
-    use Translatable, HasFactory;
+    use Translatable, HasFactory, HasCategories, HasTags;
 
     protected $guard_name = 'web';
 

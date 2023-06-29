@@ -1,6 +1,9 @@
 @props( [
     'locales' => []
 ])
+@pushonce('scripts')
+    @vite('resources/js/admin/tabs.js')
+@endpushonce
 
 <ul class=" {{count($locales) > 1 ? '' : 'hidden'}} rounded-lg text-center text-sm font-medium text-gray-500 divide-x divide-gray-200 flex flex-wrap items-center justify-center min-h-full"
     id="tabExample" role="tablist" data-locales="{{json_encode($locales)}}">

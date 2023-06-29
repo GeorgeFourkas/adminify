@@ -1,3 +1,6 @@
+@pushonce('scripts')
+    @vite('resources/js/admin/tags-input.js')
+@endpushonce
 <div>
     <label for="combobox" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Tags') }}</label>
     <div class="relative mt-2">

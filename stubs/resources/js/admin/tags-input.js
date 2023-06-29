@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {appendLocale} from "./locale-prefix-parser";
+const activeLocale = document.querySelector('body').dataset.locale;
 const createPostForm = document.getElementById('create_post_form')
 const suggestContainer = document.getElementById('tag-suggest');
 const tagArea = document.getElementById('drawed-tags')
@@ -7,6 +8,27 @@ const form = document.getElementById('selected_tags')
 const input = document.getElementById('tag_input')
 let pendingRequest = false;
 let selectedTags = [];
+
+
+window.addEventListener('keydown', (e) => {
+    if (e.key === "Enter" && input === document.activeElement) {
+        suggestContainer.classList.add('hidden')
+        e.preventDefault()
+        const url = appendLocale() + 'tags/store'
+        const tagName = input.value
+        input.value = "";
+        axios.post(url, {
+            [activeLocale]: {
+                name: tagName
+            }
+        }).then((response) => {
+            setSelectedTag(response.data.name, response.data.id)
+            drawTagPills();
+        })
+    }
+})
+
+
 
 if ((createPostForm.dataset?.selectedtags)) {
     const editingTags = (JSON.parse(createPostForm.dataset.selectedtags));

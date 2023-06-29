@@ -6,12 +6,14 @@ import ckeditor5 from '@ckeditor/vite-plugin-ckeditor5';
 const require = createRequire(import.meta.url);
 
 export default defineConfig({
+    optimizeDeps: {
+        esbuildOptions: {
+            legalComments: 'none'
+        }
+    },
     plugins: [
         laravel({
             input: [
-
-
-
                 'resources/js/admin/CKEditor/ckeditor.js',
                 'resources/js/admin/add-new-language.js',
                 'resources/js/admin/already-update-media-chooser.js',

@@ -1,65 +1,95 @@
-const fileDom = []
-const dropzones = (document.querySelectorAll('.dropzone-handler'))
-
-
-const previewInitialUploadededAsset = (index) => {
-    fileDom[index].preview.style.backgroundImage = 'url(' + fileDom[index].preview.dataset.asset + ')';
-    fileDom[index].labelText1.classList.toggle('text-white')
-}
-const previewSelectedImage = (e, index) => {
-    fileDom[index].preview.style.backgroundImage = 'url(' + URL.createObjectURL(e.target.files[0]) + ')';
-    fileDom[index].preview.onload = function () {
-        URL.revokeObjectURL(fileDom[index].preview.src)
+const dropzones = document.querySelectorAll('[dropzone]')
+dropzones.forEach((dropzone) => {
+    applyRemoveListener(dropzone)
+    const input = dropzone.querySelector('input');
+    if (input.hasAttribute('multiple')) {
+        handleMultiple(dropzone, input);
+    } else {
+        handleSingle(dropzone, input)
     }
-}
-const isUpdatingData = (index) => {
-    return !!fileDom[index].preview.dataset.asset
-}
-const noFileSelected = (index) => {
-    return fileDom[index].dropzone.files.length === 0
-}
-const setPreviewToEmpty = (index) => {
-    fileDom[index].preview.style.backgroundImage = 'url()';
-    fileDom[index].dropzone.value = '';
-}
-const togglePreviewControls = (index) => {
-    fileDom[index].labelText1.classList.toggle('text-white')
-    fileDom[index].removeImageBtn.classList.toggle('hidden')
-}
-
-dropzones.forEach((locale) => {
-    const id = locale.dataset.children_id
-    fileDom.push({
-        dropzone: document.querySelector('#dropzone-file-' + id),
-        preview: document.querySelector('#preview-' + id),
-        labels: document.querySelector('#labels-' + id),
-        labelText1: document.querySelector('#label-text-1-' + id),
-        removeImageBtn: document.querySelector('#removeImage-' + id),
-    })
 })
 
+function handleSingle(dropzone, input) {
+    const preview = dropzone.querySelector('label')
+    const removeBtn = dropzone.querySelector('[dropzone_remove_btn]');
+    const isUpdatingModel = !!preview.dataset.asset
 
-fileDom.forEach((item, index) => {
-    if (isUpdatingData(index)) {
-        previewInitialUploadededAsset(index)
-    }
-    item.dropzone.addEventListener('change', (e) => {
-        if (e.target.files[0]) {
-            previewSelectedImage(e, index)
-            togglePreviewControls(index)
-        } else if (isUpdatingData(index) && noFileSelected(index)) {
-            previewInitialUploadededAsset(index)
-        } else {
-            togglePreviewControls(index)
+    dropzone.addEventListener('click', () => {
+        if (input.type === 'text') {
+            input.type = 'file'
         }
     });
-    item.removeImageBtn.addEventListener('click', (e) => {
+    removeBtn.addEventListener('click', (e) => {
         e.preventDefault()
-        if (isUpdatingData(index) && noFileSelected(index)) {
-            previewInitialUploadededAsset(index);
-        } else {
-            setPreviewToEmpty(index)
-        }
+        removeBtn.classList.toggle('hidden')
+        removeInputFileOrText(input.files ?? [], 1, input)
+        isUpdatingModel
+            ? preview.style.backgroundImage = 'url(' + preview.dataset.asset + ')'
+            : preview.style.backgroundImage = 'url()';
     });
-})
+    preview.style.backgroundImage = 'url(' + preview.dataset.asset + ')';
+    input.addEventListener('change', (e) => {
+        preview.style.backgroundImage = 'url(' + URL.createObjectURL(e.target.files[0]) + ')'
+        // free memory
+        preview.onload = function () {
+            URL.revokeObjectURL(preview.src)
+        }
+        removeBtn.classList.remove('hidden')
+    })
+}
 
+function handleMultiple(rootDropzoneContainer, fileInput) {
+    fileInput.addEventListener('change', (e) => {
+        const gallery = rootDropzoneContainer.querySelector('[uploaded_media_gallery]')
+        applyRemoveListener(rootDropzoneContainer)
+        const item = rootDropzoneContainer.querySelector('[already_uploaded_media]')
+        Array.from(e.target.files).forEach((file) => {
+            const cloned = item?.cloneNode(true);
+            cloned.getElementsByTagName('img')[0].src = URL.createObjectURL(file);
+            cloned.removeAttribute('data-model')
+            cloned.classList.remove('hidden')
+            gallery.appendChild(cloned)
+            applyRemoveListener(rootDropzoneContainer);
+        });
+    });
+}
+
+function applyRemoveListener(rootElement) {
+    rootElement.querySelectorAll('[already_uploaded_media]').forEach((media, key) => {
+        media.addEventListener('click', (e) => {
+            e.preventDefault()
+            const input = rootElement.querySelector('input[type="file"]');
+            removeInputFileOrText(input.files, parseInt(key) - 1, input);
+            if (media.dataset.model) {
+                const parent = media.closest('[dropzone]')
+                parent.insertAdjacentHTML('afterbegin', `
+                 <input type="text" class="hidden" name="${getInputName(input)}" value=${JSON.parse(media.dataset.model).id}>
+`);
+            }
+            media.remove()
+        })
+    })
+}
+
+function getInputName(element) {
+
+    if (element.hasAttribute('detach_media_field_name')) {
+        return element.getAttribute('detach_media_field_name')
+    }
+    return `${element.name}[detach]`
+}
+
+function removeInputFileOrText(fileList, index, input) {
+
+    if (input.type === 'text') {
+        return input.value = '';
+    }
+
+    const filesArray = Array.from(fileList);
+    filesArray.splice(index, 1);
+    input.value = '';
+
+    const newFileList = new DataTransfer();
+    filesArray.forEach(file => newFileList.items.add(file));
+    input.files = newFileList.files;
+}

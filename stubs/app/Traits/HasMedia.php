@@ -24,11 +24,37 @@ trait HasMedia
         }
     }
 
+
+    public function bulkUploadOrAttach(array $items): static
+    {
+        $toAttach = [];
+        $fileItems = [];
+        foreach ($items as $item) {
+
+            if (is_string($item)) {
+                $toAttach[] = $item;
+            }
+            elseif ($item instanceof UploadedFile) {
+                $fileItems[] = $this->formMediaModelValues($item);
+            }
+        }
+
+        if (!empty($toAttach)){
+            $this->media()->attach($toAttach);
+        }
+
+        if (!empty($fileItems)){
+            $this->media()->createMany($fileItems);
+        }
+
+        return $this;
+    }
+
+
     public function uploadOrSync(array|string $items, $folder = 'public/posts')
     {
 
     }
-
 
     public function formMediaModelValues(UploadedFile $item, $folder = 'public/posts'): array
     {

@@ -6,11 +6,7 @@
     @endphp
     <x-slot:head>
         @vite([
-            'resources/js/admin/tabs.js',
             'resources/js/admin/rich-editor.js',
-            'resources/js/admin/dropzone.js',
-            'resources/js/admin/tags-input.js',
-            'resources/js/admin/dynamic-meta-fields.js'
         ])
     </x-slot:head>
     <div class="mx-auto w-full lg:w-10/12">

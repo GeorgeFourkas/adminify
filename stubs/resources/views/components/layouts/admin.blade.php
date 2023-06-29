@@ -17,6 +17,9 @@
         'resources/css/scrollbar.css',
         'resources/js/admin/menu-toggler.js',
     ])
+
+    @stack('scripts')
+
     {{$head ?? ''}}
 </head>
 

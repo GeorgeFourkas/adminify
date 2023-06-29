@@ -95,7 +95,7 @@ Editor.defaultConfig = {
             'fontSize'
         ]
     },
-    language: 'en',
+    language: 'el',
     image: {
         toolbar: [
             'imageTextAlternative',
@@ -111,7 +111,8 @@ Editor.defaultConfig = {
             'tableRow',
             'mergeTableCells'
         ]
-    }, simpleUpload: {
+    },
+    simpleUpload: {
         uploadUrl: appendLocale() + 'master/admin/media/upload',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name=_token]').content

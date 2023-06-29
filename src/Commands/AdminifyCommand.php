@@ -65,7 +65,7 @@ class AdminifyCommand extends Command
         $this->execShellCommand('npm run build');
 
         $this->bar->advance();
-        $this->initializeRolesAndPermissions();
+        $this->call('roles:init');
         $this->bar->advance();
         $this->bar->finish();
         $this->newLine()
@@ -363,10 +363,4 @@ class AdminifyCommand extends Command
         $this->bar->advance();
     }
 
-    protected function initializeRolesAndPermissions(): void
-    {
-        $this->initializeRoles();
-        $this->createAdministrator();
-        $this->bar->advance();
-    }
 }

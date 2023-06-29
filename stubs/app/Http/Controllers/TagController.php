@@ -24,7 +24,11 @@ class TagController extends Controller
 
     public function store(Request $request)
     {
-        Tag::create($this->removeNullLanguageRequestIndex($request->only($this->getAllDeclaredLanguages())));
+        $tag = Tag::create($this->removeNullLanguageRequestIndex($request->only($this->getAllDeclaredLanguages())));
+
+        if ($request->expectsJson()){
+            return response()->json($tag);
+        }
 
         return redirect()
             ->route('tags')
