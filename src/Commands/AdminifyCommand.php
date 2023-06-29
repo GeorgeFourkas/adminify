@@ -362,5 +362,4 @@ class AdminifyCommand extends Command
 
         $this->bar->advance();
     }
-
 }

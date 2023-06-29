@@ -26,7 +26,7 @@ class TagController extends Controller
     {
         $tag = Tag::create($this->removeNullLanguageRequestIndex($request->only($this->getAllDeclaredLanguages())));
 
-        if ($request->expectsJson()){
+        if ($request->expectsJson()) {
             return response()->json($tag);
         }
 

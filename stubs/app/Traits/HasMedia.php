@@ -23,7 +23,6 @@ trait HasMedia
         }
     }
 
-
     public function bulkUploadOrAttach(array $items): static
     {
         $toAttach = [];
@@ -32,23 +31,21 @@ trait HasMedia
 
             if (is_string($item)) {
                 $toAttach[] = $item;
-            }
-            elseif ($item instanceof UploadedFile) {
+            } elseif ($item instanceof UploadedFile) {
                 $fileItems[] = $this->formMediaModelValues($item);
             }
         }
 
-        if (!empty($toAttach)){
+        if (! empty($toAttach)) {
             $this->media()->attach($toAttach);
         }
 
-        if (!empty($fileItems)){
+        if (! empty($fileItems)) {
             $this->media()->createMany($fileItems);
         }
 
         return $this;
     }
-
 
     public function uploadOrSync(array|string $items, $folder = 'public/posts')
     {
