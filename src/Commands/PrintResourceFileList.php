@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 
 class PrintResourceFileList extends Command
 {
-
     protected $signature = 'paths:print';
 
     protected $description = 'prints all files to console to put in vite config for small bundle';
@@ -18,7 +17,6 @@ class PrintResourceFileList extends Command
 
         return self::SUCCESS;
     }
-
 
     private function listFolderFiles($dir)
     {
@@ -33,16 +31,16 @@ class PrintResourceFileList extends Command
 
         foreach ($ffs as $ff) {
 
-            if (is_dir($dir . '/' . $ff)) {
-                $this->listFolderFiles($dir . '/' . $ff);
+            if (is_dir($dir.'/'.$ff)) {
+                $this->listFolderFiles($dir.'/'.$ff);
             }
 
-            $fullPath = $dir . '/' . $ff;
+            $fullPath = $dir.'/'.$ff;
 
             $path = explode('resources', $fullPath);
-            $pathFromResources = 'resources' . end($path);
+            $pathFromResources = 'resources'.end($path);
             if (str_contains($pathFromResources, '.')) {
-                $this->info("'" . str_replace('\\', '/', $pathFromResources) . "',");
+                $this->info("'".str_replace('\\', '/', $pathFromResources)."',");
             }
         }
     }

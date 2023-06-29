@@ -52,7 +52,7 @@ trait SeedsRoles
             $role->givePermissionTo($permissions);
         }
 
-        $this->info("All Roles and permissions are up!");
+        $this->info('All Roles and permissions are up!');
     }
 
     public function createAdministrator($email, $name = 'George Fourkas'): void
@@ -68,8 +68,7 @@ trait SeedsRoles
             ]
         )->assignRole('administrator');
 
-        $this->info('Creating administrator with email ' . $email);
+        $this->info('Creating administrator with email '.$email);
 
     }
-
 }

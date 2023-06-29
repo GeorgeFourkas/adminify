@@ -11,5 +11,4 @@ trait HasTags
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
-
 }
