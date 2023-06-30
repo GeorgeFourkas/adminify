@@ -52,7 +52,7 @@
                             </tr>
                             </tbody>
                         </table>
-                        <x-admin.posts.delete-post-modal></x-admin.posts.delete-post-modal>
+                        <x-admin.delete-action-confirmation-modal></x-admin.delete-action-confirmation-modal>
                     </div>
                 </div>
             </div>

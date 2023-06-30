@@ -11,20 +11,22 @@
             <div class="my-4">
                 <h1 class="text-center font-semibold text-xl">{{ __('File Information') }}</h1>
             </div>
-            <h1>Uploaded By: <span class="text-blue-400" id="uploaded_by"></span></h1>
+            <h1>{{ __('Uploaded By:') }}
+                <span class="text-blue-400" id="uploaded_by"></span></h1>
             <h1>
-                Uploaded At:
+                {{ __('Uploaded At:') }}
                 <span
                     id="uploaded_at"> {{ \Illuminate\Support\Carbon::now()->subWeeks(rand(1,9))->diffForHumans() }} </span>
             </h1>
-            <h1 class="">Original File Name: <span id="original_file_name" class="text-blue-400 "></span></h1>
-            <h1>File Extension: <span id="file_extension" class="text-blue-400"></span></h1>
-            <h1>File Size: <span id="size" class="text-blue-400"></span><span
+            <h1 class="">{{ __('Original File Name') }}:
+                <span id="original_file_name" class="text-blue-400 "></span></h1>
+            <h1>{{ __('File Extension') }}: <span id="file_extension" class="text-blue-400"></span></h1>
+            <h1>{{ __('File Size') }}: <span id="size" class="text-blue-400"></span><span
                     class="text-xs text-blue-400 uppercase text-sm">KB</span></h1>
-            <h1>Aspect Ratio: <span id="aspect_ratio" class="text-blue-400"></span></h1>
-            <h1>Width: <span id="width" class="text-blue-400"></span></h1>
-            <h1>Height: <span id="height" class="text-blue-400"></span></h1>
-            <h1 class="break-words">File url: <span class="text-blue-400 cursor-pointer hover:text-blue-300 underline"
+            <h1>{{ __('Aspect Ratio') }}: <span id="aspect_ratio" class="text-blue-400"></span></h1>
+            <h1>{{ __('Width') }}: <span id="width" class="text-blue-400"></span></h1>
+            <h1>{{ __('Height') }}: <span id="height" class="text-blue-400"></span></h1>
+            <h1 class="break-words">{{ __('File url') }}: <span class="text-blue-400 cursor-pointer hover:text-blue-300 underline"
                                                     id="url"></span></h1>
 
             <div class="mt-3">
@@ -53,7 +55,6 @@
                     @method('DELETE')
                     <button class="p-2 bg-red-500 text-white hover:bg-red-300 rounded-lg">
                         {{ __('Remove') }}
-
                     </button>
                 </form>
             </div>

@@ -1,6 +1,6 @@
 <x-layouts.admin>
     <x-slot:head>
-        @vite(['resources/js/admin/child-toggle.js', 'resources/js/admin/tabs.js' , 'resources/js/admin/category-crud.js', 'resources/js/admin/confirm-modal.js'])
+        @vite(['resources/js/admin/child-toggle.js',  'resources/js/admin/category-crud.js'])
     </x-slot:head>
     @php
         $locales = array_keys(config('translatable.locales'))

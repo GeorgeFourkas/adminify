@@ -1,14 +1,7 @@
 <x-layouts.admin>
-    @php
-        $locales = array_keys(config('translatable.locales'));
-
-        $defaultLocale = config('app.fallback_locale');
-    @endphp
-    <x-slot:head>
-        @vite([
-            'resources/js/admin/rich-editor.js',
-        ])
-    </x-slot:head>
+    @push('scripts')
+        @vite(['resources/js/admin/rich-editor.js'])
+    @endpush
     <div class="mx-auto w-full lg:w-10/12">
         <x-admin.language-tabs-header :locales="$locales"/>
         <form id="create_post_form" action="{{ route('posts.save') }}" method="post" enctype="multipart/form-data">
@@ -39,7 +32,7 @@
                                     <!-- Rich editor -->
                                     <div class="mt-5 flex w-full flex-col items-start justify-center"
                                          id="rich-container">
-                                        <label class="my-2 text-sm text-black">{{__('Post Body')}}</label>
+                                        <label class="my-2 text-sm text-black">{{ __('Post Body') }}</label>
                                         <textarea
                                             id="body-{{$locale}}"
                                             class="border-2 border-green-500"

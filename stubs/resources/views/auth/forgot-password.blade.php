@@ -1,7 +1,7 @@
 <x-layouts.guest>
 
-    <div class="min-h-screen w-full flex items-center justify-center">
-        <div class="w-11/12 md:w-2/3 lg:w-1/4 rounded-xl py-12 px-9 bg-white shadow-soft-2xl">
+    <div class="w-full flex items-center justify-center">
+        <div class="w-11/12 rounded-xl py-12 px-9 bg-white ">
             <div class="w-full flex items-center justify-center text-[#b73baf]">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="w-9 h-9">
@@ -19,11 +19,14 @@
                 {{ __("No worries. We'll send reset instructions") }}
             </div>
             <!-- Session Status -->
-            <x-auth-session-status class="mb-4" :status="session('status')"/>
- 
+            @if(session('status'))
+                <div class="px-2 bg-lime-400 text-center rounded-lg">
+                    <x-auth-session-status class="mb-4 text-white text-center p-1" :status="session('status')"/>
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('password.email') }}">
                 @csrf
-
                 <!-- Email Address -->
                 <div>
                     <x-input-label for="email" :value="__('Email')"/>
@@ -34,7 +37,7 @@
 
                 <div class="flex items-center justify-center mt-8">
                     <button
-                        class="gradient-app-theme px-3 py-2 text-sm text-white rounded-md font-semibold w-full">{{__('Reset Password')}}</button>
+                        class="gradient-app-theme px-3 py-2 text-sm text-white rounded-md font-semibold w-full font-admin-sans">{{__('Reset Password')}}</button>
                 </div>
             </form>
         </div>

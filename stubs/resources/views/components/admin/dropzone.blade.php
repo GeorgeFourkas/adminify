@@ -58,6 +58,9 @@
     @endif
 </div>
 
+@once
+    <x-admin.already-uploaded-media-chooser></x-admin.already-uploaded-media-chooser>
+@endonce
 
 
 

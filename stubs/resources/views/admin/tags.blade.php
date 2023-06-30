@@ -89,30 +89,22 @@
 
 
             <h1 class="my-5 text-center text-xl font-semibold" id="modal-title"></h1>
-            <ul class=" {{count($locales) > 1 ? '' : 'hidden'}} rounded-lg text-center text-sm font-medium text-gray-500 divide-x divide-gray-200 flex flex-row flex-wrap items-center justify-center min-h-full"
-                id="tabExample" role="tablist" data-locales="{{json_encode($locales)}}">
-                <x-admin.language-tabs-header :locales="$locales"/>
 
-            </ul>
+            <x-admin.language-tabs-header :locales="$locales"/>
+
             <form action="{{route('tags.store')}}" method="POST" id="tag-form">
                 @csrf
                 @foreach($locales as $key => $locale)
                     <div class="mt-10 hidden w-full rounded-lg"
                          id="profile-example-{{$locale}}"
                          role="tabpanel" aria-labelledby="profile-tab-example-{{$locale}}">
-                        <div class="flex items-center justify-center">
-                            {{--                            <x-admin.text-field label="{{__('name')}}" name="{{$locale}}[name]" id="{{$locale}}"/>--}}
-                            <x-input-label
-                                for="title"
-                                :value="__('Title')"></x-input-label>
-                            <x-text-input
-                                id="{{$locale}}"
-                                type="text"
-                                class="mt-1 mx-2 block w-full"
-                                name="{{$locale}}[name]"
-                                :value="old($locale.'.title')">
-                            </x-text-input>
-                        </div>
+                        <x-input-label class="capitalize" for="{{$locale}}" :value="__('tag:')"/>
+                        <x-text-input
+                            id="{{$locale}}"
+                            type="text"
+                            class="mt-1 mx-2 block w-11/12"
+                            name="{{$locale}}[name]"
+                            :value="old($locale.'.title')"/>
                     </div>
                 @endforeach
                 <div class="flex items-center justify-center">

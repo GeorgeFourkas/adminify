@@ -3,7 +3,6 @@
     <x-slot:head>
         @vite([
             'resources/js/flash-timeout.js',
-            'resources/js/admin/confirm-modal.js',
         ])
     </x-slot:head>
     <div class="mx-auto w-full px-6 py-6">

@@ -1,10 +1,7 @@
-{{--        $this->label = $label;
-        $this->value = $value;--}}
 @props( [
     'label' => '',
     'value' => '',
 ])
-
 
 <div class="">
     <label class="relative inline-flex cursor-pointer items-center">

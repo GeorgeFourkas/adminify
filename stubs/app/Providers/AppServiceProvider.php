@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(Request $request)
     {
-        if ($this->translationsAreEnabled() && ! in_array($request->segment(1), $this->getPublishedLanguages())) {
+        if ($this->translationsAreEnabled() && !in_array($request->segment(1), $this->getPublishedLanguages())) {
             redirect(implode('/', \Arr::prepend($request->segments(), $this->getStore()->get('default_locale'))))->send();
         }
 
@@ -37,6 +37,11 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['components.language-switcher', 'components.layouts.admin'], function ($view) {
             $view->with('publishedLanguages', $this->getPublishedLanguages());
             $view->with('availableLocales', $this->getStore()->get('locales'));
+        });
+
+        View::composer('admin/*', function ($view) {
+            $view->with('locales', array_keys(config('translatable.locales')));
+            $view->with('defaultLocale', config('app.fallback_locale'));
         });
 
     }

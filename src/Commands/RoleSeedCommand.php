@@ -17,6 +17,6 @@ class RoleSeedCommand extends Command
     {
         $this->initializeRoles();
 
-        $this->createAdministrator('admin@nalom.gr');
+        $this->createAdministrator('admin@nalcom.gr');
     }
 }

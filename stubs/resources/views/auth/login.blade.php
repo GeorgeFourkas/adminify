@@ -1,6 +1,12 @@
 <x-layouts.authentication>
     <div class="w-full lg:w-1/2 flex items-center justify-center h-screen">
         <form method="POST" action="{{ route('login') }}" class="w-2/3 md:mx-5 lg:px-10">
+
+            @if(session('status'))
+                <div class="p-1 bg-green-200">
+                    <x-auth-session-status class="mb-4 text-white" :status="session('status')"/>
+                </div>
+            @endif
             <div class="w-full">
                 <h1 class="text-3xl text-center font-nunito font-bold text-transparent gradient-app-theme bg-clip-text">
                     {{__('Welcome Back')}}

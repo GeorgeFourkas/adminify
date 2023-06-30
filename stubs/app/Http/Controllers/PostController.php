@@ -43,7 +43,6 @@ class PostController extends Controller
         $this->authorize('create', Post::class);
 
         return view('admin.posts.create', [
-            'locales' => ($this->getStore()->get('locales')),
             'categories' => Category::with(['translation', 'translations'])
                 ->tree()
                 ->get()
@@ -78,7 +77,7 @@ class PostController extends Controller
             $post->translations->forget($key);
         });
 
-        return view('admin.posts.update', [
+        return view('admin.posts.edit', [
             'post' => $post,
             'categories' => Category::with(['translation', 'translations'])
                 ->tree()

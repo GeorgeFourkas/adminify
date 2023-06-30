@@ -1,9 +1,8 @@
 @php use Spatie\Permission\Models\Role; @endphp
 <x-layouts.admin>
-    @vite(['resources/js/admin/dropzone.js'])
-    @php
-        $locales = array_keys(config('translatable.locales'))
-    @endphp
+{{--    @php--}}
+{{--        $locales = array_keys(config('translatable.locales'))--}}
+{{--    @endphp--}}
     <div
         class="container mx-auto flex w-11/12 lg:w-2/3 items-center justify-center rounded-lg bg-white px-5 py-14 shadow-soft-2xl">
         <form action="{{route('user.store')}}" enctype="multipart/form-data" method="POST" autocomplete="off"

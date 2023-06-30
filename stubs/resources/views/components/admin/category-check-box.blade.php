@@ -1,4 +1,7 @@
-@vite('resources/js/admin/category-checkbox-click.js')
+@pushonce('scripts')
+    @vite('resources/js/admin/category-checkbox-click.js')
+@endpushonce
+
 <div class="flex items-center w-full" category-checkbox>
     <input type="checkbox" value="{{$category->id}}" name="categories[]" @checked($tobeChecked ?? false)
     class="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-0 focus:ring-offset-0">

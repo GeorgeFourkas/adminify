@@ -11,8 +11,15 @@ use Spatie\Permission\PermissionRegistrar;
 
 trait SeedsRoles
 {
+
+    protected $roles = [
+        ''
+    ];
+
+
     public function initializeRoles()
     {
+        $permissions = [];
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         if (Role::where('name', 'contributor')->doesntExist()) {
@@ -27,7 +34,7 @@ trait SeedsRoles
             $permissions[] = Permission::create(['name' => Permissions::DELETE_POSTS]);
             $role->givePermissionTo($permissions);
         }
-        if (Role::where('name', 'author')->doesntExist()) {
+        if (Role::where('name', 'moderator')->doesntExist()) {
             $role = Role::create(['name' => 'moderator']);
             $permissions[] = Permission::create(['name' => Permissions::APPROVE_COMMENTS]);
             $permissions[] = Permission::create(['name' => Permissions::DELETE_COMMENTS]);
@@ -46,16 +53,18 @@ trait SeedsRoles
         }
         if (Role::where('name', 'administrator')->doesntExist()) {
             $role = Role::create(['name' => 'administrator']);
+
             $permissions[] = Permission::create(['name' => Permissions::DELETE_USERS]);
             $permissions[] = Permission::create(['name' => Permissions::CHANGE_SETTINGS]);
             $permissions[] = Permission::create(['name' => Permissions::UPDATE_USERS_PASSWORDS]);
+
             $role->givePermissionTo($permissions);
         }
 
         $this->info('All Roles and permissions are up!');
     }
 
-    public function createAdministrator($email, $name = 'George Fourkas'): void
+    public function createAdministrator($email, $name = 'Nalcom Administrator'): void
     {
         User::firstOrCreate(
             [
@@ -68,7 +77,6 @@ trait SeedsRoles
             ]
         )->assignRole('administrator');
 
-        $this->info('Creating administrator with email '.$email);
-
+        $this->info('Creating administrator with email ' . $email);
     }
 }

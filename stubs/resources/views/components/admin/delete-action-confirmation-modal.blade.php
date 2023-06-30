@@ -1,3 +1,7 @@
+@pushonce('scripts')
+    @vite('resources/js/admin/confirm-modal.js')
+@endpushonce
+
 <div
     class="fixed top-0 right-0 left-0 flex hidden min-h-screen w-full items-center justify-center bg-overlay-body z-1000"
     id="confirmation-modal">
