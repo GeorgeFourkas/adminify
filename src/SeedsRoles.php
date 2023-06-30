@@ -11,11 +11,9 @@ use Spatie\Permission\PermissionRegistrar;
 
 trait SeedsRoles
 {
-
     protected $roles = [
-        ''
+        '',
     ];
-
 
     public function initializeRoles()
     {
@@ -77,6 +75,6 @@ trait SeedsRoles
             ]
         )->assignRole('administrator');
 
-        $this->info('Creating administrator with email ' . $email);
+        $this->info('Creating administrator with email '.$email);
     }
 }
