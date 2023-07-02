@@ -24,10 +24,10 @@
     @vite('resources/js/admin/dropzone.js')
 @endpushonce
 
-<div class="dropzone-handler w-full " data-children_id="{{$id}}" dropzone>
+<div class="dropzone-handler w-full " data-children_id="{{ $id }}" dropzone>
 
-    <label for="{{$id}}" id="preview-{{$id}}"
-           data-asset="{{$previewUrl ?? ''}}"
+    <label for="{{ $id }}" id="preview-{{ $id }}"
+           data-asset="{{ $previewUrl ?? '' }}"
         {!!
                 $attributes->merge([
                     'class' => 'relative flex cursor-pointer flex-col items-center justify-center rounded-lg
@@ -36,7 +36,7 @@
         !!}>
         <div class="grid grid-cols-7 gap-2 p-5 overflow-y-auto w-full z-999" uploaded_media_gallery>
 
-            @if($previewModels && count($previewModels) > 0)
+            @if($previewModels)
                 @foreach($previewModels as $model)
                     <div class="group relative" already_uploaded_media data-model="{{ $model->toJson() }}">
                         <img src="{{ $model->url }}" class="" alt="">
@@ -69,21 +69,22 @@
             <p class="mb-2 text-center text-sm text-gray-500 dark:text-gray-400"
                id="label-text-1-{{ $id }}" first_label_text>
             <span class="block underline">
-                {{$title ?? ''}}
+                {{ $title ?? '' }}
             </span>
                 <br>
                 <span class="drop-shadow-2xl">
-                {{$actionText ?? ''}}
+                {{  $actionText ?? '' }}
             </span>
-                {{$description ?? ''}}
+                {{ $description ?? '' }}
             </p>
             <p class="text-xs text-gray-500 dark:text-gray-400">
-                {{$fileTypesText ?? ''}}
+                {{ $fileTypesText ?? '' }}
             </p>
         </div>
-        <input id="{{$id}}" name="{{$name}}" type="file" accept="{{$acceptedFileTypes}}" class="hidden" multiple
-            {{ ($alreadyUploadedFieldName !== '') ?  "already_uploaded_media_field_name=$alreadyUploadedFieldName" : ''}}
-            {{ ($detachMediaFieldName !== '') ?  "detach_media_field_name=$detachMediaFieldName " : "detach_media_field_name=".$name.'[detach]'}}
+        <input id="{{$id}}" name="{{ $name .'[files_to_upload][]' }}" type="file" accept="{{ $acceptedFileTypes }}"
+               class="hidden" multiple disabled
+            {{ ($alreadyUploadedFieldName !== '') ? "already_uploaded_media_field_name=$alreadyUploadedFieldName" : 'already_uploaded_media_field_name='. $name .'[already_uploaded][]' }}
+            {{ ($detachMediaFieldName !== '') ?  "detach_media_field_name=$detachMediaFieldName " : "detach_media_field_name=".$name.'[detach][]'}}
         />
     </label>
     @if($enableAlreadyUploaded)

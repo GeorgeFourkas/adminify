@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminify;
+namespace App\Http\Controllers\Admin\Adminify;
 
 use App\Http\Requests\Language\AddLanguageRequest;
 use App\Http\Requests\Language\ChangeDefaultLanguageRequest;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminify;
+namespace App\Http\Controllers\Admin\Adminify;
 
 use App\Models\Adminify\Comment;
 use App\Models\Adminify\Post;

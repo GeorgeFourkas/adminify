@@ -61,6 +61,7 @@ trait SeedsRoles
             $role->givePermissionTo($permissions);
         }
 
+        $this->info(PHP_EOL);
         $this->info('All Roles and permissions are up!');
     }
 

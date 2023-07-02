@@ -7,6 +7,7 @@ dropzones.forEach((dropzone) => {
     } else {
         handleSingle(dropzone, input)
     }
+    input.disabled = false;
 })
 
 function handleSingle(dropzone, input) {

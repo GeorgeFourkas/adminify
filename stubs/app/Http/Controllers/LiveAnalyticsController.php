@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminify;
+namespace App\Http\Controllers\Admin\Adminify;
 
 use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
 use Google\Analytics\Data\V1beta\Dimension;

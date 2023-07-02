@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Models\Adminify\Media;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 
 trait HasMedia
@@ -17,7 +18,7 @@ trait HasMedia
     public function uploadOrAttach(UploadedFile|string $item, $folder = 'public/posts')
     {
         if (is_string($item)) {
-            $this->media()->attach((int) $item);
+            $this->media()->attach((int)$item);
         } else {
             $this->media()->create($this->formMediaModelValues($item, $folder));
         }
@@ -36,11 +37,11 @@ trait HasMedia
             }
         }
 
-        if (! empty($toAttach)) {
+        if (!empty($toAttach)) {
             $this->media()->attach($toAttach);
         }
 
-        if (! empty($fileItems)) {
+        if (!empty($fileItems)) {
             $this->media()->createMany($fileItems);
         }
 
@@ -56,7 +57,7 @@ trait HasMedia
     {
         $url = Storage::url(Storage::put($folder, $item));
         $name = \Arr::last(explode('/', $url));
-        $fileSize = getimagesize(storage_path('/app/'.$folder.'/'.$name)) ?? [];
+        $fileSize = getimagesize(storage_path('/app/' . $folder . '/' . $name)) ?? [];
 
         return [
             'url' => $url,
@@ -69,11 +70,7 @@ trait HasMedia
         ];
     }
 
-    /**
-     * @param  array<UploadedFile>  $files
-     * @return void
-     */
-    public function uploadWithoutDuplicates(array $files, $folder = 'public/posts')
+    public function uploadWithoutDuplicates(array $files, $folder = 'public/posts'): void
     {
         $originalNamesUsed = [];
         foreach ($files as $file) {
@@ -90,18 +87,75 @@ trait HasMedia
 
         $url = Storage::url(Storage::put($folder, $item));
 
-        $name = \Arr::last(explode('/', $url));
-        $fileSize = getimagesize(storage_path('/app/'.$folder.'/'.$name));
+        $name = Arr::last(explode('/', $url));
+        $fileSize = getimagesize(storage_path('/app/' . $folder . '/' . $name));
 
         return Media::create([
-            'url' => $url,
-            'size' => $item->getSize(),
-            'extension' => $item->extension(),
-            'original_name' => $item->getClientOriginalName(),
-            'width' => $fileSize[0],
-            'height' => $fileSize[1],
-            'user_id' => \Auth::id(),
-        ]
+                'url' => $url,
+                'size' => $item->getSize(),
+                'extension' => $item->extension(),
+                'original_name' => $item->getClientOriginalName(),
+                'width' => $fileSize[0],
+                'height' => $fileSize[1],
+                'user_id' => \Auth::id(),
+            ]
         );
     }
+
+
+
+
+
+
+
+    public function uploadMedia(array|UploadedFile $media){
+
+
+
+    }
+
+
+    public function uploadMultipleDropzone(array $filesIndex): void
+    {
+        $this->detachExistingMedia($filesIndex['detach'] ?? []);
+
+        $this->attachExistingFiles($filesToUpload['already_uploaded'] ?? []);
+
+        $this->uploadNewMedia($filesIndex['files_to_upload'] ?? []);
+    }
+
+
+    private function detachExistingMedia(array $detach): void
+    {
+        if (empty($detach)) {
+            return;
+        }
+
+        $this->media()->detach($detach);
+    }
+
+    private function attachExistingFiles(array $attach): void
+    {
+        if (empty($attach)) {
+            return;
+        }
+
+        $this->media()->attach($attach);
+    }
+
+    private function uploadNewMedia(array $newUploads): void
+    {
+        if (empty($newUploads)) {
+            return;
+        }
+
+        $mediaModels = [];
+        foreach ($newUploads as $file) {
+            $mediaModels[] = $this->formMediaModelValues($file);
+        }
+
+        $this->media()->createMany($mediaModels);
+    }
+
+
 }

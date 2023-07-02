@@ -61,9 +61,9 @@ class CategoryService
         return $this;
     }
 
-    public function create(): void
+    public function create()
     {
-        Category::create($this->data);
+        return Category::create($this->data);
     }
 
     public function update(): void

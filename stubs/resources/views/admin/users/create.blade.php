@@ -1,8 +1,5 @@
 @php use Spatie\Permission\Models\Role; @endphp
 <x-layouts.admin>
-{{--    @php--}}
-{{--        $locales = array_keys(config('translatable.locales'))--}}
-{{--    @endphp--}}
     <div
         class="container mx-auto flex w-11/12 lg:w-2/3 items-center justify-center rounded-lg bg-white px-5 py-14 shadow-soft-2xl">
         <form action="{{route('user.store')}}" enctype="multipart/form-data" method="POST" autocomplete="off"
@@ -15,7 +12,7 @@
                             id="profile_picture_url"
                             name="profile_picture_url"
                             acceptedFileTypes="image/*"
-                            class="h-36 w-36  lg:h-48 lg:w-48 rounded-full text-xs"
+                            class="h-36 w-36 lg:h-48 lg:w-48 rounded-full text-xs rounded-full"
                             :actionText="__('Click To Upload')"
                             :title="__('User Profile Photo')"
                             :description="__('Or Drag')"

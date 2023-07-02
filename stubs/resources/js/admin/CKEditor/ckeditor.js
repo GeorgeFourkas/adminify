@@ -28,6 +28,7 @@ import Table from '@ckeditor/ckeditor5-table/src/table.js';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar.js';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
+
 import {appendLocale} from "../locale-prefix-parser";
 
 class Editor extends ClassicEditor {
@@ -63,7 +64,7 @@ Editor.builtinPlugins = [
     PasteFromOffice,
     Table,
     TableToolbar,
-    TextTransformation
+    TextTransformation,
 ];
 
 // Editor configuration.
@@ -92,10 +93,10 @@ Editor.defaultConfig = {
             'code',
             'alignment',
             'fontColor',
-            'fontSize'
+            'fontSize',
         ]
     },
-    language: 'el',
+    language: 'en',
     image: {
         toolbar: [
             'imageTextAlternative',
@@ -111,8 +112,7 @@ Editor.defaultConfig = {
             'tableRow',
             'mergeTableCells'
         ]
-    },
-    simpleUpload: {
+    }, simpleUpload: {
         uploadUrl: appendLocale() + 'master/admin/media/upload',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name=_token]').content

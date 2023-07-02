@@ -15,7 +15,7 @@
     <div class="grid grid-cols-8 gap-5 content-center place-content-center w-full px-10 mt-1">
         @foreach($media as $med)
             <div class="cursor-pointer rounded-lg hover:shadow-soft-2xl" gallery_image
-                 data-model="{{json_encode($med)}}" data-route="{{json_encode( route('media.destroy', $med) )}}">
+                 data-model="{{json_encode($med)}}" data-route="{{ json_encode( route('media.destroy', $med) ) }}">
                 <img src="{{$med->url}}" alt="media_not_found" class="h-full object-cover rounded-sm object-center">
             </div>
         @endforeach

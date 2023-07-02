@@ -79,7 +79,7 @@ class AdminifyCommand extends Command
         file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
     }
 
-    protected function installNodeDependencies()
+    protected function installNodeDependencies(): void
     {
 
         $this->updateNodePackages(function ($packages) {
@@ -110,15 +110,13 @@ class AdminifyCommand extends Command
                 'flatpickr' => '^4.6.13',
                 'flowbite' => '^1.6.3',
                 'google-charts' => '^2.0.0',
-                'micromodal' => '^0.4.10',
                 'moment' => '^2.29.4',
-                'typewriter-effect' => '^2.19.0',
                 'lodash' => '*',
             ] + $packages;
         });
     }
 
-    protected function updateNodePackages(callable $callback, $dev = true)
+    protected function updateNodePackages(callable $callback, $dev = true): void
     {
         if (! file_exists(base_path('package.json'))) {
             return;
@@ -146,8 +144,8 @@ class AdminifyCommand extends Command
     public function installControllers(): static
     {
         //Controllers
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Http/Controllers', app_path('Http/Controllers/Adminify'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Admin/Adminify'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/app/Http/Controllers', app_path('Http/Controllers/Admin/Adminify'));
 
         $this->bar->advance();
 

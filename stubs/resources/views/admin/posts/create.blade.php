@@ -1,6 +1,6 @@
 <x-layouts.admin>
     @push('scripts')
-        @vite(['resources/js/admin/rich-editor.js'])
+{{--        @vite(['resources/js/admin/rich-editor.js'])--}}
     @endpush
     <div class="mx-auto w-full lg:w-10/12">
         <x-admin.language-tabs-header :locales="$locales"/>

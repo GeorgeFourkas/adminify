@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminify;
+namespace App\Http\Controllers\Admin\Adminify;
 
 use App\Http\Requests\Category\CreateCategoryRequest;
 use App\Http\Requests\Category\DeleteCategoryRequest;
@@ -14,15 +14,15 @@ class CategoryController extends Controller
 
     public function store(CreateCategoryRequest $request, CategoryService $service)
     {
-        $service
+        $category = $service
             ->setRequest($request)
             ->setValues()
             ->rejectNullValues()
             ->create();
 
-        return redirect()
-            ->route('categories')
-            ->with('success', __('Category created successfully'));
+        return $request->expectsJson()
+            ? response()->json($category)
+            : redirect()->route('categories')->with('success', __('Category created successfully'));
     }
 
     public function update(CreateCategoryRequest $request, Category $category, CategoryService $service)

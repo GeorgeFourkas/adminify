@@ -14,9 +14,10 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/js/admin/CKEditor/ckeditor.js',
+                'resources/js/admin/create-category-from-modal.js',
+                'resources/js/admin/modal-overlay.js',
                 'resources/js/admin/add-new-language.js',
-                'resources/js/admin/already-update-media-chooser.js',
+                'resources/js/admin/already-uploaded-media-chooser.js',
                 'resources/js/admin/approve-toggler.js',
                 'resources/js/admin/category-checkbox-click.js',
                 'resources/js/admin/category-crud.js',
@@ -45,7 +46,8 @@ export default defineConfig({
                 'resources/js/flash-timeout.js',
                 'resources/css/app.css',
                 'resources/css/custom.css',
-                'resources/css/scrollbar.css'
+                'resources/css/scrollbar.css',
+                'resources/js/admin/CKEditor/ckeditor.js',
             ],
             refresh: true,
         }),

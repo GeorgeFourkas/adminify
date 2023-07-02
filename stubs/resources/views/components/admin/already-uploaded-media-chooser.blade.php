@@ -1,7 +1,7 @@
 @props(['locale'])
 
 @pushonce('scripts')
-    @vite('resources/js/admin/already-update-media-chooser.js')
+    @vite('resources/js/admin/already-uploaded-media-chooser.js')
 @endpushonce
 <div>
     <div class="fixed top-0 left-0 h-screen w-full bg-overlay-body z-999 p-10 hidden" overlay>

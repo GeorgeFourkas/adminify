@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Adminify;
+namespace App\Http\Controllers\Admin\Adminify;
 
 use AkkiIo\LaravelGoogleAnalytics\Facades\LaravelGoogleAnalytics;
 use AkkiIo\LaravelGoogleAnalytics\Period;
