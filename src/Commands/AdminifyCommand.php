@@ -324,9 +324,9 @@ class AdminifyCommand extends Command
         //Routes
         (new Filesystem)->ensureDirectoryExists(base_path('routes'));
         copy(__DIR__.'/../../stubs/routes/adminify.php', base_path('routes/adminify.php'));
-        File::put(base_path('routes/web.php'), '<?php' . PHP_EOL .
-            "require __DIR__ . '/adminify.php';" . PHP_EOL .
-            "require __DIR__ . '/auth.php';" . PHP_EOL
+        File::put(base_path('routes/web.php'), '<?php'.PHP_EOL.
+            "require __DIR__ . '/adminify.php';".PHP_EOL.
+            "require __DIR__ . '/auth.php';".PHP_EOL
         );
         $this->bar->advance();
 
