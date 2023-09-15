@@ -14,7 +14,6 @@ class StoreTranslationsService
 
     private array $phpTrans;
 
-
     public function setLanguage(string $locale): static
     {
         $this->language = $locale;
@@ -41,13 +40,12 @@ class StoreTranslationsService
 
     public function storeJSONTranslations(): static
     {
-        $file = lang_path($this->language . '.json');
+        $file = lang_path($this->language.'.json');
 
         file_put_contents($file, json_encode($this->storedJSON, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
         return $this;
     }
-
 
     public function setPHPTranslations(array $phpTranslations): static
     {
@@ -60,7 +58,7 @@ class StoreTranslationsService
     {
         foreach ($this->phpTrans as $fileName => $translations) {
 
-            $path = lang_path($this->language . '/' . $fileName . '.php');
+            $path = lang_path($this->language.'/'.$fileName.'.php');
 
             file_put_contents($path, $this->generatePHPArray($translations));
         }
@@ -75,15 +73,14 @@ class StoreTranslationsService
         ])->with('success', __('adminify.translations_stored'));
     }
 
-
     private function generatePHPArray($translations): string
     {
-        return '<?php ' . PHP_EOL . PHP_EOL .' return ' . $this->bracketedExport($translations, TRUE) . ';';
+        return '<?php '.PHP_EOL.PHP_EOL.' return '.$this->bracketedExport($translations, true).';';
     }
 
-    private function bracketedExport(array $expression, bool $return = FALSE)
+    private function bracketedExport(array $expression, bool $return = false)
     {
-        $export = var_export($expression, TRUE);
+        $export = var_export($expression, true);
 
         $patterns = [
             "/array \(/" => '[',

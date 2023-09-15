@@ -46,6 +46,6 @@ class RemoveLanguageService
     public function redirect(): RedirectResponse
     {
         return $this->redirectLanguageChange()
-            ->with('success', Locale::getDisplayLanguage($this->language) . __('adminify.language_removed'));
+            ->with('success', Locale::getDisplayLanguage($this->language).__('adminify.language_removed'));
     }
 }

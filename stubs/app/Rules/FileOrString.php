@@ -26,19 +26,15 @@ use Illuminate\Support\Facades\File;
 
 class FileOrString implements ValidationRule
 {
-    public function validate(string $attribute, mixed $value,  $fail): void
+    public function validate(string $attribute, mixed $value, $fail): void
     {
-        if (is_array($value) ||  $this->validationFails($value)) {
+        if (is_array($value) || $this->validationFails($value)) {
             $fail('Must be File or Already uploaded file');
         }
     }
 
     private function validationFails(mixed $value): bool
     {
-        return !(File::isFile($value) ||  is_int($value));
+        return ! (File::isFile($value) || is_int($value));
     }
-
-
 }
-
-

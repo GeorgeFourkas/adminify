@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
+use App\Http\Controllers\Controller;
 use App\Models\Adminify\Media;
 use App\Traits\FileUploadOrSync;
 use Illuminate\Http\Request;
 use Storage;
-use App\Http\Controllers\Controller;
 
 class MediaController extends Controller
 {

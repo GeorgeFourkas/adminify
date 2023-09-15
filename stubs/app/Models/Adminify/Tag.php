@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model implements TranslatableContract
 {
-    use Translatable, HasFactory;
+    use HasFactory, Translatable;
 
     public $translatedAttributes = ['name'];
 

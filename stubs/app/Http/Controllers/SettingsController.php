@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Adminify\Language\AddLanguageRequest;
 use App\Http\Requests\Admin\Adminify\Language\ChangeDefaultLanguageRequest;
 use App\Http\Requests\Admin\Adminify\Language\RemoveLanguageRequest;
@@ -10,7 +11,6 @@ use App\Services\Language\DefaultLanguageService;
 use App\Services\Language\RemoveLanguageService;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class SettingsController extends Controller
 {

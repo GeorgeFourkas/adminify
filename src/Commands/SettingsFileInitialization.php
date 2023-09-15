@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 
 class SettingsFileInitialization extends Command
 {
-
     protected $signature = 'settings:init';
 
     protected $description = 'This command initializes the settings file';
@@ -16,26 +15,25 @@ class SettingsFileInitialization extends Command
     {
 
         $additional = config('adminify.settings');
-        if (!$additional) {
+        if (! $additional) {
             $additional = [];
         }
 
-
         Storage::put('settings/settings.json', json_encode(
             [
-                "comments_enabled" => false,
-                "registration_enabled" => false,
-                "unregistered_users_can_comment" => false,
-                "locales" => [
-                    "en" => [
-                        "published"
+                'comments_enabled' => false,
+                'registration_enabled' => false,
+                'unregistered_users_can_comment' => false,
+                'locales' => [
+                    'en' => [
+                        'published',
                     ],
-                    "el" => [
-                        "published"
-                    ]
+                    'el' => [
+                        'published',
+                    ],
                 ],
-                "deposit" => "30",
-                "default_locale" => "en"
+                'deposit' => '30',
+                'default_locale' => 'en',
             ]
             + $additional
         ));
@@ -44,5 +42,4 @@ class SettingsFileInitialization extends Command
 
         return self::SUCCESS;
     }
-
 }

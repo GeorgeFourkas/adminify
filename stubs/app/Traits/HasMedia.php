@@ -19,7 +19,7 @@ trait HasMedia
     public function uploadOrAttach(UploadedFile|string $item, $folder = 'public/posts')
     {
         if (is_string($item)) {
-            $this->media()->attach((int)$item);
+            $this->media()->attach((int) $item);
         } else {
             $this->media()->create($this->formMediaModelValues($item, $folder));
         }
@@ -38,11 +38,11 @@ trait HasMedia
             }
         }
 
-        if (!empty($toAttach)) {
+        if (! empty($toAttach)) {
             $this->media()->attach($toAttach);
         }
 
-        if (!empty($fileItems)) {
+        if (! empty($fileItems)) {
             $this->media()->createMany($fileItems);
         }
 
@@ -58,7 +58,7 @@ trait HasMedia
     {
         $url = Storage::url(Storage::put($folder, $item));
         $name = \Arr::last(explode('/', $url));
-        $fileSize = getimagesize(storage_path('/app/' . $folder . '/' . $name)) ?? [];
+        $fileSize = getimagesize(storage_path('/app/'.$folder.'/'.$name)) ?? [];
 
         return [
             'url' => $url,
@@ -89,17 +89,17 @@ trait HasMedia
         $url = Storage::url(Storage::put($folder, $item));
 
         $name = Arr::last(explode('/', $url));
-        $fileSize = getimagesize(storage_path('/app/' . $folder . '/' . $name));
+        $fileSize = getimagesize(storage_path('/app/'.$folder.'/'.$name));
 
         return Media::create([
-                'url' => $url,
-                'size' => $item->getSize(),
-                'extension' => $item->extension(),
-                'original_name' => $item->getClientOriginalName(),
-                'width' => $fileSize[0],
-                'height' => $fileSize[1],
-                'user_id' => Auth::id(),
-            ]
+            'url' => $url,
+            'size' => $item->getSize(),
+            'extension' => $item->extension(),
+            'original_name' => $item->getClientOriginalName(),
+            'width' => $fileSize[0],
+            'height' => $fileSize[1],
+            'user_id' => Auth::id(),
+        ]
         );
     }
 

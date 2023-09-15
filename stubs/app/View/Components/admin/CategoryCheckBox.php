@@ -13,7 +13,7 @@ class CategoryCheckBox extends Component
 
     public ?bool $tobeChecked;
 
-    public function __construct(Category $category, bool|null $tobeChecked = null, $selected = [])
+    public function __construct(Category $category, bool $tobeChecked = null, $selected = [])
     {
         $this->category = $category;
         $this->selected = $selected;

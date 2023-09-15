@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Admin\Adminify;
 use AkkiIo\LaravelGoogleAnalytics\Facades\LaravelGoogleAnalytics;
 use AkkiIo\LaravelGoogleAnalytics\Period;
 use AkkiIo\LaravelGoogleAnalytics\Traits\ResponseTrait;
+use App\Http\Controllers\Controller;
 use App\Traits\AnalyticsResponse;
 use App\Traits\BatchAnalytics;
 use App\Traits\Percentage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use App\Http\Controllers\Controller;
 
 class AnalyticsController extends Controller
 {
-    use ResponseTrait, BatchAnalytics, AnalyticsResponse, Percentage;
+    use AnalyticsResponse, BatchAnalytics, Percentage, ResponseTrait;
 
     public function sources(Request $request)
     {
@@ -107,7 +107,7 @@ class AnalyticsController extends Controller
         ];
         $response = LaravelGoogleAnalytics::getClient()->batchRunReports(
             [
-                'property' => 'properties/' . config('laravel-google-analytics.property_id'),
+                'property' => 'properties/'.config('laravel-google-analytics.property_id'),
                 'requests' => [
                     $this->sessionsSourcesRequest(),
                     $this->getTraffic(),

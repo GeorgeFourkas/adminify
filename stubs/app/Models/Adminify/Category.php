@@ -10,7 +10,7 @@ use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class Category extends Model implements TranslatableContract
 {
-    use HasFactory, Translatable, HasRecursiveRelationships;
+    use HasFactory, HasRecursiveRelationships, Translatable;
 
     protected $fillable = ['parent_id'];
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Adminify;
 
 use App;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Adminify\Post\CreatePostModelRequest;
 use App\Http\Requests\Admin\Adminify\Post\DeletePostRequest;
 use App\Http\Requests\Admin\Adminify\Post\UpdatePostModelRequest;
@@ -15,12 +15,10 @@ use App\Traits\Multilingual;
 use App\Traits\ReplaceSameFilesWithUniqueIds;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
-    use Multilingual, ReplaceSameFilesWithUniqueIds, FileUploadOrSync;
-
+    use FileUploadOrSync, Multilingual, ReplaceSameFilesWithUniqueIds;
 
     public function create()
     {
@@ -102,8 +100,8 @@ class PostController extends Controller
     public function search(Request $request)
     {
         return view('admin.posts.index', [
-            'posts' => Post::whereTranslationLike('title', '%' . $request->search . '%', App::getLocale())
-                ->orWhereTranslationLike('body', '%' . $request->search . '%', App::getLocale())
+            'posts' => Post::whereTranslationLike('title', '%'.$request->search.'%', App::getLocale())
+                ->orWhereTranslationLike('body', '%'.$request->search.'%', App::getLocale())
                 ->paginate(15),
         ]);
     }

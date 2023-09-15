@@ -18,20 +18,21 @@ class CreatePostModelRequest extends FormRequest
     public function rules(): array
     {
         $defaultLocale = $this->getStore()->get('default_locale');
+
         // Only the default locale's fields are required to create a post. If not values are found default locale's values are returned
         return [
-            $defaultLocale . '.title' => 'required',
-            $defaultLocale . '.body' => 'required',
-            $defaultLocale . '.featured_image_url' => 'required',
+            $defaultLocale.'.title' => 'required',
+            $defaultLocale.'.body' => 'required',
+            $defaultLocale.'.featured_image_url' => 'required',
         ];
     }
 
     public function attributes(): array
     {
         return [
-            $this->defaultLocale . '.title' => __('Title'),
-            $this->defaultLocale . '.body' => __('Post Body'),
-            $this->defaultLocale . '.featured_image_url' => __('Post Featured Image'),
+            $this->defaultLocale.'.title' => __('Title'),
+            $this->defaultLocale.'.body' => __('Post Body'),
+            $this->defaultLocale.'.featured_image_url' => __('Post Featured Image'),
         ];
     }
 }

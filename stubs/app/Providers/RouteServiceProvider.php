@@ -14,7 +14,6 @@ class RouteServiceProvider extends ServiceProvider
 
     public const HOME = '/master/admin/dashboard';
 
-
     public function boot(): void
     {
         $this->configureRateLimiting();
@@ -23,8 +22,8 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            if (!$this->translationsAreEnabled()) {
-                Route::name($this->getStore()->get('default_locale') . '.')
+            if (! $this->translationsAreEnabled()) {
+                Route::name($this->getStore()->get('default_locale').'.')
                     ->middleware('web')
                     ->prefix($this->getStore()->get('default_locale'))
                     ->group(base_path('routes/web.php'));
@@ -36,7 +35,7 @@ class RouteServiceProvider extends ServiceProvider
                     ->group(base_path('routes/web.php'));
 
                 foreach ($this->getPublishedLanguages() as $language) {
-                    Route::name($language . '.')
+                    Route::name($language.'.')
                         ->middleware(['adminify.locale', 'web'])
                         ->prefix($language)
                         ->group(base_path('routes/web.php'));

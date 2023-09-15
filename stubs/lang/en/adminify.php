@@ -9,7 +9,7 @@ return [
             ['title' => 'online users'],
             ['title' => 'weekly visitors'],
             ['title' => 'average session time'],
-            ['title' => 'total posts']
+            ['title' => 'total posts'],
         ],
 
         'hero' => [
@@ -22,14 +22,14 @@ return [
         'documentation' => [
             'upper_text' => 'Work done flawlessly',
             'description' => 'Do you have any questions about the use of the administration panel?',
-            'link' => 'Read the quickstart guide'
+            'link' => 'Read the quickstart guide',
         ],
 
         'charts' => [
             ['title' => 'traffic overview'],
             ['title' => 'page views in 2 months'],
-            ['title' => 'visitors by country']
-        ]
+            ['title' => 'visitors by country'],
+        ],
     ],
 
     'categories' => [
@@ -53,7 +53,7 @@ return [
         'height' => 'height',
         'file_url' => 'file url',
         'remove_btn' => 'remove',
-        'chooser' => 'choose media'
+        'chooser' => 'choose media',
     ],
 
     'settings' => [
@@ -82,7 +82,7 @@ return [
         'lang_status' => 'language status',
         'publish_lang' => 'publish language?',
         'set_default_lang' => 'set default language',
-        'locale_change' => 'Successfully changed locale settings'
+        'locale_change' => 'Successfully changed locale settings',
     ],
 
     'tags' => [
@@ -92,7 +92,7 @@ return [
         'created_at_column' => 'created at',
         'create_tag_modal_title' => 'Create Tag',
         'edit_tag_modal_title' => 'Edit Tag',
-        'tag_name_field' => 'tag name'
+        'tag_name_field' => 'tag name',
     ],
 
     'comments' => [
@@ -101,7 +101,7 @@ return [
         'author_column' => 'author',
         'post_column' => 'post',
         'approved_column' => 'approved',
-        'uploaded_column' => 'created at'
+        'uploaded_column' => 'created at',
     ],
 
     'users' => [
@@ -184,6 +184,6 @@ return [
     'user_password_update' => 'Successfully updated user\'s password',
     'user_update' => 'Successfully updated user',
     'user_delete' => 'User Deleted Successfully',
-    'translations_stored' => 'Successfully Stored Translations'
+    'translations_stored' => 'Successfully Stored Translations',
 
 ];

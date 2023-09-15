@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Adminify\User\CreateUserModelRequest;
 use App\Http\Requests\Admin\Adminify\User\DeleteUserRequest;
 use App\Http\Requests\Admin\Adminify\User\UpdateUserRequest;
@@ -12,8 +12,6 @@ use App\Services\UserService;
 use App\Traits\Multilingual;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
-
 
 class UserController extends Controller
 {

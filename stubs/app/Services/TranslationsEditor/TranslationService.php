@@ -3,9 +3,6 @@
 namespace App\Services\TranslationsEditor;
 
 use App\Traits\Multilingual;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Application;
 
 class TranslationService
 {
@@ -28,11 +25,10 @@ class TranslationService
         return $this;
     }
 
-
     public function scanLanguageFiles(): static
     {
         $this->availableFiles = collect(scandir(lang_path($this->locale)))
-            ->reject(fn($item) => $item == '.' || $item == '..')
+            ->reject(fn ($item) => $item == '.' || $item == '..')
             ->values()
             ->toArray();
 
@@ -44,32 +40,31 @@ class TranslationService
         foreach ($this->availableFiles as $file) {
             $this->phpTranslationFiles[] = [
                 'file' => $file,
-                'content' => require lang_path($this->locale . '/' . $file),
+                'content' => require lang_path($this->locale.'/'.$file),
                 'original' => file_exists($this->getDefaultLocaleLanguageFilePath($file))
                     ? require $this->getDefaultLocaleLanguageFilePath($file)
-                    : []
+                    : [],
             ];
         }
+
         return $this;
     }
 
     public function extractJSONTranslations(): static
     {
-        $contents = file_get_contents(lang_path($this->locale . '.json'));
+        $contents = file_get_contents(lang_path($this->locale.'.json'));
 
-        $this->jsonContent = json_decode($contents, TRUE);
+        $this->jsonContent = json_decode($contents, true);
 
         return $this;
     }
-
-
 
     public function redirectToEditor()
     {
         return view('admin.translation-editor', [
             'sentences' => $this->jsonContent,
             'locale' => $this->locale,
-            'phpTranslations' => $this->phpTranslationFiles
+            'phpTranslations' => $this->phpTranslationFiles,
         ]);
     }
 
@@ -77,15 +72,15 @@ class TranslationService
     {
         $defaultLocale = $this->getStore()->get('default_locale');
 
-        if (file_exists(lang_path($this->getStore()->get('default_locale') . '/' . $file))) {
-            return require lang_path($this->getStore()->get('default_locale') . '/' . $file);
+        if (file_exists(lang_path($this->getStore()->get('default_locale').'/'.$file))) {
+            return require lang_path($this->getStore()->get('default_locale').'/'.$file);
         }
+
         return [];
     }
 
     private function getDefaultLocaleLanguageFilePath($file): string
     {
-        return lang_path($this->getStore()->get('default_locale') . '/' . $file);
+        return lang_path($this->getStore()->get('default_locale').'/'.$file);
     }
-
 }

@@ -43,7 +43,7 @@ trait AnalyticsResponse
     public function formatTraffic(array $table): array
     {
         foreach ($table as &$item) {
-            if (!isset($item['sessionSource'])) {
+            if (! isset($item['sessionSource'])) {
                 continue;
             }
             $item['date'] = Carbon::parse($item['sessionSource'])->format('d-m-Y');
@@ -71,7 +71,7 @@ trait AnalyticsResponse
             ->reject(function ($item) {
                 return $item['pageTitle'] ?? $item['sessionSource'] == '(not set)';
             })->map(function ($item) {
-                if (!isset($item['sessionSource']) && !isset($item['date'])) {
+                if (! isset($item['sessionSource']) && ! isset($item['date'])) {
                     return $item;
                 }
                 $item['pageTitle'] = $item['sessionSource'];
@@ -88,7 +88,7 @@ trait AnalyticsResponse
     public function formatAverageSessionTime(array $table): array
     {
         foreach ($table as &$dateRange) {
-            if (!isset($dateRange['sessionSource']) && !isset($dateRange['totalUsers'])) {
+            if (! isset($dateRange['sessionSource']) && ! isset($dateRange['totalUsers'])) {
                 continue;
             }
             $dateRange['dateRange'] = $dateRange['sessionSource'];

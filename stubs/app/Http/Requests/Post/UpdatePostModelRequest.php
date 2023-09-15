@@ -24,9 +24,9 @@ class UpdatePostModelRequest extends FormRequest
         $defaultLocale = $this->getStore()->get('default_locale');
 
         return [
-            $defaultLocale . '.title' => 'required',
-            $defaultLocale . '.body' => 'required',
-            $defaultLocale . '.featured_image_url' => 'required',
+            $defaultLocale.'.title' => 'required',
+            $defaultLocale.'.body' => 'required',
+            $defaultLocale.'.featured_image_url' => 'required',
         ];
     }
 
