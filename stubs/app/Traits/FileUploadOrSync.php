@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use App\Models\Adminify\Media;
+use Arr;
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -35,18 +37,18 @@ trait FileUploadOrSync
 
         $url = Storage::url(Storage::put($folder, $item));
 
-        $name = \Arr::last(explode('/', $url));
-        $fileSize = getimagesize(storage_path('/app/'.$folder.'/'.$name));
+        $name = Arr::last(explode('/', $url));
+        $fileSize = getimagesize(storage_path('/app/' . $folder . '/' . $name));
 
         return Media::create([
-            'url' => $url,
-            'size' => $item->getSize(),
-            'extension' => $item->extension(),
-            'original_name' => $item->getClientOriginalName(),
-            'width' => $fileSize[0],
-            'height' => $fileSize[1],
-            'user_id' => \Auth::id(),
-        ]
+                'url' => $url,
+                'size' => $item->getSize(),
+                'extension' => $item->extension(),
+                'original_name' => $item->getClientOriginalName(),
+                'width' => $fileSize[0],
+                'height' => $fileSize[1],
+                'user_id' => Auth::id(),
+            ]
         );
     }
 }

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {appendLocale} from "./locale-prefix-parser";
+
 const activeLocale = document.querySelector('body').dataset.locale;
 const createPostForm = document.getElementById('create_post_form')
 const suggestContainer = document.getElementById('tag-suggest');
@@ -27,7 +28,6 @@ window.addEventListener('keydown', (e) => {
         })
     }
 })
-
 
 
 if ((createPostForm.dataset?.selectedtags)) {

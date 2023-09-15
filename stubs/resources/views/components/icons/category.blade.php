@@ -1,5 +1,5 @@
 @php
-    $isRoute = Str::contains(url()->current(), 'categories') ||  Str::contains(url()->current(), 'categories');
+    $isRoute = str()->contains(url()->current(), 'categories') ||  str()->contains(url()->current(), 'categories');
 @endphp
 
 

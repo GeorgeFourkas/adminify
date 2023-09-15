@@ -22,8 +22,8 @@ class PostTranslation extends Model
     protected function featuredImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value,
-            set: fn ($value) => Storage::url(Storage::put('public/posts', $value)),
+            get: fn($value) => $value,
+            set: fn($value) => Storage::url(Storage::put('public/posts', $value)),
         );
     }
 

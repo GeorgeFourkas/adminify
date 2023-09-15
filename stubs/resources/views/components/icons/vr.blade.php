@@ -1,5 +1,5 @@
 <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1"
-     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+     xmlns="http://www.w3.org/2000/svg">
     <title>box-3d-50</title>
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">

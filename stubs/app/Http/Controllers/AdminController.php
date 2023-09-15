@@ -15,6 +15,7 @@ use Locale;
 use ResourceBundle;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -104,7 +105,7 @@ class AdminController extends Controller
         foreach ($permissions as $perm) {
             $segments = explode('-', $perm->name);
             $model = end($segments);
-            if (str_contains($perm->name, $model) || str_contains($perm->name, $model.'s')) {
+            if (str_contains($perm->name, $model) || str_contains($perm->name, $model . 's')) {
                 $grouped[$model][] = $perm->name;
             }
         }

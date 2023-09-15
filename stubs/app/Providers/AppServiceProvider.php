@@ -25,16 +25,18 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(Request $request)
     {
-        if ($this->translationsAreEnabled() && ! in_array($request->segment(1), $this->getPublishedLanguages())) {
-            redirect(implode('/', \Arr::prepend($request->segments(), $this->getStore()->get('default_locale'))))->send();
-        }
+        $this->bootUpAdminify($request);
+    }
 
-        if ($this->translationsAreEnabled() && $request->segment(1) && in_array($request->segment(1), $this->getPublishedLanguages())) {
+    public function bootUpAdminify(Request $request): void
+    {
+
+        if (!$this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale()) {
             App::setLocale($request->segment(1));
             URL::defaults(['locale' => $this->app->getLocale()]);
         }
 
-        View::composer(['components.language-switcher', 'components.layouts.admin'], function ($view) {
+        View::composer(['components.layouts.admin'], function ($view) {
             $view->with('publishedLanguages', $this->getPublishedLanguages());
             $view->with('availableLocales', $this->getStore()->get('locales'));
         });
@@ -43,6 +45,12 @@ class AppServiceProvider extends ServiceProvider
             $view->with('locales', array_keys(config('translatable.locales')));
             $view->with('defaultLocale', config('app.fallback_locale'));
         });
-
     }
+
+    private function containsPublishedLocale(): bool
+    {
+        return \Illuminate\Support\Facades\Request::segment(1) && in_array(\Illuminate\Support\Facades\Request::segment(1), $this->getPublishedLanguages());
+    }
+
+
 }

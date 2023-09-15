@@ -2,10 +2,10 @@
     @vite('resources/js/admin/tags-input.js')
 @endpushonce
 <div>
-    <label for="combobox" class="block text-sm font-medium leading-6 text-gray-900">{{ __('Tags') }}</label>
+    <label for="combobox" class="block text-sm font-medium capitalize leading-6 text-gray-900">{{ __('adminify.tags.page_title') }}</label>
     <div class="relative mt-2">
         <input id="tag_input" type="text"
-               class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+               class="w-full rounded-md border-0 bg-white pr-12 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 py-1.5 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                role="combobox">
         <button type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
             <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -15,10 +15,10 @@
             </svg>
         </button>
 
-        <ul class="hidden absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+        <ul class="absolute z-10 mt-1 hidden max-h-60 w-full overflow-auto rounded-md bg-white py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
             id="tag-suggest">
         </ul>
     </div>
 </div>
-<div class="w-full flex items-start justify-start flex-wrap mt-2" id="drawed-tags"></div>
+<div class="mt-2 flex w-full flex-wrap items-start justify-start" id="drawed-tags"></div>
 <div class="hidden" id="selected_tags"></div>

@@ -24,7 +24,7 @@
     @vite('resources/js/admin/dropzone.js')
 @endpushonce
 
-<div class="dropzone-handler w-full " data-children_id="{{ $id }}" dropzone>
+<div class="w-full dropzone-handler" data-children_id="{{ $id }}" dropzone>
 
     <label for="{{ $id }}" id="preview-{{ $id }}"
            data-asset="{{ $previewUrl ?? '' }}"
@@ -34,16 +34,16 @@
                                 border-2 border-dashed border-gray-300 bg-gray-50 bg-cover bg-center hover:bg-gray-100 '
                 ])
         !!}>
-        <div class="grid grid-cols-7 gap-2 p-5 overflow-y-auto w-full z-999" uploaded_media_gallery>
+        <div class="grid w-full grid-cols-7 gap-2 overflow-y-auto p-5 z-999" uploaded_media_gallery>
 
             @if($previewModels)
                 @foreach($previewModels as $model)
-                    <div class="group relative" already_uploaded_media data-model="{{ $model->toJson() }}">
+                    <div class="relative group" already_uploaded_media data-model="{{ $model->toJson() }}">
                         <img src="{{ $model->url }}" class="" alt="">
                         <div
                             class="w-full h-full opacity-60 bg-[rgba(0,0,0,0.9)] hidden group-hover:block absolute top-0 left-0">
-                            <div class="flex items-center justify-center h-full">
-                                <div class="p-3 rounded-full hover:bg-gray-400">
+                            <div class="flex h-full items-center justify-center">
+                                <div class="rounded-full p-3 hover:bg-gray-400">
                                     <x-icons.cross></x-icons.cross>
                                 </div>
                             </div>
@@ -51,12 +51,12 @@
                     </div>
                 @endforeach
             @else
-                <div class="hidden group relative" already_uploaded_media>
-                    <img src="" class="object-cover w-full h-full" alt="">
+                <div class="relative hidden group" already_uploaded_media>
+                    <img src="" class="h-full w-full object-cover" alt="">
                     <div
                         class="w-full h-full opacity-60 bg-[rgba(0,0,0,0.9)] hidden group-hover:block absolute top-0 left-0">
-                        <div class="flex items-center justify-center h-full">
-                            <div class="p-3 rounded-full hover:bg-gray-400">
+                        <div class="flex h-full items-center justify-center">
+                            <div class="rounded-full p-3 hover:bg-gray-400">
                                 <x-icons.cross></x-icons.cross>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                 </div>
             @endif
         </div>
-        <div class="hidden flex flex-col items-center justify-center pt-5 pb-6" labels id="labels-{{ $id }}">
+        <div class="flex hidden flex-col items-center justify-center pt-5 pb-6" labels id="labels-{{ $id }}">
             <x-icons.cloud></x-icons.cloud>
             <p class="mb-2 text-center text-sm text-gray-500 dark:text-gray-400"
                id="label-text-1-{{ $id }}" first_label_text>
@@ -88,8 +88,8 @@
         />
     </label>
     @if($enableAlreadyUploaded)
-        <div class="text-center mt-4" media_panel_toggler>
-            <p class="text-blue-400 cursor-pointer hover:text-blue-600">
+        <div class="mt-4 text-center" media_panel_toggler>
+            <p class="cursor-pointer text-blue-400 hover:text-blue-600">
                 {{ __('Choose an already uploaded file')  }}
             </p>
         </div>

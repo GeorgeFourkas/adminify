@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Adminify;
 use App\Models\Adminify\Media;
 use App\Traits\FileUploadOrSync;
 use Illuminate\Http\Request;
+use Storage;
+use App\Http\Controllers\Controller;
 
 class MediaController extends Controller
 {
@@ -24,7 +26,7 @@ class MediaController extends Controller
 
         return redirect()
             ->route('media')
-            ->with('success', __('Media uploaded successfully'));
+            ->with('success', __('adminify.media_upload'));
     }
 
     /*
@@ -42,9 +44,9 @@ class MediaController extends Controller
     public function destroy(Request $request, Media $media)
     {
         $media->delete();
-        \Storage::delete($media->url);
+        Storage::delete($media->url);
 
-        return redirect()->route('media')->with('success', __('Media Deleted Successfully'));
+        return redirect()->route('media')->with('success', __('adminify.media_delete'));
 
     }
 }

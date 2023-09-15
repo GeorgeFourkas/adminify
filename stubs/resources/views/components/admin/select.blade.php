@@ -4,7 +4,7 @@
 
 
 <label for="{{$attributes->get('id')}}"
-       class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
+       class="mb-2 block text-sm font-medium capitalize text-gray-900 dark:text-white">
     {{ $label }}
 </label>
 

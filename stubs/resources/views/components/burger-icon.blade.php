@@ -1,6 +1,4 @@
-<button type="button"
-        id="burger_btn"
-        class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+<button type="button" id="burger_btn" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
         aria-controls="mobile-menu" aria-expanded="false">
     <span class="sr-only">Open main menu</span>
     <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

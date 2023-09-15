@@ -3,6 +3,7 @@ const containers = document.querySelectorAll('[meta_fields_container]')
 
 attachEventListeners();
 btns.forEach((btn, key) => {
+    console.log(btn)
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         drawNewMetaField(containers[key]);

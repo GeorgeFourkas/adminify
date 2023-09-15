@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-use App\Http\Requests\StoreAnalyticsCredentialsFileRequest;
+use App\Http\Requests\Admin\Adminify\StoreAnalyticsCredentialsFileRequest;
 use Illuminate\Support\Facades\File;
+use App\Http\Controllers\Controller;
 
 class JsonCredentialsAnalyticsController extends Controller
 {
@@ -14,6 +15,6 @@ class JsonCredentialsAnalyticsController extends Controller
 
         return redirect()
             ->route('settings')
-            ->with('success', __('File Saved Successfully. Update the .env value for the change to take effect'));
+            ->with('success', __('adminify.analytics_json_success'));
     }
 }

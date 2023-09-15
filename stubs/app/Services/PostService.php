@@ -125,8 +125,8 @@ class PostService
     public function updateMedia(): static
     {
         collect($this->request->all())
-            ->filter(fn ($value, $key) => in_array($key, $this->getAllDeclaredLanguages()))
-            ->filter(fn ($value) => isset($value['featured_image_url']))
+            ->filter(fn($value, $key) => in_array($key, $this->getAllDeclaredLanguages()))
+            ->filter(fn($value) => isset($value['featured_image_url']))
             ->each(function ($item, $languageKey) {
                 $this->createOrSync(
                     $this->post->translations->where('locale', $languageKey)->first(),

@@ -1,6 +1,6 @@
-<li class="w-full max-w-[200px] border-0" role="presentation">
+<li class="w-full border-0 max-w-[200px]" role="presentation">
     <button
-        class="inline-block w-full rounded-md px-2 py-2 group hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 focus:outline-none border-0"
+        class="inline-block w-full rounded-md border-0 px-2 py-2 group hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 focus:outline-none"
         type="button" role="tab" aria-controls="profile-example-{{$id}}"
         aria-selected="false" aria-current="page"
         id="profile-tab-example-{{$id}}">

@@ -49,6 +49,6 @@ class DefaultLanguageService
     public function redirect(): RedirectResponse
     {
         return $this->redirectLanguageChange()
-            ->with('success', __('Default Locale Changed'));
+            ->with('success', __('adminify.locale_changed'));
     }
 }

@@ -1,5 +1,5 @@
 @php
-    $isRoute = Str::contains(url()->current(), 'tags') ||  Str::contains(url()->current(), 'tags');
+    $isRoute = str()->contains(url()->current(), 'tags') ||  str()->contains(url()->current(), 'tags');
 @endphp
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
      class="w-4 h-4 lg:w-6 lg:h-6 group-hover:fill-white  {{$isRoute ? 'text-white' : 'text-slate-700'}}"

@@ -2,9 +2,9 @@
 
 namespace App\Traits;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Str;
 use Spatie\Valuestore\Valuestore;
 
 trait Multilingual
@@ -43,7 +43,7 @@ trait Multilingual
     {
         if ($this->getStore()) {
             return collect($this->getStore()->get('locales'))->reject(function ($item) {
-                return ! in_array('published', $item);
+                return !in_array('published', $item);
             })->map(function ($item, $key) {
                 return $key;
             });
@@ -62,9 +62,8 @@ trait Multilingual
         return $this->getPublishedLanguagesCount() > 1;
     }
 
-    private function redirectLanguageChange()
+    private function redirectLanguageChange(): RedirectResponse
     {
-        $path = str_replace(url('/'), '', url()->previous());
 
         Artisan::call('config:clear');
         Artisan::call('route:clear');
@@ -72,13 +71,6 @@ trait Multilingual
         Artisan::call('config:cache');
         Artisan::call('route:cache');
 
-        if ($this->translationsAreEnabled()) {
-            if (Str::contains($path, \app()->getLocale())) {
-                return redirect()->to($path);
-            } else {
-                return redirect()->to(app()->getLocale().$path);
-            }
-        }
 
         return redirect()->route('settings');
     }

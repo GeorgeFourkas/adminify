@@ -18,7 +18,7 @@ class PrintResourceFileList extends Command
         return self::SUCCESS;
     }
 
-    private function listFolderFiles($dir)
+    private function listFolderFiles($dir): void
     {
         $ffs = scandir($dir);
 
@@ -31,16 +31,16 @@ class PrintResourceFileList extends Command
 
         foreach ($ffs as $ff) {
 
-            if (is_dir($dir.'/'.$ff)) {
-                $this->listFolderFiles($dir.'/'.$ff);
+            if (is_dir($dir . '/' . $ff)) {
+                $this->listFolderFiles($dir . '/' . $ff);
             }
 
-            $fullPath = $dir.'/'.$ff;
+            $fullPath = $dir . '/' . $ff;
 
             $path = explode('resources', $fullPath);
-            $pathFromResources = 'resources'.end($path);
+            $pathFromResources = 'resources' . end($path);
             if (str_contains($pathFromResources, '.')) {
-                $this->info("'".str_replace('\\', '/', $pathFromResources)."',");
+                $this->info("'" . str_replace('\\', '/', $pathFromResources) . "',");
             }
         }
     }

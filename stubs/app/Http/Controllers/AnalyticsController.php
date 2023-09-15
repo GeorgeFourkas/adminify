@@ -10,6 +10,7 @@ use App\Traits\BatchAnalytics;
 use App\Traits\Percentage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
 
 class AnalyticsController extends Controller
 {
@@ -106,7 +107,7 @@ class AnalyticsController extends Controller
         ];
         $response = LaravelGoogleAnalytics::getClient()->batchRunReports(
             [
-                'property' => 'properties/'.config('laravel-google-analytics.property_id'),
+                'property' => 'properties/' . config('laravel-google-analytics.property_id'),
                 'requests' => [
                     $this->sessionsSourcesRequest(),
                     $this->getTraffic(),

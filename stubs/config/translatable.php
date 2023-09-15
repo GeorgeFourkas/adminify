@@ -1,5 +1,6 @@
 <?php
 
+use Astrotomic\Translatable\Validation\RuleFactory;
 use Spatie\Valuestore\Valuestore;
 
 return [
@@ -135,7 +136,7 @@ return [
     | your whole app.
      */
     'rule_factory' => [
-        'format' => \Astrotomic\Translatable\Validation\RuleFactory::FORMAT_ARRAY,
+        'format' => RuleFactory::FORMAT_ARRAY,
         'prefix' => '%',
         'suffix' => '%',
     ],

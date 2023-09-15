@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Langauge;
+namespace App\Http\Requests\Admin\Adminify\Langauge;
 
 use App\Rules\InPublishedLanguagesArray;
 use Illuminate\Foundation\Http\FormRequest;

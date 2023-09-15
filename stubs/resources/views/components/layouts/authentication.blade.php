@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{\App::getLocale()}}">
+<html lang="{{App::getLocale()}}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -17,17 +17,13 @@
     ])
     {{$head ?? ''}}
 </head>
-<body class="overflow-hidden h-screen">
-
-
+<body class="h-screen overflow-hidden">
 <x-auth-session-status class="mb-4" :status="session('status')"/>
-<div class="flex w-full justify-center items-center">
+<div class="flex w-full items-center justify-center">
     {{$slot}}
-    <div class="w-1/2 h-screen relative hidden lg:block">
-        <img
-            class="w-full h-full object-cover"
-            src="{{Vite::asset('resources/images/admin/curved-images/curved8.jpg')}}"
-            alt="">
+    <div class="relative hidden h-screen w-1/2 lg:block">
+        <img class="h-full w-full object-cover"
+             src="{{ Vite::asset('resources/images/admin/curved-images/curved8.jpg') }}" alt="">
     </div>
 </div>
 </body>

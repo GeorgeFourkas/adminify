@@ -25,16 +25,15 @@
 
 <body
     class="m-0 flex bg-gray-50 font-sans text-base font-normal text-slate-500 antialiased leading-default font-admin-sans"
-    data-locale="{{App::getLocale()}}"
+    data-locale="{{ app()->getLocale() }}"
     data-publishedlocales="{{ json_encode($publishedLanguages) }}"
-    data-availableLocales="{{ json_encode(array_keys($availableLocales)) }}"
->
+    data-availableLocales="{{ json_encode(array_keys($availableLocales)) }}">
 
 {{--The followind div is not rendered on the DOM, but its rather there for tailwind JIT compiler usage--}}
-<x-admin.sidebar />
-<main class="ease-soft-in-out w-full xl:ml-72 relative h-full max-h-screen rounded-xl transition-all duration-200">
-    <x-admin.navbar />
-    {{$slot}}
+<x-admin.sidebar/>
+<main class="relative h-full max-h-screen w-full rounded-xl transition-all duration-200 ease-soft-in-out xl:ml-72">
+    <x-admin.navbar/>
+    {{ $slot }}
 </main>
 </body>
 </html>

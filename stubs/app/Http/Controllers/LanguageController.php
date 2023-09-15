@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-use App\Http\Requests\Language\ChangeLanguageStatusRequest;
+use App\Http\Requests\Admin\Adminify\Language\ChangeLanguageStatusRequest;
 use App\Services\Language\LanguageStatusService;
 use App\Traits\Multilingual;
+use App\Http\Controllers\Controller;
 
 class LanguageController extends Controller
 {
@@ -13,13 +14,12 @@ class LanguageController extends Controller
     public function status(ChangeLanguageStatusRequest $request, LanguageStatusService $service)
     {
         return $service
-            ->setName($request->language_name)
+            ->setName($request->input('language_name'))
             ->isEnabled($request->has('language_status'))
             ->getLanguages()
             ->putStatus()
             ->save()
             ->cache()
-            ->sleep(10)
             ->redirect();
     }
 }

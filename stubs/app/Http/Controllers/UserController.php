@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-use App\Http\Requests\User\CreateUserModelRequest;
-use App\Http\Requests\User\DeleteUserRequest;
-use App\Http\Requests\User\UpdateUserRequest;
-use App\Http\Requests\User\UpdateUsersPasswordRequest;
+
+use App\Http\Requests\Admin\Adminify\User\CreateUserModelRequest;
+use App\Http\Requests\Admin\Adminify\User\DeleteUserRequest;
+use App\Http\Requests\Admin\Adminify\User\UpdateUserRequest;
+use App\Http\Requests\Admin\Adminify\User\UpdateUsersPasswordRequest;
 use App\Models\User;
 use App\Services\UserService;
 use App\Traits\Multilingual;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {
@@ -33,7 +36,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users')
-            ->with('success', __('User created successfully'));
+            ->with('success', __('adminify.user_create'));
 
     }
 
@@ -59,7 +62,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users', $request->user())
-            ->with('success', __("Successfully updates user's password"));
+            ->with('success', __('adminify.user_password_update'));
     }
 
     public function update(User $user, UpdateUserRequest $request, UserService $service)
@@ -73,7 +76,7 @@ class UserController extends Controller
 
         return redirect()
             ->route('users')
-            ->with('success', __('User Updated Successfully'));
+            ->with('success', __('adminify.user_update'));
     }
 
     public function destroy(DeleteUserRequest $request, User $user)
@@ -82,6 +85,6 @@ class UserController extends Controller
 
         return redirect()
             ->route('users')
-            ->with('success', __('User Deleted Successfully '));
+            ->with('success', __('adminify.user_delete'));
     }
 }

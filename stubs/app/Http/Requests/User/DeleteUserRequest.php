@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Admin\Adminify\User;
 
 use App\Constants\Permissions;
 use App\Rules\NotASingleAdmin;

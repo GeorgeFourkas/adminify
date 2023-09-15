@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-use App\Http\Requests\Language\AddLanguageRequest;
-use App\Http\Requests\Language\ChangeDefaultLanguageRequest;
-use App\Http\Requests\Language\RemoveLanguageRequest;
+use App\Http\Requests\Admin\Adminify\Language\AddLanguageRequest;
+use App\Http\Requests\Admin\Adminify\Language\ChangeDefaultLanguageRequest;
+use App\Http\Requests\Admin\Adminify\Language\RemoveLanguageRequest;
 use App\Services\Language\AddLanguageService;
 use App\Services\Language\DefaultLanguageService;
 use App\Services\Language\RemoveLanguageService;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SettingsController extends Controller
 {
@@ -24,15 +25,16 @@ class SettingsController extends Controller
 
         return redirect()
             ->route('settings')
-            ->with('success', __('settings synced successfully'));
+            ->with('success', __('adminify.settings_sync'));
     }
 
     public function addLanguage(AddLanguageRequest $request, AddLanguageService $service)
     {
         return $service
-            ->setLanguageName($request->lang)
+            ->setLanguageName($request->input('lang'))
             ->getLocalesArray()
             ->addTheLanguage()
+            ->exportLanguageFiles()
             ->save()
             ->redirect();
     }
@@ -40,7 +42,7 @@ class SettingsController extends Controller
     public function changeDefaultLanguage(ChangeDefaultLanguageRequest $request, DefaultLanguageService $service)
     {
         return $service
-            ->setLanguage($request->default_locale)
+            ->setLanguage($request->input('default_locale'))
             ->getLocales()
             ->ensureLanguageIsPublished()
             ->cache()
@@ -50,7 +52,7 @@ class SettingsController extends Controller
     public function removeLanguage(RemoveLanguageRequest $request, RemoveLanguageService $service)
     {
         return $service
-            ->setLanguageName($request->lang)
+            ->setLanguageName($request->input('lang'))
             ->getStoredLanguages()
             ->removeFromSavedLanguages()
             ->save()

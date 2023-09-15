@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Language;
+namespace App\Http\Requests\Admin\Adminify\Language;
 
 use App\Rules\NotAlreadySelectedLanguage;
 use Illuminate\Foundation\Http\FormRequest;

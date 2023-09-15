@@ -1,47 +1,29 @@
 <x-layouts.admin>
-    <x-slot:head>
+    @pushonce('scripts')
         @vite(['resources/js/admin/child-toggle.js',  'resources/js/admin/category-crud.js'])
-    </x-slot:head>
-    @php
-        $locales = array_keys(config('translatable.locales'))
-    @endphp
-
+    @endpushonce
+        <x-admin.session-flash />
 
     <div
-        class="w-full lg:w-11/12 mx-auto lg:mx-0 flex-none px-3 flex flex-col-reverse space-y-4 lg:space-y-0 lg:flex-row items-start justify-between lg:space-x-6 ">
+        class="mx-auto flex w-full flex-none flex-col-reverse items-start justify-between px-3 space-y-4 lg:space-y-0 lg:space-x-6 lg:mx-0 lg:w-11/12 lg:flex-row">
         <div
-            class="w-full lg:w-1/2 m-4 relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-white bg-clip-border font-semibold shadow-lg">
-            @if(Session::has('success'))
-                <div
-                    class="mx-auto flex h-10 w-full items-center justify-center rounded-t-lg bg-lime-500 px-6 text-white"
-                    id="flash-container">
-                    <p class="font-light">{{Session::get('success')}}</p>
-                </div>
-            @endif
-            @if(Session::has('error'))
-                <div
-                    class="mx-auto flex h-10 w-full items-center justify-center rounded-t-lg bg-red-500 px-6 text-white"
-                    id="flash-container">
-                    <p class="font-light">{{Session::get('error')}}</p>
-                </div>
-            @endif
+            class="relative m-4 mb-6 flex w-full min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-white bg-clip-border font-semibold shadow-lg lg:w-1/2">
+
             <div class="flex w-full items-start justify-between border-b border-slate-100 py-5">
                 <div
-                    class="mb-0 rounded-t-2xl border-b-0 border-b-transparent bg-white p-6 pb-0 border-b-solid">
-                    <h6>{{__('Categories')}}</h6>
+                    class="mb-0 rounded-t-2xl border-b-0 border-b-transparent bg-white p-6 pb-0 capitalize border-b-solid">
+                    <h6>{{ __('adminify.categories.page_title') }}</h6>
                 </div>
                 <div
                     class="mb-0 rounded-t-2xl border-b-0 border-b-transparent bg-white p-6 pb-0 border-b-solid">
                     <button id="create_category"
-                            class="p-3 gradient-app-theme text-white shadow-soft-2xl capitalize text-xs
-                               rounded-lg hover:bg-gradient-to-l hover:from-white hover:to-white hover:text-paragraphGray
-                               transition duration-300">
-                        <x-icons.add></x-icons.add>
-                        {{  __('Create Category') }}
+                            class="rounded-lg p-3 text-xs capitalize text-white transition duration-300 gradient-app-theme shadow-soft-2xl hover:text-paragraphGray hover:bg-gradient-to-l hover:from-white hover:to-white">
+                        <x-icons.add/>
+                        {{ __('adminify.categories.add_category_button') }}
                     </button>
                 </div>
             </div>
-            <div class="font-semibold px-5 mt-5">
+            <div class="mt-5 px-5 font-semibold">
                 @foreach($categories->toTree() as $category)
                     <div class="">
                         <x-admin.category-child parent-id="" parent-name="" :category="$category"/>
@@ -49,22 +31,23 @@
                 @endforeach
             </div>
         </div>
-        <div
-            class="w-full lg:w-1/2 bg-white shadow-soft-2xl rounded-lg px-5 py-7 hidden flex items-center justify-center"
-            id="crud-panel">
+        <div id="crud-panel"
+             class="flex hidden w-full items-center justify-center rounded-lg bg-white px-5 py-7 shadow-soft-2xl lg:w-1/2">
             <div class="w-full">
                 <x-admin.language-tabs-header :locales="$locales"/>
                 <form id="categories_crud_form" action="{{ route('categories.store') }}" method="POST"
-                      data-save="{{route('categories.store')}}" data-update="{{route('categories')}}">
+                      data-save="{{  route('categories.store') }}" data-update="{{route('categories')}}">
                     @csrf
                     <div id="tabContentExample" class="w-full">
-                        <div class="flex flex-col lg:flex-row items-start justify-start w-full lg:space-x-1">
-                            <div class="w-full lg:w-6/12 mt-5 lg:mt-0">
+                        <div class="flex w-full flex-col items-start justify-start lg:space-x-1 lg:flex-row">
+                            <div class="mt-5 w-full lg:mt-0 lg:w-6/12">
                                 @foreach($locales as $key => $locale)
-                                    <div class="mt-10 hidden rounded-lg w-full" id="profile-example-{{$locale}}"
-                                         role="tabpanel" aria-labelledby="profile-tab-example-{{$locale}}">
+                                    <div class="mt-10 hidden w-full rounded-lg" id="profile-example-{{  $locale }}"
+                                         role="tabpanel" aria-labelledby="profile-tab-example-{{  $locale }}">
                                         <div class="w-full px-4">
-                                            <x-input-label value="Category Name" for="category-{{$locale}}"/>
+                                            <x-input-label class="capitalize"
+                                                           :value="__('adminify.categories.category_title_input')"
+                                                           for="category-{{  $locale }}"/>
                                             <x-text-input id="category-{{$locale}}" type="text" name="{{$locale}}[name]"
                                                           class="mt-1"/>
                                             <x-input-error :messages="$errors->get($locale . '.name')" class="mt-2"/>
@@ -72,24 +55,22 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="w-full lg:w-5/12 mt-10">
-                                <x-input-label value="Parent Category" for="input_parent_id"/>
+                            <div class="mt-10 w-full lg:w-5/12">
+                                <x-input-label class="capitalize" :value="__('adminify.categories.category_parent_id')"
+                                               for="input_parent_id"/>
                                 <select id="input_parent_id" name="parent_id"
-                                        class="block py-2.5 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+                                        class="mt-1 block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-3 py-2 text-sm text-gray-500 peer focus:border-gray-200 focus:outline-none focus:ring-0">
                                     <option value="" selected></option>
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="w-full flex items-center justify-center">
-                        <input
-                            class="px-5 py-2 text-sm gradient-app-theme text-white font-normal rounded-md mb-10 mt-5 cursor-pointer"
-                            type="submit"
-                            value="{{__('Submit')}}"
-                        >
+                    <div class="flex w-full items-center justify-center">
+                        <input value="{{ __('adminify.submit') }}" type="submit"
+                               class="mt-5 mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal capitalize text-white gradient-app-theme">
                     </div>
                 </form>
             </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Tag;
+namespace App\Http\Requests\Admin\Adminify\Tag;
 
 use App\Constants\Permissions;
 use Illuminate\Foundation\Http\FormRequest;

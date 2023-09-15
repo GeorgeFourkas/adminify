@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-use App\Http\Requests\Tag\DeleteTagRequest;
+use App;
+
+use App\Http\Requests\Admin\Adminify\Tag\DeleteTagRequest;
 use App\Models\Adminify\Tag;
 use App\Services\TagService;
 use App\Traits\HasNullRequestValues;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
@@ -17,7 +20,7 @@ class TagController extends Controller
     {
         return response()->json([
             'tags' => Tag::with('translations')
-                ->whereTranslationLike('name', '%'.$request->search.'%', \App::getLocale())
+                ->whereTranslationLike('name', '%' . $request->search . '%', App::getLocale())
                 ->get(),
         ]);
     }
@@ -32,7 +35,7 @@ class TagController extends Controller
 
         return redirect()
             ->route('tags')
-            ->with('success', __('Tag Created Successfully'));
+            ->with('success', __('adminify.tag_create'));
     }
 
     public function update(Request $request, Tag $tag, TagService $service)
@@ -46,7 +49,7 @@ class TagController extends Controller
 
         return redirect()
             ->route('tags')
-            ->with('success', __('Tag Updated Successfully'));
+            ->with('success', __('adminify.tag_update'));
     }
 
     public function destroy(DeleteTagRequest $r, Tag $tag)
@@ -55,6 +58,6 @@ class TagController extends Controller
 
         return redirect()
             ->route('tags')
-            ->with('success', __('Tag Delete Successfully'));
+            ->with('success', __('adminify.tag_delete'));
     }
 }

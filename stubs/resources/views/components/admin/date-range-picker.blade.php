@@ -1,8 +1,8 @@
 @php
     use Illuminate\Support\Carbon;
 @endphp
-<div class="flex w-full flex-col lg:flex-row items-center justify-between px-3 py-2">
-    <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease-soft my-3 lg:my-0">
+<div class="flex w-full flex-col items-center justify-between px-3 py-2 lg:flex-row">
+    <div class="relative my-3 flex w-full flex-wrap items-stretch rounded-lg transition-all ease-soft lg:my-0">
         <span class="text-sm ease-soft leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg
                    rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center
                    font-normal text-slate-500 transition-all">
@@ -16,7 +16,7 @@
                focus:transition-shadow" placeholder="{{$attributes->get('start-date-placeholder')}}"/>
     </div>
     <span class="mx-4 hidden lg:block">To</span>
-    <div class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease-soft my-3 lg:my-0">
+    <div class="relative my-3 flex w-full flex-wrap items-stretch rounded-lg transition-all ease-soft lg:my-0">
         <span class="text-sm ease-soft leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg
                      rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center
                       font-normal text-slate-500 transition-all">

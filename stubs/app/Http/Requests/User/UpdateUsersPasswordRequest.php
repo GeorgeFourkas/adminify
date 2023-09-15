@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Admin\Adminify\User;
 
 use App\Constants\Permissions;
 use Illuminate\Foundation\Http\FormRequest;
@@ -16,7 +16,7 @@ class UpdateUsersPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => ['required', 'string', 'same:password_confirmation',  Password::defaults()],
+            'password' => ['required', 'string', 'same:password_confirmation', Password::defaults()],
             'password_confirmation' => ['required', 'string', 'same:password', Password::defaults()],
         ];
     }

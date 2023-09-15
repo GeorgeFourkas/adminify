@@ -17,8 +17,8 @@ submitBtn.addEventListener('click', (e) => {
     })
         .then((response) => {
             container.insertAdjacentHTML('beforeend', `
-            <div class="flex items-center w-full" category-checkbox>
-              <input type="checkbox" value="${response.data.id ?? ''}" name="categories[]" checked class="w-4 h-4 text-pink-600 bg-gray-100 border-gray-300 rounded focus:ring-0 focus:ring-offset-0">
+            <div class="flex w-full items-center" category-checkbox>
+              <input type="checkbox" value="${response.data.id ?? ''}" name="categories[]" checked class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-pink-600 focus:ring-0 focus:ring-offset-0">
               <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                 ${response.data.name}
               </label>
@@ -26,7 +26,7 @@ submitBtn.addEventListener('click', (e) => {
         `)
         });
     input.value = '';
-    if (container.classList.contains('hidden')){
+    if (container.classList.contains('hidden')) {
         container.classList.remove('hidden');
     }
 })

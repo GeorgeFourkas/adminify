@@ -5,7 +5,6 @@ namespace App\Services\Language;
 use App\Traits\Multilingual;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Str;
 
 class LanguageStatusService
 {
@@ -71,16 +70,9 @@ class LanguageStatusService
 
     public function redirect(): RedirectResponse
     {
-        $path = str_replace(url('/'), '', url()->previous());
-        if ($this->translationsAreEnabled()) {
-            if (Str::contains($path, \app()->getLocale())) {
-                return redirect()->to($path)->with('success', __('Successfully changed locale settings'));
-            } else {
-                return redirect()->to(app()->getLocale().$path)->with('success', __('Successfully changed locale settings'));
-            }
-        }
 
-        return redirect()->route('settings')->with('success', __('Successfully changed locale settings'));
+        return redirect()->route('settings')
+            ->with('success', __('adminify.locale_change'));
 
     }
 }

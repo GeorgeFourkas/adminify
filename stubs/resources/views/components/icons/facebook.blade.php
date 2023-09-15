@@ -1,4 +1,5 @@
-<svg id="Layer_1" data-name="Layer 1" class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+<svg id="Layer_1" data-name="Layer 1" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 124.8 123.36">
     <defs>
         <style>.cls-1, .cls-2 {

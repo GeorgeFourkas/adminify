@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Category;
+namespace App\Http\Requests\Admin\Adminify\Category;
 
 use App\Constants\Permissions;
 use Illuminate\Contracts\Validation\Validator;
@@ -21,7 +21,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            config('app.fallback_locale').'.name' => 'required',
+            config('app.fallback_locale') . '.name' => 'required',
         ];
     }
 

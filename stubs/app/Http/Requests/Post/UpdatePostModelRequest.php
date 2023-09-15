@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Post;
+namespace App\Http\Requests\Admin\Adminify\Post;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,15 +21,21 @@ class UpdatePostModelRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [];
+        $defaultLocale = $this->getStore()->get('default_locale');
+
+        return [
+            $defaultLocale . '.title' => 'required',
+            $defaultLocale . '.body' => 'required',
+            $defaultLocale . '.featured_image_url' => 'required',
+        ];
     }
 
     public function attributes(): array
     {
         return [
-            '%title%' => __('Title'),
-            '%body%' => __('Post Body'),
-            '%featured_image_url%' => __('Post Featured Image'),
+            '%title%' => __('adminify.post_title'),
+            '%body%' => __('adminify.post_body'),
+            '%featured_image_url%' => __('adminify.post_featured_image'),
         ];
     }
 }

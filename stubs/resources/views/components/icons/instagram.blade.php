@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 132.004 132">
+<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" xmlns:xlink="http://www.w3.org/1999/xlink"
+     viewBox="0 0 132.004 132">
     <defs>
         <linearGradient id="b">
             <stop offset="0" stop-color="#3771c8"/>

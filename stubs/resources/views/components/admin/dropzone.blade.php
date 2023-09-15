@@ -18,12 +18,12 @@
 @endpushonce
 
 @php
-if ($id == ''){
-    $id = random_bytes(10);
-}
+    if ($id == ''){
+        $id = random_bytes(10);
+    }
 @endphp
 
-<div class="dropzone-handler flex flex-col items-center justify-center w-full" dropzone>
+<div class="flex w-full flex-col items-center justify-center dropzone-handler" dropzone>
     <label for="{{ $id }}" id="preview-{{ $id }}"
            data-asset="{{$previewUrl ?? ''}}"
         {!!
@@ -33,7 +33,7 @@ if ($id == ''){
                 ])
         !!}>
         {{-- Delete Button--}}
-        <span class="absolute top-1.5 right-1 hidden rounded-md z-990 hover:bg-red-200 group"
+        <span class="absolute right-1 hidden rounded-md top-1.5 z-990 group hover:bg-red-200"
               dropzone_remove_btn>
         <x-icons.cross class="group-hover:text-white"></x-icons.cross>
      </span>
@@ -61,8 +61,8 @@ if ($id == ''){
         />
     </label>
     @if($enableAlreadyUploaded)
-        <div class="text-center mt-4" media_panel_toggler>
-            <p class="text-blue-400 cursor-pointer hover:text-blue-600">
+        <div class="mt-4 text-center" media_panel_toggler>
+            <p class="cursor-pointer text-blue-400 hover:text-blue-600">
                 {{ __('Choose an already uploaded file')  }}
             </p>
         </div>

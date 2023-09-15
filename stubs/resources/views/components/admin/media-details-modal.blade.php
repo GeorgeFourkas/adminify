@@ -1,60 +1,57 @@
 <div
-    class="min-h-screen w-full fixed top-0 left-0 bg-overlay-body z-999 px-10 flex flex-row items-center justify-center hidden"
+    class="fixed top-0 left-0 flex hidden min-h-screen w-full flex-row items-center justify-center px-10 bg-overlay-body z-999"
     id="media_details_modal">
     <div
-        class="relative bg-white rounded-lg w-11/12 lg:w-2/3 max-h-[50rem] flex flex-col lg:flex-row items-start justify-center w-full min-h-full space-x-3">
-        <div class="rounded-l-lg w-full lg:w-1/2 ">
-            <img src="" class="w-full  overflow-y-hidden rounded-l-lg" alt=""
-                 id="preview">
+        class="relative flex min-h-full w-11/12 w-full flex-col items-start justify-center rounded-lg bg-white max-h-[50rem] space-x-3 lg:w-2/3 lg:flex-row">
+        <div class="w-full rounded-l-lg lg:w-1/2">
+            <img src="" class="w-full overflow-y-hidden rounded-l-lg" alt="" id="preview">
         </div>
-        <div class="rounded-r-lg w-full lg:w-1/2 h-full text-sm py-5 lg:py-0">
+        <div class="h-full w-full rounded-r-lg py-5 text-sm lg:w-1/2 lg:py-0">
             <div class="my-4">
-                <h1 class="text-center font-semibold text-xl">{{ __('File Information') }}</h1>
+                <h1 class="text-center text-xl font-semibold">{{ __('File Information') }}</h1>
             </div>
             <h1 class="capitalize">
-                {{ __('uploaded by') }}:
+                {{ __('adminify.media.uploaded_by') }}:
                 <span class="text-blue-400" id="uploaded_by"></span>
             </h1>
             <h1>
-                {{ __('Uploaded At') }}:
-                <span
-                    id="uploaded_at"> {{ \Illuminate\Support\Carbon::now()->subWeeks(rand(1,9))->diffForHumans() }} </span>
+                {{ __('adminify.media.uploaded_at') }}:
+                <span id="uploaded_at"></span>
             </h1>
             <h1 class="capitalize">
-                {{ __('original file name') }}:
+                {{ __('adminify.media.original_file_name') }}:
                 <span id="original_file_name" class="text-blue-400"></span>
             </h1>
             <h1>
-                {{ __('File Extension') }}:
+                {{ __('adminify.media.file_extension') }}:
                 <span id="file_extension" class="text-blue-400"></span>
             </h1>
             <h1>
-                {{ __('File Size') }}:
+                {{ __('adminify.media.file_size') }}:
                 <span id="size" class="text-blue-400"></span>
-                <span class="text-xs text-blue-400 uppercase text-sm">KB</span>
+                <span class="text-xs text-sm uppercase text-blue-400">KB</span>
             </h1>
             <h1 class="capitalize">
-                {{ __('aspect ratio') }}:
+                {{ __('adminify.media.aspect_ratio') }}:
                 <span id="aspect_ratio" class="text-blue-400"></span>
             </h1>
             <h1 class="capitalize">
-                {{ __('width') }}:
+                {{ __('adminify.media.width') }}:
                 <span id="width" class="text-blue-400"></span>
             </h1>
             <h1 class="capitalize">
-                {{ __('height') }}:
+                {{ __('adminify.media.height') }}:
                 <span id="height" class="text-blue-400"></span>
             </h1>
             <h1 class="break-words capitalize">
-                {{ __('file url') }}:
-                <span class="text-blue-400 cursor-pointer hover:text-blue-300 underline" id="url"></span>
+                {{ __('adminify.media.file_url') }}:
+                <span class="cursor-pointer text-blue-400 underline hover:text-blue-300" id="url"></span>
             </h1>
-            <div class="absolute bottom-2 right-2 ">
+            <div class="absolute right-2 bottom-2">
                 <form action="" deletion-form remove_media_btn method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="p-2 bg-red-500 text-white hover:bg-red-300 rounded-lg">
-                        {{ __('Remove') }}
+                    @csrf @method('DELETE')
+                    <button class="rounded-lg bg-red-500 p-2 capitalize text-white hover:bg-red-300">
+                        {{ __('adminify.media.remove_btn') }}
                     </button>
                 </form>
             </div>

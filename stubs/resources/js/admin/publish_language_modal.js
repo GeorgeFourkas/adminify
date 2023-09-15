@@ -21,6 +21,10 @@ languageBoxes.forEach((box) => {
         }
         modal.classList.toggle('hidden')
         const localeData = JSON.parse(box.dataset.locale)
+
+        const translatorLink = modal.querySelector('#translator_link');
+        translatorLink.href = localeData?.translator_route
+
         checkbox.checked = localeData.published;
         input.value = localeData.name;
         const defaultLanguageElement = document.getElementById('change_default_language')

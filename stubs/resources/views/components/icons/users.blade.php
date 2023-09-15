@@ -1,5 +1,5 @@
 @php
-    $isRoute = Str::contains(url()->current(), 'user') || Str::contains(url()->current(), 'users')
+    $isRoute = str()->contains(url()->current(), 'user') || str()->contains(url()->current(), 'users')
 @endphp
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"

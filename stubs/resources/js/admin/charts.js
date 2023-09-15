@@ -24,11 +24,15 @@ import {
     ProjectionScale
 } from 'chartjs-chart-geo'
 import {
-    devicesDonutChart, drawLineChart,
-    drawMapChart, drawMostViewedPages,
+    devicesDonutChart,
+    drawLineChart,
+    drawMapChart,
+    drawMostViewedPages,
     drawSessionSourcesChart,
-    setAverageSessionTimeCard, setLiveUsersCount,
-    setTodaysUsersCountCard, updateDoughnutChart
+    setAverageSessionTimeCard,
+    setLiveUsersCount,
+    setTodaysUsersCountCard,
+    updateDoughnutChart
 } from "./drawCharts";
 import {appendLocale} from "./locale-prefix-parser";
 

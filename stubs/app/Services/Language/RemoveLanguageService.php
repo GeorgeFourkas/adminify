@@ -3,6 +3,7 @@
 namespace App\Services\Language;
 
 use App\Traits\Multilingual;
+use Arr;
 use Illuminate\Http\RedirectResponse;
 use Locale;
 
@@ -30,7 +31,7 @@ class RemoveLanguageService
 
     public function removeFromSavedLanguages(): static
     {
-        $this->availableLocales = \Arr::except($this->availableLocales, $this->language);
+        $this->availableLocales = Arr::except($this->availableLocales, $this->language);
 
         return $this;
     }
@@ -45,6 +46,6 @@ class RemoveLanguageService
     public function redirect(): RedirectResponse
     {
         return $this->redirectLanguageChange()
-            ->with('success', Locale::getDisplayLanguage($this->language).__('successfully removed from translations list'));
+            ->with('success', Locale::getDisplayLanguage($this->language) . __('adminify.language_removed'));
     }
 }

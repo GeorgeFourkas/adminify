@@ -5,6 +5,7 @@ namespace Nalcom\Adminify;
 use Nalcom\Adminify\Commands\AdminifyCommand;
 use Nalcom\Adminify\Commands\PrintResourceFileList;
 use Nalcom\Adminify\Commands\RoleSeedCommand;
+use Nalcom\Adminify\Commands\SettingsFileInitialization;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -12,11 +13,11 @@ class AdminifyServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        $this->loadJsonTranslationsFrom(__DIR__.'/../lang');
-
-        $this->publishes([
-            __DIR__.'/../lang' => $this->app->langPath('vendor/adminify'),
-        ], 'adminify');
+//        $this->loadJsonTranslationsFrom(__DIR__ . '/../lang');
+//
+//        $this->publishes([
+//            __DIR__ . '/../lang' => $this->app->langPath('vendor/adminify'),
+//        ], 'adminify');
 
         $package
             ->name('adminify')
@@ -42,6 +43,7 @@ class AdminifyServiceProvider extends PackageServiceProvider
                     AdminifyCommand::class,
                     RoleSeedCommand::class,
                     PrintResourceFileList::class,
+                    SettingsFileInitialization::class,
                 ]
             );
     }

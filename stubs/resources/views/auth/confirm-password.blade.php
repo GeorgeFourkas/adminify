@@ -6,21 +6,19 @@
     <form method="POST" action="{{ route('password.confirm') }}">
         @csrf
         <div>
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Password')"/>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                          autocomplete="current-password"/>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input-error :messages="$errors->get('password')" class="mt-2"/>
         </div>
 
         <div class="flex items-center justify-center mt-8">
             <button
                 class="gradient-app-theme px-3 py-2 text-sm text-white rounded-md font-semibold w-full font-admin-sans">
-                {{__('Reset Password')}}
+                {{ __('Reset Password') }}
             </button>
         </div>
     </form>
-<x-layouts.guest>
+    <x-layouts.guest>

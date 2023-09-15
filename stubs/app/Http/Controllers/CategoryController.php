@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-use App\Http\Requests\Category\CreateCategoryRequest;
-use App\Http\Requests\Category\DeleteCategoryRequest;
+use App\Http\Requests\Admin\Adminify\Category\CreateCategoryRequest;
+use App\Http\Requests\Admin\Adminify\Category\DeleteCategoryRequest;
 use App\Models\Adminify\Category;
 use App\Services\CategoryService;
 use App\Traits\Multilingual;
+use App\Http\Controllers\Controller;
+
 
 class CategoryController extends Controller
 {
@@ -22,7 +24,7 @@ class CategoryController extends Controller
 
         return $request->expectsJson()
             ? response()->json($category)
-            : redirect()->route('categories')->with('success', __('Category created successfully'));
+            : redirect()->route('categories')->with('success', __('adminify.category_create'));
     }
 
     public function update(CreateCategoryRequest $request, Category $category, CategoryService $service)
@@ -37,14 +39,14 @@ class CategoryController extends Controller
 
         return redirect()
             ->route('categories')
-            ->with('success', __('Category updated successfully'));
+            ->with('success', __('adminify.category_update'));
     }
 
     public function destroy(DeleteCategoryRequest $request, Category $category)
     {
         $category->delete();
 
-        return $this->redirection(__('Category Deleted Successfully'));
+        return $this->redirection(__('adminify.category_delete'));
     }
 
     private function redirection(string $message)
