@@ -4,7 +4,6 @@ namespace App\Services;
 
 class StringSpanWrapper
 {
-
     public static function createSpan($inputString): array|string|null
     {
         $pattern = '/(:\w+)/';
@@ -14,20 +13,19 @@ class StringSpanWrapper
         return $outputString;
     }
 
-
     public static function getJsonizedParams($inputString): string|array
     {
         $parameters = [];
         $separated = explode(' ', $inputString);
-        foreach ($separated as $word){
-            if (str_contains($word, ':')){
+        foreach ($separated as $word) {
+            if (str_contains($word, ':')) {
                 $parameters[] = $word;
             }
         }
-//        if (!empty($parameters)){
-//            dd(json_encode($parameters));
-//        }
-        return  json_encode($parameters);
-    }
 
+        //        if (!empty($parameters)){
+        //            dd(json_encode($parameters));
+        //        }
+        return json_encode($parameters);
+    }
 }

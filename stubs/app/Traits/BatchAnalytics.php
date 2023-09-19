@@ -41,7 +41,7 @@ trait BatchAnalytics
         }
 
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
@@ -80,7 +80,7 @@ trait BatchAnalytics
         }
 
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
@@ -116,7 +116,7 @@ trait BatchAnalytics
         );
 
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
@@ -146,7 +146,7 @@ trait BatchAnalytics
         );
 
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())
@@ -172,7 +172,7 @@ trait BatchAnalytics
         );
 
         return (new RunReportRequest())
-            ->setProperty('properties/' . config('laravel-google-analytics.property_id'))
+            ->setProperty('properties/'.config('laravel-google-analytics.property_id'))
             ->setDateRanges(
                 [
                     (new DateRange())

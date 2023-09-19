@@ -16,7 +16,7 @@ class NotAlreadySelectedLanguage implements Rule
 
     public function passes($attribute, $value): bool
     {
-        return !in_array($value, $this->getAllDeclaredLanguages());
+        return ! in_array($value, $this->getAllDeclaredLanguages());
     }
 
     public function message(): string

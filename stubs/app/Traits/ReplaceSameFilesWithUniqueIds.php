@@ -20,7 +20,7 @@ trait ReplaceSameFilesWithUniqueIds
                     ->map(function ($item) {
                         return $item['original_name'];
                     });
-                if (!in_array($file->getClientOriginalName(), $names->toArray())) {
+                if (! in_array($file->getClientOriginalName(), $names->toArray())) {
                     $media = $translation->media()->create([
                         'url' => Storage::url(Storage::put('public/posts', $file)),
                         'size' => $file->getSize(),

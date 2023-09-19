@@ -26,7 +26,7 @@ class CreateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            config('app.fallback_locale') . '.name' => 'required',
+            config('app.fallback_locale').'.name' => 'required',
             'parent_id' => 'nullable',
         ];
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Adminify\StoreAnalyticsCredentialsFileRequest;
 use Illuminate\Support\Facades\File;
-use App\Http\Controllers\Controller;
 
 class JsonCredentialsAnalyticsController extends Controller
 {

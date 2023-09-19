@@ -18,13 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
-    Route::controller(TranslationEditorController::class)->group(function (){
+    Route::controller(TranslationEditorController::class)->group(function () {
 
         Route::get('translate', 'start')->name('translations.manage');
         Route::post('translations/store', 'store')->name('translations.store');
 
     });
-
 
     Route::controller(AnalyticsController::class)->group(function () {
         Route::prefix('/analytics')->group(function () {

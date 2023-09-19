@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Adminify\Language\ChangeLanguageStatusRequest;
 use App\Services\Language\LanguageStatusService;
 use App\Traits\Multilingual;
-use App\Http\Controllers\Controller;
 
 class LanguageController extends Controller
 {

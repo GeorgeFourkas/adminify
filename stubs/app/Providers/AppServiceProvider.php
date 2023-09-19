@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function bootUpAdminify(Request $request): void
     {
 
-        if (!$this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale()) {
+        if (! $this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale()) {
             App::setLocale($request->segment(1));
             URL::defaults(['locale' => $this->app->getLocale()]);
         }
@@ -51,6 +51,4 @@ class AppServiceProvider extends ServiceProvider
     {
         return \Illuminate\Support\Facades\Request::segment(1) && in_array(\Illuminate\Support\Facades\Request::segment(1), $this->getPublishedLanguages());
     }
-
-
 }

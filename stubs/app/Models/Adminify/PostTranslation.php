@@ -10,7 +10,7 @@ use Zoha\Metable;
 
 class PostTranslation extends Model
 {
-    use Sluggable, Metable;
+    use Metable, Sluggable;
 
     protected $with = ['meta'];
 
@@ -21,8 +21,8 @@ class PostTranslation extends Model
     protected function featuredImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value,
-            set: fn($value) => Storage::url(Storage::put('public/posts', $value)),
+            get: fn ($value) => $value,
+            set: fn ($value) => Storage::url(Storage::put('public/posts', $value)),
         );
     }
 

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Adminify\Category\CreateCategoryRequest;
 use App\Http\Requests\Admin\Adminify\Category\DeleteCategoryRequest;
 use App\Models\Adminify\Category;
 use App\Services\CategoryService;
 use App\Traits\Multilingual;
-use App\Http\Controllers\Controller;
-
 
 class CategoryController extends Controller
 {

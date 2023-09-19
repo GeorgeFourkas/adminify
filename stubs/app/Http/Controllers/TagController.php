@@ -3,24 +3,23 @@
 namespace App\Http\Controllers\Admin\Adminify;
 
 use App;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Adminify\Tag\DeleteTagRequest;
 use App\Models\Adminify\Tag;
 use App\Services\TagService;
 use App\Traits\HasNullRequestValues;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class TagController extends Controller
 {
-    use Multilingual, HasNullRequestValues;
+    use HasNullRequestValues, Multilingual;
 
     public function show(Request $request)
     {
         return response()->json([
             'tags' => Tag::with('translations')
-                ->whereTranslationLike('name', '%' . $request->search . '%', App::getLocale())
+                ->whereTranslationLike('name', '%'.$request->search.'%', App::getLocale())
                 ->get(),
         ]);
     }

@@ -2,5 +2,5 @@
 
 // config for Nalcom/Adminify
 return [
-    'settings' => []
+    'settings' => [],
 ];

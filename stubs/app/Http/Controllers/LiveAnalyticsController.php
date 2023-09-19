@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
+use App\Http\Controllers\Controller;
 use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
 use Google\Analytics\Data\V1beta\Dimension;
 use Google\Analytics\Data\V1beta\Metric;
 use Google\ApiCore\ApiException;
-use App\Http\Controllers\Controller;
 
 class LiveAnalyticsController extends Controller
 {
@@ -17,10 +17,10 @@ class LiveAnalyticsController extends Controller
     {
         $totalActiveUsers = 0;
         $devices = [];
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . config('laravel-google-analytics.service_account_credentials_json'));
+        putenv('GOOGLE_APPLICATION_CREDENTIALS='.config('laravel-google-analytics.service_account_credentials_json'));
         $client = new BetaAnalyticsDataClient();
         $response = $client->runRealtimeReport([
-            'property' => 'properties/' . config('laravel-google-analytics.property_id'),
+            'property' => 'properties/'.config('laravel-google-analytics.property_id'),
             'metrics' => [
                 new Metric(
                     [

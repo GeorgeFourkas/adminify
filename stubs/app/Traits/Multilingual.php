@@ -24,17 +24,17 @@ trait Multilingual
         return count(array_keys($this->allDeclared()));
     }
 
-    public function getAllDeclaredLanguages(): array|null
+    public function getAllDeclaredLanguages(): ?array
     {
         return array_keys($this->allDeclared());
     }
 
-    public function getPublishedLanguagesCount(): int|null
+    public function getPublishedLanguagesCount(): ?int
     {
         return $this->onlyPublished()->count();
     }
 
-    public function getPublishedLanguages(): array|null
+    public function getPublishedLanguages(): ?array
     {
         return array_keys($this->onlyPublished()->toArray());
     }
@@ -43,7 +43,7 @@ trait Multilingual
     {
         if ($this->getStore()) {
             return collect($this->getStore()->get('locales'))->reject(function ($item) {
-                return !in_array('published', $item);
+                return ! in_array('published', $item);
             })->map(function ($item, $key) {
                 return $key;
             });
@@ -70,7 +70,6 @@ trait Multilingual
 
         Artisan::call('config:cache');
         Artisan::call('route:cache');
-
 
         return redirect()->route('settings');
     }
