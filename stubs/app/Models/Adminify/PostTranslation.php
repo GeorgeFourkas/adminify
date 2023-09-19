@@ -30,16 +30,13 @@ class PostTranslation extends Model
     {
         return [
             'slug' => [
-                'source' => 'slug'
+                'source' => 'slug',
             ],
         ];
     }
-
 
     public function getSlugAttribute(): string
     {
         return is_null($this->title) ? str()->random(10) : $this->title;
     }
-
-
 }

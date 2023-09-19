@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Post extends Model implements TranslatableContract
 {
-    use Translatable, HasFactory, HasCategories, HasTags, HasMedia;
+    use HasCategories, HasFactory, HasMedia, HasTags, Translatable;
 
     protected $guard_name = 'web';
 
