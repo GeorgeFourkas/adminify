@@ -52,7 +52,7 @@
                                             <div class="flex px-2 py-1">
                                                 <div>
                                                     <img
-                                                        src="{{ $post->translation?->media?->first()?->url }}"
+                                                        src="{{ $post->media?->first()?->url }}"
                                                         class="mr-4 inline-flex hidden h-9 w-9 items-center justify-center rounded-xl text-sm text-white transition-all duration-200 ease-soft-in-out sm:block"
                                                         alt="user1"/>
                                                 </div>

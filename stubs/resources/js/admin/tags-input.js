@@ -2,14 +2,13 @@ import axios from 'axios';
 import {appendLocale} from "./locale-prefix-parser";
 
 const activeLocale = document.querySelector('body').dataset.locale;
-const createPostForm = document.getElementById('create_post_form')
 const suggestContainer = document.getElementById('tag-suggest');
 const tagArea = document.getElementById('drawed-tags')
 const form = document.getElementById('selected_tags')
+const createPostForm = form.closest('form')
 const input = document.getElementById('tag_input')
 let pendingRequest = false;
 let selectedTags = [];
-
 
 window.addEventListener('keydown', (e) => {
     if (e.key === "Enter" && input === document.activeElement) {
@@ -29,14 +28,12 @@ window.addEventListener('keydown', (e) => {
     }
 })
 
-
-if ((createPostForm.dataset?.selectedtags)) {
-    const editingTags = (JSON.parse(createPostForm.dataset.selectedtags));
+if (JSON.parse(form.getAttribute('selected_tags'))) {
+    const editingTags = JSON.parse(form.getAttribute('selected_tags'));
     editingTags.forEach((tag) => {
         setSelectedTag(tag.name, tag.id)
     })
     drawTagPills()
-    createPostForm.dataset.selectedtags = ''
 }
 
 
@@ -111,12 +108,11 @@ function setSelectedTag(databaseTagName, databaseId) {
         databaseId: databaseId,
         get pill() {
             return `
-                    <div class="m-1 cursor-pointer rounded-md bg-green-100 p-1 text-center group hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500" tag-pill>
-                        <p class="break-words text-sm text-black group-hover:text-white">
-                            ${this.tagName}
-                        </p>
-                    </div>
-`
+              <div class="m-1 cursor-pointer rounded-md bg-green-100 p-1 text-center group hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500" tag-pill>
+                <p class="break-words text-sm text-black group-hover:text-white">
+                  ${this.tagName}
+                </p>
+              </div>`
         }
     })
 }

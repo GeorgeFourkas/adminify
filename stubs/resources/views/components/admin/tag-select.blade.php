@@ -1,8 +1,16 @@
 @pushonce('scripts')
     @vite('resources/js/admin/tags-input.js')
 @endpushonce
+@php use App\Models\Adminify\Tag; @endphp
+@props([
+    'selected' => [],
+    'old' => []
+])
+@php $selected = $old ? Tag::whereIn('id', $old)->get()->toArray() : $selected; @endphp
+
 <div>
-    <label for="combobox" class="block text-sm font-medium capitalize leading-6 text-gray-900">{{ __('adminify.tags.page_title') }}</label>
+    <label for="combobox"
+           class="block text-sm font-medium capitalize leading-6 text-gray-900">{{ __('adminify.tags.page_title') }}</label>
     <div class="relative mt-2">
         <input id="tag_input" type="text"
                class="w-full rounded-md border-0 bg-white pr-12 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 py-1.5 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -21,4 +29,4 @@
     </div>
 </div>
 <div class="mt-2 flex w-full flex-wrap items-start justify-start" id="drawed-tags"></div>
-<div class="hidden" id="selected_tags"></div>
+<div class="hidden" id="selected_tags" selected_tags="{{ json_encode($selected) }}"></div>

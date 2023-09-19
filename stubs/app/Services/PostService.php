@@ -4,15 +4,15 @@ namespace App\Services;
 
 use App\Models\Adminify\Post;
 use App\Traits\FileUploadOrSync;
-use App\Traits\HasNullRequestValues;
 use App\Traits\Multilingual;
 use App\Traits\ReplaceSameFilesWithUniqueIds;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 
 class PostService
 {
-    use Multilingual, ReplaceSameFilesWithUniqueIds, FileUploadOrSync, HasNullRequestValues;
+    use Multilingual, ReplaceSameFilesWithUniqueIds, FileUploadOrSync;
 
     private Request $request;
 
@@ -22,10 +22,12 @@ class PostService
 
     private array|Collection $data;
 
+
     public function setRequest(Request $request): static
     {
         $this->request = $request;
         $this->data = collect($this->request->all());
+
 
         return $this;
     }
@@ -67,23 +69,6 @@ class PostService
         return $this;
     }
 
-    public function rejectNullValues(): static
-    {
-        $this->data = $this->removeNullLanguageRequestIndex($this->data->toArray());
-
-        return $this;
-    }
-
-    public function syncTranslations(): static
-    {
-        $this->post
-            ->translations()
-            ->whereNotIn('locale', (array_keys($this->data)))
-            ->delete();
-
-        return $this;
-    }
-
     public function syncTags(): static
     {
         $this->post->tags()->sync($this->request->tags);
@@ -100,39 +85,22 @@ class PostService
 
     public function syncMedia(): static
     {
-        $this->uploadPostMediaWithoutDuplicates($this->post, $this->request);
-
-        return $this;
-    }
-
-    public function syncMeta(): static
-    {
-        foreach ($this->post->translations as $translation) {
-            if (isset($this->request->{$translation->locale}['meta'])) {
-                $localeMeta = ($this->request->{$translation->locale}['meta']);
-                $names = $localeMeta['name'];
-                $values = $localeMeta['value'];
-
-                foreach ($names as $key => $name) {
-                    $translation->setMeta($name, $values[$key]);
-                }
-            }
-        }
+        $this->post->uploadOrAttach($this->request->featured_image_url);
 
         return $this;
     }
 
     public function updateMedia(): static
     {
-        collect($this->request->all())
-            ->filter(fn($value, $key) => in_array($key, $this->getAllDeclaredLanguages()))
-            ->filter(fn($value) => isset($value['featured_image_url']))
-            ->each(function ($item, $languageKey) {
-                $this->createOrSync(
-                    $this->post->translations->where('locale', $languageKey)->first(),
-                    $item['featured_image_url'],
-                );
-            });
+        if ($this->request->featured_image_url && is_string($this->request->featured_image_url)) {
+
+            $this->post->media()->sync($this->request->featured_image_url);
+
+        } else if ($this->request->featured_image_url && $this->request->featured_image_url instanceof UploadedFile){
+
+            $this->post->media()->sync($this->post->createMediaModel($this->request->featured_image_url, 'public/posts')->id);
+
+        }
 
         return $this;
     }

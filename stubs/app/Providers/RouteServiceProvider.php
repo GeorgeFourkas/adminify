@@ -14,34 +14,19 @@ class RouteServiceProvider extends ServiceProvider
 
     public const HOME = '/master/admin/dashboard';
 
-
     public function boot(): void
     {
         $this->configureRateLimiting();
         $this->routes(function () {
+
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            if (!$this->translationsAreEnabled()) {
-                Route::name($this->getStore()->get('default_locale') . '.')
-                    ->middleware('web')
-                    ->prefix($this->getStore()->get('default_locale'))
-                    ->group(base_path('routes/web.php'));
-
+            Route::localized(function (){
                 Route::middleware('web')
                     ->group(base_path('routes/web.php'));
-            } else {
-                Route::middleware(['adminify.locale', 'web'])
-                    ->group(base_path('routes/web.php'));
-
-                foreach ($this->getPublishedLanguages() as $language) {
-                    Route::name($language . '.')
-                        ->middleware(['adminify.locale', 'web'])
-                        ->prefix($language)
-                        ->group(base_path('routes/web.php'));
-                }
-            }
+            });
         });
     }
 

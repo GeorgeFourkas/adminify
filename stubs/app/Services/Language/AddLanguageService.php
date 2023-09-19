@@ -40,6 +40,8 @@ class AddLanguageService
 
     public function exportLanguageFiles(): static
     {
+
+
         if (!file_exists(lang_path($this->language . '.json'))) {
             Artisan::call('translatable:export ' . $this->language);
         }
@@ -52,6 +54,8 @@ class AddLanguageService
                     lang_path($this->getStore()->get('default_locale')), lang_path($this->language));
             }
         }
+
+        copy(lang_path('en/adminify.php'), lang_path($this->language . '/adminify.php'));
 
         return $this;
     }

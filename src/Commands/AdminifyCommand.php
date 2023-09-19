@@ -24,11 +24,11 @@ class AdminifyCommand extends Command
         $this->info('Initializing Package Installation...');
         $this->bar = $this->output->createProgressBar(26);
         $this->bar->advance();
-//        $this->callSilently('breeze:install', [
-//            'stack' => 'blade',
-//        ]);
+        $this->callSilently('breeze:install', [
+            'stack' => 'blade',
+        ]);
         $this->bar->advance();
-//        $this->installNodeDependencies();
+        $this->installNodeDependencies();
         $this->bar->advance();
         $this->callSilently('storage:link');
         $this->bar->advance();
@@ -53,7 +53,9 @@ class AdminifyCommand extends Command
             ->addRegisterMiddlewareToBreezeRoutes();
 
         copy(__DIR__ . '/../../stubs/config/translatable.php', config_path('translatable.php'));
+        copy(__DIR__ . '/../../stubs/config/localized-routes.php', config_path('localized-routes.php'));
         copy(__DIR__ . '/../../stubs/config/laravel-translatable-string-exporter.php', config_path('laravel-translatable-string-exporter.php'));
+
         $this->bar->advance();
 
         $this->callSilently('vendor:publish', [
@@ -61,10 +63,10 @@ class AdminifyCommand extends Command
         ]);
         $this->bar->advance();
 
-//        $this->callSilently('migrate:fresh');
-//        $this->bar->advance();
+        $this->callSilently('migrate:fresh');
+        $this->bar->advance();
 
-//        $this->execShellCommand('npm install');
+        $this->execShellCommand('npm install');
         $this->execShellCommand('npm run build');
 
         $this->bar->advance();
@@ -80,11 +82,13 @@ class AdminifyCommand extends Command
 
     public function publishTranslations(): static
     {
-//        try {
-//        Artisan::call('lang:publish');
-//        }catch(\Exception $exception){}
+        try {
+        Artisan::call('lang:publish');
+        }catch(\Exception $exception){
+            (new Filesystem)->ensureDirectoryExists(lang_path());
+        }
 
-        (new Filesystem)->ensureDirectoryExists(lang_path());
+
         copy(__DIR__ . '/../../stubs/lang/en/adminify.php', lang_path('en/adminify.php'));
 
         return $this;

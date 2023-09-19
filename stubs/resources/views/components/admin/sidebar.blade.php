@@ -5,7 +5,7 @@
         <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-slate-700"
            href="{{ Route::has('home') ? route('home') : '#' }}"
            target="_blank">
-            <img src="{{ Vite::asset('resources/images/nalcom_logo_black.png') }}"
+            <img src="{{ Vite::asset('resources/images/admin/nalcom_logo_black.png') }}"
                  class="inline h-16 max-w-full transition-all duration-200 ease-nav-brand"
                  alt="main_logo"/>
         </a>

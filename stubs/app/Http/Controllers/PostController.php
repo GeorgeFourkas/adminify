@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-use App;
-
 use App\Http\Requests\Admin\Adminify\Post\CreatePostModelRequest;
 use App\Http\Requests\Admin\Adminify\Post\DeletePostRequest;
 use App\Http\Requests\Admin\Adminify\Post\UpdatePostModelRequest;
@@ -20,7 +18,6 @@ use App\Http\Controllers\Controller;
 class PostController extends Controller
 {
     use Multilingual, ReplaceSameFilesWithUniqueIds, FileUploadOrSync;
-
 
     public function create()
     {
@@ -39,11 +36,9 @@ class PostController extends Controller
         $service
             ->setRequest($request)
             ->setPublishedStatus()
-            ->rejectNullValues()
             ->createPost()
             ->syncCategories()
             ->syncTags()
-            ->syncMeta()
             ->syncMedia();
 
         return redirect()
@@ -76,12 +71,9 @@ class PostController extends Controller
             ->setModel($post)
             ->setRequest($request)
             ->setPublishedStatus()
-            ->rejectNullValues()
-            ->syncTranslations()
             ->updatePost()
             ->syncCategories()
             ->updateMedia()
-            ->syncMeta()
             ->syncTags();
 
         return redirect()

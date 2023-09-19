@@ -4,6 +4,7 @@ namespace App\Models\Adminify;
 
 use App\Models\User;
 use App\Traits\HasCategories;
+use App\Traits\HasMedia;
 use App\Traits\HasTags;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
@@ -15,11 +16,11 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Post extends Model implements TranslatableContract
 {
-    use Translatable, HasFactory, HasCategories, HasTags;
+    use Translatable, HasFactory, HasCategories, HasTags, HasMedia;
 
     protected $guard_name = 'web';
 
-    public $translatedAttributes = ['title', 'body', 'featured_image_url', 'slug'];
+    public $translatedAttributes = ['title', 'body', 'slug'];
 
     protected $fillable = ['published', 'user_id'];
 
@@ -30,7 +31,6 @@ class Post extends Model implements TranslatableContract
 
     public function comments(): HasMany
     {
-
         return $this->hasMany(Comment::class);
     }
 

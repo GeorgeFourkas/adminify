@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests\Admin\Adminify\Post;
 
+use App\Traits\Multilingual;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePostModelRequest extends FormRequest
 {
+
+    use Multilingual;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -26,16 +30,16 @@ class UpdatePostModelRequest extends FormRequest
         return [
             $defaultLocale . '.title' => 'required',
             $defaultLocale . '.body' => 'required',
-            $defaultLocale . '.featured_image_url' => 'required',
         ];
     }
 
     public function attributes(): array
     {
+        $defaultLocale = $this->getStore()->get('default_locale');
+
         return [
-            '%title%' => __('adminify.post_title'),
-            '%body%' => __('adminify.post_body'),
-            '%featured_image_url%' => __('adminify.post_featured_image'),
+            $defaultLocale . '.title' => __('adminify.post_title'),
+            $defaultLocale . '.body' => __('adminify.post_body'),
         ];
     }
 }

@@ -5,7 +5,6 @@ namespace App\Models\Adminify;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\Storage;
 use Zoha\Metable;
 
@@ -13,7 +12,7 @@ class PostTranslation extends Model
 {
     use Sluggable, Metable;
 
-    protected $with = ['media', 'meta'];
+    protected $with = ['meta'];
 
     public $timestamps = false;
 
@@ -31,13 +30,16 @@ class PostTranslation extends Model
     {
         return [
             'slug' => [
-                'source' => 'title',
+                'source' => 'slug'
             ],
         ];
     }
 
-    public function media(): MorphToMany
+
+    public function getSlugAttribute(): string
     {
-        return $this->morphToMany(Media::class, 'mediable');
+        return is_null($this->title) ? str()->random(10) : $this->title;
     }
+
+
 }
