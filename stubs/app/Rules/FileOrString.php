@@ -16,8 +16,4 @@ class FileOrString implements Rule
     {
         return __('Must be File or Already uploaded file');
     }
-
-
 }
-
-

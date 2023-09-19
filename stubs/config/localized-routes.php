@@ -9,7 +9,7 @@ return [
      */
     'supported_locales' => array_keys(collect(Valuestore::make(storage_path('app/settings/settings.json'))->get('locales'))
         ->reject(function ($item) {
-            return !in_array('published', $item);
+            return ! in_array('published', $item);
         })
         ->map(function ($item, $key) {
             return $key;
@@ -100,7 +100,7 @@ return [
      * as the app locale, regardless if it's a supported locale or not.
      */
     'trusted_detectors' => [
-        CodeZero\LocalizedRoutes\Middleware\Detectors\RouteActionDetector::class //=> required for scoped config
+        CodeZero\LocalizedRoutes\Middleware\Detectors\RouteActionDetector::class, //=> required for scoped config
     ],
 
     /**

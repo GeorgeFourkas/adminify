@@ -6,7 +6,7 @@ trait HasNullRequestValues
 {
     use Multilingual;
 
-    public function removeNullLanguageRequestIndex(array $data): array|null
+    public function removeNullLanguageRequestIndex(array $data): ?array
     {
         return collect($data)
             ->filter(function ($item, $key) {

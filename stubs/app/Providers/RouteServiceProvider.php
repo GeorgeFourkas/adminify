@@ -23,7 +23,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::localized(function (){
+            Route::localized(function () {
                 Route::middleware('web')
                     ->group(base_path('routes/web.php'));
             });

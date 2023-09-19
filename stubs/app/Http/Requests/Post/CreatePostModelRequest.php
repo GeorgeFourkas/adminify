@@ -18,9 +18,10 @@ class CreatePostModelRequest extends FormRequest
     public function rules(): array
     {
         $defaultLocale = $this->getStore()->get('default_locale');
+
         return [
-            $defaultLocale . '.title' => 'required',
-            $defaultLocale . '.body' => 'required',
+            $defaultLocale.'.title' => 'required',
+            $defaultLocale.'.body' => 'required',
 
             'featured_image_url' => 'required',
         ];
@@ -31,8 +32,8 @@ class CreatePostModelRequest extends FormRequest
         $defaultLocale = $this->getStore()->get('default_locale');
 
         return [
-            $defaultLocale . '.title' =>  __('adminify.post_title'),
-            $defaultLocale . '.body' =>__('adminify.post_body'),
+            $defaultLocale.'.title' => __('adminify.post_title'),
+            $defaultLocale.'.body' => __('adminify.post_body'),
         ];
     }
 }

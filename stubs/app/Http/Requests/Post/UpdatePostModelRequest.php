@@ -7,7 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UpdatePostModelRequest extends FormRequest
 {
-
     use Multilingual;
 
     /**
@@ -28,8 +27,8 @@ class UpdatePostModelRequest extends FormRequest
         $defaultLocale = $this->getStore()->get('default_locale');
 
         return [
-            $defaultLocale . '.title' => 'required',
-            $defaultLocale . '.body' => 'required',
+            $defaultLocale.'.title' => 'required',
+            $defaultLocale.'.body' => 'required',
         ];
     }
 
@@ -38,8 +37,8 @@ class UpdatePostModelRequest extends FormRequest
         $defaultLocale = $this->getStore()->get('default_locale');
 
         return [
-            $defaultLocale . '.title' => __('adminify.post_title'),
-            $defaultLocale . '.body' => __('adminify.post_body'),
+            $defaultLocale.'.title' => __('adminify.post_title'),
+            $defaultLocale.'.body' => __('adminify.post_body'),
         ];
     }
 }

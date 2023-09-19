@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
 
 class PostService
 {
-    use Multilingual, ReplaceSameFilesWithUniqueIds, FileUploadOrSync;
+    use FileUploadOrSync, Multilingual, ReplaceSameFilesWithUniqueIds;
 
     private Request $request;
 
@@ -22,12 +22,10 @@ class PostService
 
     private array|Collection $data;
 
-
     public function setRequest(Request $request): static
     {
         $this->request = $request;
         $this->data = collect($this->request->all());
-
 
         return $this;
     }
@@ -96,7 +94,7 @@ class PostService
 
             $this->post->media()->sync($this->request->featured_image_url);
 
-        } else if ($this->request->featured_image_url && $this->request->featured_image_url instanceof UploadedFile){
+        } elseif ($this->request->featured_image_url && $this->request->featured_image_url instanceof UploadedFile) {
 
             $this->post->media()->sync($this->post->createMediaModel($this->request->featured_image_url, 'public/posts')->id);
 
