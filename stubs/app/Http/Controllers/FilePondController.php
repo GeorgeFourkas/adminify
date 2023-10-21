@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class FilePondController extends Controller
 {
-
     use FileUploadOrSync;
 
     public function fp(Request $request)
@@ -17,7 +16,7 @@ class FilePondController extends Controller
 
         foreach ($request->file() as $file) {
             if (is_array($file)) {
-                foreach ($file as $subFile){
+                foreach ($file as $subFile) {
                     $media[] = $this->createMediaModel($subFile, 'public/fp');
                 }
             } else {

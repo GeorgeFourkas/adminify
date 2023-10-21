@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Adminify\AdminController;
 use App\Http\Controllers\Admin\Adminify\AnalyticsController;
 use App\Http\Controllers\Admin\Adminify\CategoryController;
 use App\Http\Controllers\Admin\Adminify\CommentController;
+use App\Http\Controllers\Admin\Adminify\FilePondController;
 use App\Http\Controllers\Admin\Adminify\JsonCredentialsAnalyticsController;
 use App\Http\Controllers\Admin\Adminify\LanguageController;
 use App\Http\Controllers\Admin\Adminify\LiveAnalyticsController;
@@ -14,7 +15,6 @@ use App\Http\Controllers\Admin\Adminify\SettingsController;
 use App\Http\Controllers\Admin\Adminify\TagController;
 use App\Http\Controllers\Admin\Adminify\TranslationEditorController;
 use App\Http\Controllers\Admin\Adminify\UserController;
-use App\Http\Controllers\Admin\Adminify\FilePondController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {

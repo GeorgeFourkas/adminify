@@ -7,7 +7,6 @@ use App\Traits\FileUploadOrSync;
 use App\Traits\Multilingual;
 use App\Traits\ReplaceSameFilesWithUniqueIds;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 
 class PostService
@@ -87,5 +86,4 @@ class PostService
 
         return $this;
     }
-
 }

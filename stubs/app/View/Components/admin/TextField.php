@@ -16,9 +16,6 @@ class TextField extends Component
 
     public string $id;
 
-    /**
-     * @param  string  $value
-     */
     public function __construct(string $label, string $name, string $id, string $value = null)
     {
         $this->label = $label;

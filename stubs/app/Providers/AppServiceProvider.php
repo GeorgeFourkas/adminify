@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
     public function bootUpAdminify(Request $request): void
     {
         $firstSegment = $request->segment(1);
-        if (!$this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale($firstSegment)) {
+        if (! $this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale($firstSegment)) {
             App::setLocale($firstSegment);
         }
 

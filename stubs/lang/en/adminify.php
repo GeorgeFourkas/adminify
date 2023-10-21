@@ -83,7 +83,7 @@ return [
         'publish_lang' => 'publish language?',
         'set_default_lang' => 'set default language',
         'locale_change' => 'Successfully changed locale settings',
-        'manage_translations' => 'Manage Translations'
+        'manage_translations' => 'Manage Translations',
     ],
 
     'tags' => [

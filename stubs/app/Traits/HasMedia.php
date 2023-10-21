@@ -19,31 +19,29 @@ trait HasMedia
     public function saveMedia(array|string|null $files): void
     {
         $mediaIds = collect(is_array($files) ? $files : [$files])
-            ->map(fn($item) => $this->decodeAndGetProp($item))
+            ->map(fn ($item) => $this->decodeAndGetProp($item))
             ->filter()
             ->toArray();
 
         $this->media()->sync($mediaIds);
 
-
-//        $mediaIds = [];
-//
-//        is_array($files)
-//            ? collect($files)
-//            ->each(function ($item) use (&$mediaIds) {
-//                 $mediaIds[] = $this->decodeAndGetProp($item);
-//            })
-//            : $mediaIds = $this->decodeAndGetProp($files);
-//
-//
-//        $mediaIds = collect($mediaIds)
-//            ->reject(fn($item) => is_null($item))
-//            ->toArray();
-//
-//        $this->media()->sync($mediaIds ?? []);
+        //        $mediaIds = [];
+        //
+        //        is_array($files)
+        //            ? collect($files)
+        //            ->each(function ($item) use (&$mediaIds) {
+        //                 $mediaIds[] = $this->decodeAndGetProp($item);
+        //            })
+        //            : $mediaIds = $this->decodeAndGetProp($files);
+        //
+        //
+        //        $mediaIds = collect($mediaIds)
+        //            ->reject(fn($item) => is_null($item))
+        //            ->toArray();
+        //
+        //        $this->media()->sync($mediaIds ?? []);
 
     }
-
 
     private function decodeAndGetProp(?string $json)
     {
@@ -59,7 +57,7 @@ trait HasMedia
     public function uploadOrAttach(UploadedFile|string $item, $folder = 'public/posts'): void
     {
         is_string($item)
-            ? $this->media()->attach((int)$item)
+            ? $this->media()->attach((int) $item)
             : $this->media()->create($this->formMediaModelValues($item, $folder));
     }
 
@@ -72,7 +70,7 @@ trait HasMedia
     {
         $url = Storage::url(Storage::put($folder, $item));
         $name = Arr::last(explode('/', $url));
-        $fileSize = getimagesize(storage_path('/app/' . $folder . '/' . $name)) ?? [];
+        $fileSize = getimagesize(storage_path('/app/'.$folder.'/'.$name)) ?? [];
 
         return [
             'url' => $url,
@@ -84,5 +82,4 @@ trait HasMedia
             'user_id' => Auth::id(),
         ];
     }
-
 }

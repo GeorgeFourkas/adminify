@@ -3,7 +3,6 @@
 namespace App\Services\Language;
 
 use App\Traits\Multilingual;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
 
 class DefaultLanguageService
@@ -60,6 +59,4 @@ class DefaultLanguageService
 
         return $this;
     }
-
-
 }
