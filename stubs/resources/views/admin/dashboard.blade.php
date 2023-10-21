@@ -6,7 +6,7 @@
 
     <div class="mx-auto w-full px-6 py-6 font-admin-sans" id="dashboard-container"
          data-availablelocales="{{ json_encode($published_languages) }}">
-
+        <x-admin.session-flash/>
         {{-- Row 1 --}}
         <div class="-mx-3 flex flex-wrap">
             <x-admin.statistic-card id="live-users-container" :title="__('adminify.dashboard.cards.0.title')" type="3">

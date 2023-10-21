@@ -39,12 +39,11 @@ class PostController extends Controller
             ->createPost()
             ->syncCategories()
             ->syncTags()
-            ->syncMedia();
+            ->syncMedia($request->input('featured_image_url'));
 
         return redirect()
             ->route('posts')
             ->with('success', __('adminify.post_create'));
-
     }
 
     public function edit(Post $post)
@@ -67,14 +66,13 @@ class PostController extends Controller
 
     public function update(UpdatePostModelRequest $request, Post $post, PostService $service): RedirectResponse
     {
-        $service
+        $service->setRequest($request)
             ->setModel($post)
-            ->setRequest($request)
             ->setPublishedStatus()
             ->updatePost()
             ->syncCategories()
-            ->updateMedia()
-            ->syncTags();
+            ->syncTags()
+            ->syncMedia($request->input('featured_image_url'));
 
         return redirect()
             ->route('posts')

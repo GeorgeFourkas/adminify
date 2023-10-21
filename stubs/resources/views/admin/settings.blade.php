@@ -296,7 +296,6 @@
                           id="change_language_status_form">
                         @csrf
                         <input type="hidden" name="language_name" value="" id="language_name">
-
                         <x-admin.radio-toggler value="" id="language_status" name="language_status"
                                                :label="__('adminify.settings.publish_lang')"
                         />
@@ -311,14 +310,14 @@
                                class="mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">
                     </form>
                 </div>
-                <div class="my-1">
-                    <div class="my-1" id="change_default_language">
-                        <a href="{{ route('translations.manage', ['translating' => 'el']) }}" id="translator_link"
-                           class="mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">
-                            Manage Translations
-                        </a>
-                    </div>
-                </div>
+{{--                <div class="my-1">--}}
+{{--                    <div class="my-1" id="">--}}
+{{--                        <a href="{{ route('translations.manage', ['translating' => 'el']) }}" id="translator_link"--}}
+{{--                           class="mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">--}}
+{{--                            {{ __('adminify.settings.manage_translations') }}--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div
                     class="absolute top-3 right-3 flex items-center justify-center rounded-md group hover:bg-red-200">
@@ -329,6 +328,6 @@
             </div>
         </div>
     </div>
-    <x-admin.delete-action-confirmation-modal />
+    <x-admin.delete-action-confirmation-modal/>
 
 </x-layouts.admin>

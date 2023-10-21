@@ -64,10 +64,6 @@ trait Multilingual
 
     private function redirectLanguageChange(): RedirectResponse
     {
-
-        Artisan::call('config:clear');
-        Artisan::call('route:clear');
-
         Artisan::call('config:cache');
         Artisan::call('route:cache');
 

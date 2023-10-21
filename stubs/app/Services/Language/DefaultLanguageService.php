@@ -38,17 +38,28 @@ class DefaultLanguageService
         return $this;
     }
 
-    public function cache(): static
+    public function setLocale(): static
     {
-        Artisan::call('config:cache');
-        Artisan::call('route:cache');
+        app()->setLocale($this->language);
 
         return $this;
     }
 
-    public function redirect(): RedirectResponse
+    public function cache(): static
     {
-        return $this->redirectLanguageChange()
-            ->with('success', __('adminify.locale_changed'));
+        app()->setLocale($this->language);
+
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+
+        Artisan::call('route:cache');
+        Artisan::call('config:cache');
+        Artisan::call('view:cache');
+
+        return $this;
     }
+
+
 }

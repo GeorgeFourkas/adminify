@@ -28,32 +28,19 @@
                                     </div>
                                     <!-- Rich editor -->
                                     <div class="mt-5 flex w-full flex-col items-start justify-center">
-                                        <label class="my-2 text-sm capitalize text-black">
-                                            {{ __('adminify.post_body') }}
-                                        </label>
-                                        <textarea id="body-{{ $locale }}" class="w-full border-2 border-green-500"
-                                                  name={{$locale}}[body]">{{ old($locale.'.body') ? old($locale.'.body') : $post->translate($locale)?->body }}</textarea>
+                                        <x-input-label class="capitalize" for="{{ $locale }}[body]"
+                                                       value="{{ __('adminify.post_body') }}"/>
+                                        <x-ck-editor name="{{ $locale }}[body]"
+                                                     :value="$post->translate($locale)?->body"/>
 
                                         <x-input-error :messages="$errors->get($locale.'.body')" class="mt-2"/>
                                     </div>
-
                                 </div>
                             </div>
                         @endforeach
-                        <div class="mt-5 flex max-h-72 w-full items-center justify-center">
-                            <x-admin.dropzone
-                                class="w-full capitalize h-64 {{ $errors->has('featured_image_url') ? 'border-red-500 text-red-400' :'' }}"
-                                name="featured_image_url"
-                                accepted-file-types="image/*"
-                                id="featured_image_url"
-                                :title="__('adminify.post_featured_image') "
-                                :action-text=" __('adminify.dropzone_action_1') "
-                                :description=" __('adminify.dropzone_action_2') "
-                                :file-types-text=" __('SVG, PNG, JPG or GIF') "
-                                :errors="$errors"
-                                :preview-url="$post->media->first()->url"
-                            />
-                        </div>
+                            <div class="mt-5">
+                                <x-filepond name="featured_image_url" :previews="$post?->media"/>
+                            </div>
                         <x-input-error :messages="$errors->get('featured_image_url')" class="mt-2"/>
                         <div class="flex items-center justify-center">
                             <input type="submit" value="{{ __('adminify.submit') }}"
@@ -75,7 +62,6 @@
                     </div>
                 </div>
             </div>
-            <x-admin.already-uploaded-media-chooser/>
         </form>
     </div>
 </x-layouts.admin>

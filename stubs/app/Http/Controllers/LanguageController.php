@@ -19,7 +19,6 @@ class LanguageController extends Controller
             ->getLanguages()
             ->putStatus()
             ->save()
-            ->cache()
-            ->redirect();
+            ->cache();
     }
 }

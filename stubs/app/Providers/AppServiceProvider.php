@@ -30,10 +30,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function bootUpAdminify(Request $request): void
     {
-
-        if (! $this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale()) {
-            App::setLocale($request->segment(1));
-            URL::defaults(['locale' => $this->app->getLocale()]);
+        $firstSegment = $request->segment(1);
+        if (!$this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale($firstSegment)) {
+            App::setLocale($firstSegment);
         }
 
         View::composer(['components.layouts.admin'], function ($view) {
@@ -47,8 +46,8 @@ class AppServiceProvider extends ServiceProvider
         });
     }
 
-    private function containsPublishedLocale(): bool
+    private function containsPublishedLocale($segment): bool
     {
-        return \Illuminate\Support\Facades\Request::segment(1) && in_array(\Illuminate\Support\Facades\Request::segment(1), $this->getPublishedLanguages());
+        return $segment && in_array($segment, $this->getPublishedLanguages());
     }
 }

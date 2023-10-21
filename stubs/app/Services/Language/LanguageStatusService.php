@@ -55,8 +55,14 @@ class LanguageStatusService
 
     public function cache(): static
     {
-        Artisan::call('config:cache');
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('config:clear');
+        Artisan::call('view:clear');
+
         Artisan::call('route:cache');
+        Artisan::call('config:cache');
+        Artisan::call('view:cache');
 
         return $this;
     }

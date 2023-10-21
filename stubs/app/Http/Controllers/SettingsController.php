@@ -11,6 +11,7 @@ use App\Services\Language\DefaultLanguageService;
 use App\Services\Language\RemoveLanguageService;
 use App\Traits\Multilingual;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class SettingsController extends Controller
 {
@@ -45,8 +46,11 @@ class SettingsController extends Controller
             ->setLanguage($request->input('default_locale'))
             ->getLocales()
             ->ensureLanguageIsPublished()
-            ->cache()
-            ->redirect();
+            ->cache();
+
+
+//        return redirect()->route('dashboard')
+//            ->with('success', 'changed default locale');
     }
 
     public function removeLanguage(RemoveLanguageRequest $request, RemoveLanguageService $service)

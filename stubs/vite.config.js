@@ -51,6 +51,7 @@ export default defineConfig({
                 'resources/css/scrollbar.css',
                 'resources/js/admin/CKEditor/ckeditor.js',
                 'resources/js/locale-editor/tabs.js',
+                'resources/js/admin/filepond/filepond.js'
             ],
             refresh: true,
         }),

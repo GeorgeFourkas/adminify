@@ -81,25 +81,11 @@ class PostService
         return $this;
     }
 
-    public function syncMedia(): static
+    public function syncMedia($files): static
     {
-        $this->post->uploadOrAttach($this->request->featured_image_url);
+        $this->post->saveMedia($files);
 
         return $this;
     }
 
-    public function updateMedia(): static
-    {
-        if ($this->request->featured_image_url && is_string($this->request->featured_image_url)) {
-
-            $this->post->media()->sync($this->request->featured_image_url);
-
-        } elseif ($this->request->featured_image_url && $this->request->featured_image_url instanceof UploadedFile) {
-
-            $this->post->media()->sync($this->post->createMediaModel($this->request->featured_image_url, 'public/posts')->id);
-
-        }
-
-        return $this;
-    }
 }

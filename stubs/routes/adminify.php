@@ -14,9 +14,13 @@ use App\Http\Controllers\Admin\Adminify\SettingsController;
 use App\Http\Controllers\Admin\Adminify\TagController;
 use App\Http\Controllers\Admin\Adminify\TranslationEditorController;
 use App\Http\Controllers\Admin\Adminify\UserController;
+use App\Http\Controllers\Admin\Adminify\FilePondController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
+
+    Route::post('/upload/media/async', [FilePondController::class, 'fp'])
+        ->name('file.upload');
 
     Route::controller(TranslationEditorController::class)->group(function () {
 

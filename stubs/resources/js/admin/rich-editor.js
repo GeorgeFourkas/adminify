@@ -1,11 +1,7 @@
-import Editor from "./CKEditor/ckeditor";
 
-const locales = JSON.parse(document.querySelector('#tabExample').dataset.locales);
-locales.forEach((locale) => {
-    Editor
-        .create(document.querySelector('#body-' + locale), {})
-        .catch(error => {
-            console.error(error);
-        });
+import Editor from "../admin/CKEditor/ckeditor.js";
+const elements = document.querySelectorAll('[ckeditor]');
+elements.forEach((container) => {
+    const element = container.querySelector("textarea");
+    Editor.create(element).then(() => container.querySelector('[ckeditor_loader]').classList.add('hidden'));
 })
-
