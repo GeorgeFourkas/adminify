@@ -86,7 +86,7 @@
                                                     <div class="">
                                                         <a href="{{ route('user.edit', $user) }}">
                                                             <div
-                                                                class="cursor-pointer rounded-md p-2 group hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500">
+                                                                class="cursor-pointer rounded-md p-2 group hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color">
                                                                 <x-icons.edit/>
                                                             </div>
                                                         </a>
@@ -98,7 +98,7 @@
                                                         @method('DELETE') @csrf
                                                         <button tabindex="-1"
                                                                 class="flex w-full cursor-pointer items-center justify-center rounded-md p-2 group hover:bg-red-500">
-                                                            <x-icons.trash></x-icons.trash>
+                                                            <x-icons.trash />
                                                         </button>
                                                     </form>
                                                 @endcan
@@ -108,7 +108,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <x-admin.delete-action-confirmation-modal></x-admin.delete-action-confirmation-modal>
+                            <x-admin.delete-action-confirmation-modal />
                             <div class="mx-auto flex w-2/3 flex-col">
                                 {{ $users->links() }}
                             </div>

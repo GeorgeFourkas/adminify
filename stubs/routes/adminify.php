@@ -18,17 +18,12 @@ use App\Http\Controllers\Admin\Adminify\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
     Route::post('/upload/media/async', [FilePondController::class, 'fp'])
         ->name('file.upload');
-
     Route::controller(TranslationEditorController::class)->group(function () {
-
         Route::get('translate', 'start')->name('translations.manage');
         Route::post('translations/store', 'store')->name('translations.store');
-
     });
-
     Route::controller(AnalyticsController::class)->group(function () {
         Route::prefix('/analytics')->group(function () {
             Route::get('/sources', 'sources')
@@ -47,7 +42,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
                 ->name('analytics.batch');
         });
     });
-
     Route::prefix('/tags')->group(function () {
         Route::controller(TagController::class)->group(function () {
             Route::get('/search', 'show')
@@ -63,7 +57,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('analytics/real-time', LiveAnalyticsController::class)
         ->name('live.analytics');
-
     Route::prefix('/master/admin')->group(function () {
         Route::controller(AdminController::class)->group(function () {
             Route::get('dashboard', 'index')
@@ -85,7 +78,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::get('/categories', 'categories')
                 ->name('categories');
         });
-
         Route::controller(MediaController::class)->prefix('/media')->group(function () {
             Route::get('/get', 'show');
             Route::post('/upload', 'store');
@@ -94,7 +86,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
             Route::delete('/delete/{media}', 'destroy')
                 ->name('media.destroy');
         });
-
         Route::controller(PostController::class)->group(function () {
             Route::get('/posts/create', 'create')
                 ->name('posts.create');
@@ -125,7 +116,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
                     ->name('user.password.update');
             });
         });
-
         Route::prefix('categories')->group(function () {
             Route::controller(CategoryController::class)->group(function () {
                 Route::post('/store', 'store')
@@ -136,7 +126,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
                     ->name('categories.destroy');
             });
         });
-
         Route::prefix('/comment')->group(function () {
             Route::controller(CommentController::class)->group(function () {
                 Route::post('/approve/{comment}', 'approve')
@@ -156,7 +145,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
                     ->name('language.switch');
             });
         });
-
         Route::prefix('/settings')->group(function () {
             Route::post('/features/store', [SettingsController::class, 'sync'])
                 ->name('settings.features');

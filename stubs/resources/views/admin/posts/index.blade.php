@@ -96,7 +96,7 @@
                                                 @can(Permissions::UPDATE_POSTS)
                                                     <a href="{{ route('posts.edit', $post) }}">
                                                         <div
-                                                            class="cursor-pointer rounded-md p-2 group hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500">
+                                                            class="cursor-pointer rounded-md p-2 group hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color">
                                                             <x-icons.edit/>
                                                         </div>
                                                     </a>
@@ -105,8 +105,8 @@
                                                     <form action="{{ route('posts.delete', $post) }}" method="POST"
                                                           deletion-form>
                                                         @method('DELETE') @csrf
-                                                        <button tabindex="-1"
-                                                                class="flex w-full cursor-pointer items-center justify-center rounded-md p-2 group hover:bg-red-500">
+                                                        <button
+                                                            class="flex w-full cursor-pointer items-center justify-center rounded-md p-2 group hover:bg-red-500">
                                                             <x-icons.trash/>
                                                         </button>
                                                     </form>
