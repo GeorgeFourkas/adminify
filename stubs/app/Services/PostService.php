@@ -3,9 +3,7 @@
 namespace App\Services;
 
 use App\Models\Adminify\Post;
-use App\Traits\FileUploadOrSync;
 use App\Traits\Multilingual;
-use App\Traits\ReplaceSameFilesWithUniqueIds;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 

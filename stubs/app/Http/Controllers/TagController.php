@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Adminify;
 
-use App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Adminify\Tag\DeleteTagRequest;
 use App\Models\Adminify\Tag;

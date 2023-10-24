@@ -3,13 +3,11 @@
 namespace App\Services;
 
 use App\Models\User;
-use App\Traits\FileUploadOrSync;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-
     private Request $request;
 
     private User $user;

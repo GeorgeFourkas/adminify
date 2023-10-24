@@ -61,6 +61,7 @@ trait Multilingual
     {
         return $this->getPublishedLanguagesCount() > 1;
     }
+
     public function getAndSortPublishedLanguages(): ?array
     {
         $published = $this->getPublishedLanguages();
@@ -74,7 +75,6 @@ trait Multilingual
 
         return $published;
     }
-
 
     public function getApplicationDefaultLocale()
     {

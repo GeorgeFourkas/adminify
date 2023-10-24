@@ -19,7 +19,7 @@ class CreateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            $this->getApplicationDefaultLocale() . '.name' => 'required',
+            $this->getApplicationDefaultLocale().'.name' => 'required',
             'parent_id' => 'nullable',
         ];
     }
