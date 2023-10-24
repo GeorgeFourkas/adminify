@@ -10,7 +10,6 @@ use App\Models\Adminify\Post;
 use App\Models\Adminify\Tag;
 use App\Models\User;
 use App\Traits\Multilingual;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\File;
 use Locale;
 use ResourceBundle;

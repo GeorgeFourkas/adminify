@@ -13,7 +13,7 @@ class LanguageController extends Controller
 
     public function status(ChangeLanguageStatusRequest $request, LanguageStatusService $service)
     {
-         $service
+        $service
             ->setName($request->input('language_name'))
             ->isEnabled($request->has('language_status'))
             ->getLanguages()

@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function bootUpAdminify(Request $request): void
     {
         $firstSegment = $request->segment(1);
-        if (!$this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale($firstSegment)) {
+        if (! $this->app->runningInConsole() && $this->translationsAreEnabled() && $this->containsPublishedLocale($firstSegment)) {
             $this->app->setLocale($firstSegment);
         }
 

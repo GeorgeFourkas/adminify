@@ -192,5 +192,4 @@ return [
     'user_delete' => 'User Deleted Successfully',
     'translations_stored' => 'Successfully Stored Translations',
 
-
 ];
