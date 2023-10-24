@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {appendLocale} from "./locale-prefix-parser";
 
 const activeLocale = document.querySelector('body').dataset.locale;
 const suggestContainer = document.getElementById('tag-suggest');
@@ -14,7 +13,7 @@ window.addEventListener('keydown', (e) => {
     if (e.key === "Enter" && input === document.activeElement) {
         suggestContainer.classList.add('hidden')
         e.preventDefault()
-        const url = appendLocale() + 'tags/store'
+        const url = '/tags/store'
         const tagName = input.value
         input.value = "";
         axios.post(url, {
@@ -44,7 +43,7 @@ input.addEventListener('input', () => {
     }
     if (!pendingRequest) {
         pendingRequest = true;
-        axios.get(appendLocale() + 'tags/search', {
+        axios.get('/tags/search', {
             params: {
                 search: input.value
             }

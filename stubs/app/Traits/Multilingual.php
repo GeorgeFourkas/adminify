@@ -61,6 +61,25 @@ trait Multilingual
     {
         return $this->getPublishedLanguagesCount() > 1;
     }
+    public function getAndSortPublishedLanguages(): ?array
+    {
+        $published = $this->getPublishedLanguages();
+        $default = $this->getStore()->get('default_locale');
+        for ($i = 0; $i < count($published); $i++) {
+            if ($published[$i] == $default) {
+                unset($published[$i]);
+            }
+        }
+        array_unshift($published, $default);
+
+        return $published;
+    }
+
+
+    public function getApplicationDefaultLocale()
+    {
+        return $this->getStore()->get('default_locale');
+    }
 
     private function redirectLanguageChange(): RedirectResponse
     {

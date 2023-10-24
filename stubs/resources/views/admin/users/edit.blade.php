@@ -14,17 +14,9 @@
 
                         <x-input-error :messages="$errors->get('profile_picture_url')" class="mt-2"/>
 
-                        <x-admin.dropzone
-                            id="profile_picture_url"
-                            name="profile_picture_url"
-                            accepted-file-types="image/*"
-                            class="h-48 w-48 rounded-full text-xs {{ $errors->has('profile_picture_url') ? 'border-red-500 text-red-400' :'' }}"
-                            :preview-url="$user->media->first()?->url ?? ''"
-                            :title="__('adminify.users.user_profile_photo')"
-                            :action-text=" __('adminify.dropzone_action_1') "
-                            :description=" __('adminify.dropzone_action_2') "
-                        />
-
+                        <div class="mt-5 flex flex-col items-center justify-center">
+                            <x-filepond class="h-48 w-48" :circular="true" name="profile_picture_url" :previews="$user->media"/>
+                        </div>
                     </div>
                     <div class="w-full lg:w-1/2">
                         <div class="w-full lg:w-2/3">

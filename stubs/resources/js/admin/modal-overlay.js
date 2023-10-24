@@ -20,4 +20,9 @@ togglers.forEach((toggler) => {
     toggler.addEventListener('click', () => {
         targetElement.classList.remove('hidden')
     })
+    const submitFormBtn = targetElement.querySelector('input[type="submit"]')
+    if (submitFormBtn){
+        submitFormBtn.focus();
+    }
+
 })

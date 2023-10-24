@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 
 class PostService
 {
-    use FileUploadOrSync, Multilingual, ReplaceSameFilesWithUniqueIds;
+    use Multilingual;
 
     private Request $request;
 

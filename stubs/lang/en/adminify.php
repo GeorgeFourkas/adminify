@@ -41,6 +41,7 @@ return [
 
     'media' => [
         'page_title' => 'Media',
+        'upload_action' => 'upload media',
         'action_button' => 'Upload',
         'no_media_available' => 'No Media Currently Uploaded',
         'uploaded_by' => 'uploaded by',
@@ -131,8 +132,12 @@ return [
         'separator_1' => 'taxonomies',
         'separator_2' => 'website settings',
     ],
-
+    'create_post' => 'create post',
     'post_title' => 'title',
+    'post_created_at' => 'post created at',
+    'post_create_new_category' => 'create new category',
+    'post_author' => 'author',
+    'post_status' => 'status',
     'post_body' => 'post body',
     'post_featured_image' => 'post featured image',
     'post_meta_tag_name' => 'Meta Tag Name',
@@ -186,5 +191,6 @@ return [
     'user_update' => 'Successfully updated user',
     'user_delete' => 'User Deleted Successfully',
     'translations_stored' => 'Successfully Stored Translations',
+
 
 ];

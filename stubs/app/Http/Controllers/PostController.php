@@ -92,8 +92,8 @@ class PostController extends Controller
     public function search(Request $request)
     {
         return view('admin.posts.index', [
-            'posts' => Post::whereTranslationLike('title', '%'.$request->search.'%', App::getLocale())
-                ->orWhereTranslationLike('body', '%'.$request->search.'%', App::getLocale())
+            'posts' => Post::whereTranslationLike('title', '%'.$request->search.'%', app()->getLocale())
+                ->orWhereTranslationLike('body', '%'.$request->search.'%', app()->getLocale())
                 ->paginate(15),
         ]);
     }

@@ -2,13 +2,16 @@ import 'flowbite';
 import {Tabs} from 'flowbite';
 
 const tabElements = [];
-const locales = JSON.parse(document.querySelector('#tabExample')?.dataset.locales ?? null);
 
-locales.forEach((locale) => tabElements.push({
-    id: locale,
-    triggerEl: document.querySelector(`#profile-tab-example-${locale}`),
-    targetEl: document.querySelector(`#profile-example-${locale}`)
-}));
+const tabHeaders = document.querySelectorAll('[tab_header]');
+tabHeaders.forEach((header) => {
+    tabElements.push({
+        id: header.id,
+        triggerEl: header,
+        targetEl: document.querySelector(header.getAttribute('tab'))
+    })
+})
+
 
 const tabs = new Tabs(tabElements, {
     defaultTabId: tabElements[0]?.id,

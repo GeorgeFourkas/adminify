@@ -34,7 +34,7 @@ import {
     setTodaysUsersCountCard,
     updateDoughnutChart
 } from "./drawCharts";
-import {appendLocale} from "./locale-prefix-parser";
+
 
 const skeletons = document.querySelectorAll('[data-role="statistic-card-skeleton"]');
 const chartCards = document.querySelectorAll('[data-role="statistic-card"]');
@@ -42,9 +42,9 @@ const chartCards = document.querySelectorAll('[data-role="statistic-card"]');
 
 Chart.register(BarController, BarElement, PointElement, LinearScale, Title, CategoryScale, DoughnutController, ArcElement, ColorLogarithmicScale, ChartGeo, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Filler, ChoroplethController, ChoroplethChart, ProjectionScale, ColorScale, GeoFeature);
 Promise.all([
-    axios.get(appendLocale() + 'analytics/batch'),
-    axios.get(appendLocale() + 'analytics/real-time'),
-    axios.get(appendLocale() + 'analytics/map')
+    axios.get('analytics/batch'),
+    axios.get('analytics/real-time'),
+    axios.get('analytics/map')
 ]).then(
     axios.spread((firstResponse, liveAnalytics, mapResponse) => {
         const firstBatchResponse = firstResponse.data;
@@ -60,7 +60,7 @@ Promise.all([
         const doughnutChart = devicesDonutChart(liveAnalytics.data?.devices, liveAnalytics.data?.devicePercentages)
         setInterval(() => {
             const initialUsersCount = liveAnalytics.data?.activeUsers;
-            axios.get(appendLocale() + 'analytics/real-time').then((response) => {
+            axios.get('analytics/real-time').then((response) => {
                 setLiveUsersCount(response.data, initialUsersCount)
                 updateDoughnutChart(doughnutChart, response.data?.devices, response.data.devicePercentages)
             })

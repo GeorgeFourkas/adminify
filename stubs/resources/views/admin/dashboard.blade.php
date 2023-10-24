@@ -36,16 +36,13 @@
                                         <p class="mb-1 pt-2 font-semibold capitalize text-slate-700 font-admin-sans">
                                             {{ __('adminify.dashboard.hero.upper_text') }}
                                         </p>
-
                                         <h5 class="text-xl font-bold capitalize text-slate-600 font-admin-sans">
                                             {{ __('adminify.dashboard.hero.title') }}
                                         </h5>
-
                                         <p class="mb-12 text-slate-600 font-admin-sans">
                                             {{ __('adminify.dashboard.hero.description') }}
                                         </p>
                                     </div>
-
                                     <div class="mx-auto flex w-5/12 items-center justify-center"
                                          id="no-users-placeholder">
                                         <div
@@ -65,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="mt-12 ml-auto max-w-full px-3 text-center lg:mt-0 lg:w-5/12 lg:flex-none">
-                                <div class="h-full rounded-xl bg-gradient-to-tl from-purple-700 to-pink-500">
+                                <div class="h-full rounded-xl gradient-app-theme">
                                     <div class="relative flex h-full items-center justify-center">
                                         <img class="relative z-20 w-full pt-6" alt="rocket"
                                              src="{{ Vite::asset('resources/images/admin/illustrations/rocket-white.png') }}"/>

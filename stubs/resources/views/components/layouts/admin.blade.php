@@ -27,7 +27,7 @@
     class="m-0 flex bg-gray-50 font-sans text-base font-normal text-slate-500 antialiased leading-default font-admin-sans"
     data-locale="{{ app()->getLocale() }}"
     data-publishedlocales="{{ json_encode($publishedLanguages) }}"
-    data-availableLocales="{{ json_encode(array_keys($availableLocales)) }}">
+    data-availableLocales="{{ json_encode($availableLocales) }}">
 
 {{--The followind div is not rendered on the DOM, but its rather there for tailwind JIT compiler usage--}}
 <x-admin.sidebar/>

@@ -1,6 +1,4 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
-
-/** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
@@ -8,9 +6,7 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.js',
         'node_modules/flowbite/**/*.js'
-
     ],
-
     theme: {
         extend: {
             animation: {
@@ -22,6 +18,8 @@ module.exports = {
                 'laptop': 'url(/resources/images/admin/ivancik.jpg)'
             },
             colors: {
+                'adminify-main-color': '#1d4ed8',
+                'adminify-secondary-color': '#3b82f6',
                 'paragraphGray': '#696687',
                 'heroBlue': '#181e47',
                 'orangy': '#FA9D4D',
@@ -72,10 +70,8 @@ module.exports = {
                 '800': '800',
                 '1000': '1000'
             },
-
         },
     },
-
     plugins:
         [
             require('@tailwindcss/forms'),

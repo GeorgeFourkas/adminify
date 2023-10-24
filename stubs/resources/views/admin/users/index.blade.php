@@ -21,11 +21,10 @@
                         @can(Permissions::CREATE_USERS)
                             <div
                                 class="mb-0 rounded-t-2xl border-b-0 border-b-transparent bg-white p-6 pb-0 border-b-solid">
-                                <a href="{{ route('user.create') }}"
-                                   class="rounded-lg p-3 text-xs capitalize text-white transition duration-300 gradient-app-theme shadow-soft-2xl hover:text-paragraphGray hover:bg-gradient-to-l hover:from-white hover:to-white">
+                                <x-admin.primary-action-button as="link" :href="route('user.create')"
+                                                               :text="__('adminify.users.action_button')">
                                     <x-icons.add/>
-                                    {{ __('adminify.users.action_button') }}
-                                </a>
+                                </x-admin.primary-action-button>
                             </div>
                         @endcan
                     </div>
@@ -75,10 +74,10 @@
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 text-center align-middle shadow-transparent">
                                             <span class="text-xs font-normal leading-tight text-slate-400">
-                                               {{ Carbon::parse($user->created_at)->format('d-m-Y') }}
+                                                {{ Carbon::parse($user->created_at)->format('d-m-Y') }}
                                             </span>
                                             <span class="mt-1 block text-xs font-normal leading-tight text-slate-400">
-                                               {{ Carbon::parse($user->created_at)->format('h:i:s') }}
+                                                {{ Carbon::parse($user->created_at)->format('h:i:s') }}
                                             </span>
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 align-middle shadow-transparent">

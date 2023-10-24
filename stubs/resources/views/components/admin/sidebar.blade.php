@@ -3,11 +3,9 @@
        class="bg-white max-w-xs ease-nav-brand fixed z-999 inset-y-0 my-4 w-2/3 ml-4 block min-h-screen -translate-x-full flex-wrap items-center justify-between  rounded-2xl mb-2 border-0 p-0 antialiased shadow-soft-2xl transition-transform duration-200 xl:left-0 xl:translate-x-0 lg:w-percent-15 overflow-auto">
     <div class="flex items-center justify-center h-19.5">
         <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-slate-700"
-           href="{{ Route::has('home') ? route('home') : '#' }}"
-           target="_blank">
+           href="{{ Route::has('home') ? route('home') : '#' }}" target="_blank">
             <img src="{{ Vite::asset('resources/images/admin/nalcom_logo_black.png') }}"
-                 class="inline h-16 max-w-full transition-all duration-200 ease-nav-brand"
-                 alt="main_logo"/>
+                 class="inline h-16 max-w-full transition-all duration-200 ease-nav-brand" alt="main_logo"/>
         </a>
         <div class="mx-2 block flex w-1/2 items-center justify-end lg:hidden">
             <button class="w-1/2" id="close_sidemenu">

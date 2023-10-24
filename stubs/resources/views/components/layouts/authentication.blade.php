@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{App::getLocale()}}">
+<html lang="{{app()->getLocale()}}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"

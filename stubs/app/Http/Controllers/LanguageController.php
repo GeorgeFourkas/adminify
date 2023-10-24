@@ -13,12 +13,15 @@ class LanguageController extends Controller
 
     public function status(ChangeLanguageStatusRequest $request, LanguageStatusService $service)
     {
-        return $service
+         $service
             ->setName($request->input('language_name'))
             ->isEnabled($request->has('language_status'))
             ->getLanguages()
             ->putStatus()
             ->save()
             ->cache();
+
+        return redirect()->route('settings')
+            ->with('success', 'changed default locale');
     }
 }

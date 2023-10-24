@@ -30,25 +30,27 @@ class SettingsController extends Controller
 
     public function addLanguage(AddLanguageRequest $request, AddLanguageService $service)
     {
-        return $service
+        $service
             ->setLanguageName($request->input('lang'))
             ->getLocalesArray()
             ->addTheLanguage()
             ->exportLanguageFiles()
-            ->save()
-            ->redirect();
+            ->save();
+
+        return redirect()->route('settings')
+            ->with('success', 'changed default locale');
     }
 
     public function changeDefaultLanguage(ChangeDefaultLanguageRequest $request, DefaultLanguageService $service)
     {
-        return $service
+        $service
             ->setLanguage($request->input('default_locale'))
             ->getLocales()
             ->ensureLanguageIsPublished()
             ->cache();
 
-        //        return redirect()->route('dashboard')
-        //            ->with('success', 'changed default locale');
+        return redirect()->route('dashboard')
+            ->with('success', 'changed default locale');
     }
 
     public function removeLanguage(RemoveLanguageRequest $request, RemoveLanguageService $service)

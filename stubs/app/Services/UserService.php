@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
-    use FileUploadOrSync;
 
     private Request $request;
 
@@ -45,9 +44,7 @@ class UserService
 
     public function setAvatar(): void
     {
-        if ($this->request->has('profile_picture_url')) {
-            $this->createOrSync($this->user, $this->request->profile_picture_url);
-        }
+        $this->user->saveMedia($this->request->input('profile_picture_url'));
     }
 
     public function createUser(): static

@@ -27,7 +27,7 @@ import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefrom
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation.js';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 
-import {appendLocale} from "../locale-prefix-parser";
+
 
 class Editor extends ClassicEditor {
 }
@@ -110,7 +110,7 @@ Editor.defaultConfig = {
             'mergeTableCells'
         ]
     }, simpleUpload: {
-        uploadUrl: appendLocale() + 'master/admin/media/upload',
+        uploadUrl: '/master/admin/media/upload',
         headers: {
             'X-CSRF-TOKEN': document.querySelector('meta[name=_token]').content
         }

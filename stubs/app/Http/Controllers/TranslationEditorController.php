@@ -13,6 +13,8 @@ class TranslationEditorController extends Controller
 
     public function start(Request $request, TranslationService $service)
     {
+        abort(403);
+
         return $service
             ->setLocaleToTranslate($request->input(self::LOCALE_INPUT_KEY))
             ->scanLanguageFiles()
@@ -23,6 +25,8 @@ class TranslationEditorController extends Controller
 
     public function store(Request $request, StoreTranslationsService $service)
     {
+        abort(403);
+
         return $service
             ->setLanguage($request->input('locale', ''))
             ->setJSONContent($request->input('json_translations', []))

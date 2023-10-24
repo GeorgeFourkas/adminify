@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Adminify\Media;
 use App\Models\Adminify\Post;
+use App\Traits\HasMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -15,7 +16,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, HasRoles, Notifiable;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable, HasMedia;
 
     protected $guard_name = 'web';
 
@@ -37,10 +38,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function media(): MorphToMany
-    {
-        return $this->morphToMany(Media::class, 'mediable');
-    }
 
     public function posts(): HasMany
     {

@@ -118,7 +118,7 @@ class AdminController extends Controller
         $languages = [];
 
         foreach (ResourceBundle::getLocales('') as $locale) {
-            $languages[$locale] = Locale::getDisplayLanguage($locale, App::getLocale());
+            $languages[$locale] = Locale::getDisplayLanguage($locale, app()->getLocale());
         }
         $languages = (array_unique($languages));
         foreach (array_keys($this->getStore()->get('locales')) as $selectedLocale) {

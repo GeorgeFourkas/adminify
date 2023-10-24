@@ -19,7 +19,7 @@ class TagController extends Controller
     {
         return response()->json([
             'tags' => Tag::with('translations')
-                ->whereTranslationLike('name', '%'.$request->search.'%', App::getLocale())
+                ->whereTranslationLike('name', '%'.$request->search.'%', app()->getLocale())
                 ->get(),
         ]);
     }

@@ -30,13 +30,10 @@ export default defineConfig({
                 'resources/js/admin/dynamic-meta-fields.js',
                 'resources/js/admin/feature-settings-form.js',
                 'resources/js/admin/full-comment-body-togler.js',
-                'resources/js/admin/live-analytics.js',
-                'resources/js/admin/locale-prefix-parser.js',
                 'resources/js/admin/media-details.js',
                 'resources/js/admin/menu-toggler.js',
                 'resources/js/admin/publish_language_modal.js',
                 'resources/js/admin/rich-editor.js',
-                'resources/js/admin/slug.js',
                 'resources/js/admin/tabs.js',
                 'resources/js/admin/tag-modal.js',
                 'resources/js/admin/tags-input.js',
@@ -51,7 +48,8 @@ export default defineConfig({
                 'resources/css/scrollbar.css',
                 'resources/js/admin/CKEditor/ckeditor.js',
                 'resources/js/locale-editor/tabs.js',
-                'resources/js/admin/filepond/filepond.js'
+                'resources/js/admin/filepond/filepond.js',
+                'resources/js/admin/reload_page_on_media_upload.js'
             ],
             refresh: true,
         }),

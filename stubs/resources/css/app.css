@@ -2,34 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-.gradient-app-theme {
-    @apply bg-gradient-to-tl from-purple-700 to-pink-500
+.gradient-app-theme{
+    @apply bg-gradient-to-tl from-adminify-main-color to-adminify-secondary-color;
 }
-
 .flatpickr-day.startRange, .flatpickr-day.selected, .flatpickr-day.endRange {
-    @apply bg-gradient-to-tl from-purple-700 to-pink-500 border-0 border-transparent !important;
+    @apply bg-gradient-to-tl from-adminify-main-color to-adminify-secondary-color border-0 border-transparent !important;
 }
-
 .flatpickr-day.endRange {
     @apply border-transparent !important;
 }
-
 .event-1 {
     color: #47c433 !important;
 }
-
 .event-2 {
     color: #f3303a !important;
 }
-
 .event-3 {
     color: #21a7fd !important;
 }
-
 .event-4 {
     color: #f76c36 !important;
 }
-
 .event-5 {
     color: #25283b !important;
 }

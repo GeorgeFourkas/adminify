@@ -9,7 +9,7 @@
         ])
     @endpushonce
     <x-slot:title>
-        {{ __('Nalcom Admin - Settings') }}
+        {{ __('adminify.settings.page_title') }}
     </x-slot:title>
 
     <div class="mt-2 flex w-full items-start justify-between px-10">
@@ -163,7 +163,7 @@
                         class="relative h-full cursor-pointer select-none rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 transition duration-100 shadow-soft-2xl hover:bg-gray-100"
                         id="add_lang">
                         <div class="flex items-center justify-center px-5 py-8">
-                            <x-icons.add></x-icons.add>
+                            <x-icons.add />
                             <p class="mx-3 text-xs capitalize">{{ __('adminify.settings.add_language_text') }}</p>
                         </div>
                     </div>
@@ -271,8 +271,6 @@
             </div>
         </div>
     </div>
-
-
     <div
         class="fixed top-0 left-0 flex hidden min-h-screen w-full items-center justify-center bg-overlay-body z-1000"
         publish_lang data-progress="{{ __('adminify.settings.progress') }}">
@@ -284,7 +282,7 @@
                 <div class="" make_default_lang_container>
                     <div class="my-2 flex items-center justify-center space-x-4" default_langage_content>
                         <div>
-                            <x-icons.check class="h-6 w-6 text-lime-500"></x-icons.check>
+                            <x-icons.check class="h-6 w-6 text-lime-500" />
                         </div>
                         <div>
                             <h1 class="text-sm">{{ __('adminify.settings.default_language') }}</h1>
@@ -301,15 +299,15 @@
                         />
                     </form>
                 </div>
-
                 <div class="my-1" id="change_default_language">
                     <form action="{{ route('language.change.default') }}" method="post">
                         @csrf
                         <input type="hidden" value="" id="default_language_name" name="default_locale">
                         <input type="submit" value="{{ __('adminify.settings.set_default_lang') }}"
-                               class="mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">
+                               class="mb-10 capitalize cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">
                     </form>
                 </div>
+
 {{--                <div class="my-1">--}}
 {{--                    <div class="my-1" id="">--}}
 {{--                        <a href="{{ route('translations.manage', ['translating' => 'el']) }}" id="translator_link"--}}

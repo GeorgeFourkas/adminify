@@ -15,20 +15,17 @@
                  edit-category-button>
                 <x-icons.edit class="group-hover:text-white"></x-icons.edit>
             </div>
-
             <form action="{{ route('categories.destroy', $category) }}" method="POST" deletion-form
                   class="rounded-md p-2 opacity-0 gradient-app-theme group-hover:opacity-100">
                 @method('DELETE')
                 @csrf
                 <button class="m-0 block p-0">
-                    <x-icons.trash></x-icons.trash>
+                    <x-icons.trash />
                 </button>
             </form>
-
-
         </div>
     </div>
-    <div class="{{ $category->children->count() > 0 ? 'caret' : '' }} bg-gray-100">
+    <div class="{{ $category->children->count() > 0 ? 'caret' : '' }} bg-gray-50">
         @foreach($category->children as $child)
             <div class="mt-2 mr-1 hidden font-light" child-container>
                 <x-admin.category-child
