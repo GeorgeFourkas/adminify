@@ -85,8 +85,7 @@
                                                 @can(Permissions::UPDATE_USERS)
                                                     <div class="">
                                                         <a href="{{ route('user.edit', $user) }}">
-                                                            <div
-                                                                class="cursor-pointer rounded-md p-2 group hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color">
+                                                            <div class="cursor-pointer rounded-md p-2 group hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color">
                                                                 <x-icons.edit/>
                                                             </div>
                                                         </a>

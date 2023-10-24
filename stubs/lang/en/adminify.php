@@ -177,7 +177,7 @@ return [
     'post_create' => 'Post created successfully',
     'post_update' => 'Post updated successfully',
     'post_delete' => 'Post deleted successfully',
-    'permissions_alter' => 'Changes saved successfully',
+    'permissions_alter' => 'Permission changes saved successfully',
     'analytics_json_success' => 'File Saved Successfully. Update the .env value for the change to take effect.',
     'settings_sync' => 'Settings synced successfully',
     'language_added' => 'Successfully added to translations list',
@@ -191,5 +191,4 @@ return [
     'user_update' => 'Successfully updated user',
     'user_delete' => 'User Deleted Successfully',
     'translations_stored' => 'Successfully Stored Translations',
-
 ];

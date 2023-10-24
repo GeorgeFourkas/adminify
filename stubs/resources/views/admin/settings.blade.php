@@ -15,7 +15,6 @@
     <div class="mt-2 flex w-full items-start justify-between px-10">
         <div class="min-h-screen w-full rounded-2xl bg-white px-5 py-5 shadow-soft-2xl lg:mx-5 lg:w-11/12">
             <x-admin.session-flash/>
-
             <div class="mt-3 border-b border-b-gray-200 pb-3">
                 <h1 class="text-3xl font-bold capitalize tracking-wide text-black">
                     {{ __('adminify.settings.page_title') }}
@@ -135,17 +134,17 @@
                                             @if($key == config('app.fallback_locale'))
                                                 <span
                                                     class="inline-block whitespace-nowrap rounded-md py-1 text-center align-baseline text-xs capitalize leading-none text-white gradient-app-theme px-1.5">
-                                              <p class="text-xs font-normal capitalize tracking-wider">
-                                                  {{ __('default') }}
-                                              </p>
-                                            </span>
+                                                    <p class="text-xs font-normal capitalize tracking-wider">
+                                                        {{ __('default') }}
+                                                    </p>
+                                                </span>
                                             @endif
                                             @if(in_array($key, $published_languages))
                                                 <span
                                                     class="inline-block whitespace-nowrap rounded-md bg-lime-400 py-1 text-center align-baseline text-xs capitalize leading-none text-white px-1.5">
-                                                      <p class="text-xs font-normal tracking-wider">
-                                                          {{ __('adminify.published') }}
-                                                      </p>
+                                                    <p class="text-xs font-normal tracking-wider">
+                                                        {{ __('adminify.published') }}
+                                                    </p>
                                                 </span>
                                             @endif
                                         </div>
@@ -163,7 +162,7 @@
                         class="relative h-full cursor-pointer select-none rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 transition duration-100 shadow-soft-2xl hover:bg-gray-100"
                         id="add_lang">
                         <div class="flex items-center justify-center px-5 py-8">
-                            <x-icons.add />
+                            <x-icons.add/>
                             <p class="mx-3 text-xs capitalize">{{ __('adminify.settings.add_language_text') }}</p>
                         </div>
                     </div>
@@ -243,10 +242,12 @@
                 @foreach($roles as $role)
                     <form action="{{ route('permission.alter', $role) }}" method="POST" class="permissions-form">
                         @csrf
-                        <div class="my-4 place-self-end rounded-lg py-2 xl:px-5">
-                            <h1 class="text-left capitalize text-black">{{ $role->name }}</h1>
+                        <div class="my-4 place-self-end rounded-lg py-2 xl:px-5 relative">
+                            <div class="sticky top-0 bg-white w-full z-999 py-2">
+                                <h1 class="text-left capitalize text-black text-center">{{ $role->name }}</h1>
+                            </div>
                             @foreach($grouped as $key => $group)
-                                <div class="my-4 rounded-lg border border-gray-100 py-5 shadow-soft-xl xl:px-3">
+                                <div class="my-4 rounded-lg border border-gray-100 py-5 border border-gray-200 xl:px-3">
                                     <h1 class="text-left text-sm capitalize">{{ $key }}</h1>
                                     <div class="grid grid-cols-1 gap-2">
                                         @foreach($group as $permission)
@@ -282,7 +283,7 @@
                 <div class="" make_default_lang_container>
                     <div class="my-2 flex items-center justify-center space-x-4" default_langage_content>
                         <div>
-                            <x-icons.check class="h-6 w-6 text-lime-500" />
+                            <x-icons.check class="h-6 w-6 text-lime-500"/>
                         </div>
                         <div>
                             <h1 class="text-sm">{{ __('adminify.settings.default_language') }}</h1>
@@ -308,14 +309,14 @@
                     </form>
                 </div>
 
-{{--                <div class="my-1">--}}
-{{--                    <div class="my-1" id="">--}}
-{{--                        <a href="{{ route('translations.manage', ['translating' => 'el']) }}" id="translator_link"--}}
-{{--                           class="mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">--}}
-{{--                            {{ __('adminify.settings.manage_translations') }}--}}
-{{--                        </a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="my-1">--}}
+                {{--                    <div class="my-1" id="">--}}
+                {{--                        <a href="{{ route('translations.manage', ['translating' => 'el']) }}" id="translator_link"--}}
+                {{--                           class="mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">--}}
+                {{--                            {{ __('adminify.settings.manage_translations') }}--}}
+                {{--                        </a>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
 
                 <div
                     class="absolute top-3 right-3 flex items-center justify-center rounded-md group hover:bg-red-200">

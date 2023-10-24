@@ -15,6 +15,6 @@ class PermissionController extends Controller
 
         $role->syncPermissions(array_keys($request->except('_token')));
 
-        return redirect()->back()->with('success', 'adminify.permissions_alter');
+        return redirect()->back()->with('success', __('adminify.permissions_alter'));
     }
 }
