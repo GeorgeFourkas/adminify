@@ -101,6 +101,7 @@ class AnalyticsController extends Controller
             } catch (\Exception $exception) {
             }
         }
+
         return response()->json($countries);
     }
 
