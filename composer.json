@@ -4,14 +4,15 @@
     "keywords": [
         "Nalcom",
         "laravel",
-        "adminify"
+        "admin panel",
+        "Administration"
     ],
     "homepage": "https://github.com/nalcom/adminify",
     "license": "MIT",
     "authors": [
         {
             "name": "Nalcom",
-            "email": "dev-os@nalcom.gr",
+            "email": "info@nalcom.gr",
             "role": "Developer"
         }
     ],
@@ -30,6 +31,7 @@
         "laravel/breeze": "^1.16",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "league/iso3166": "^4.3",
         "outhebox/blade-flags": "^1.1",
         "spatie/laravel-package-tools": "^1.14.0",
         "spatie/laravel-permission": "^5.9",

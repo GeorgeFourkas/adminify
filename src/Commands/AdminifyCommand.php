@@ -20,7 +20,6 @@ class AdminifyCommand extends Command
 
     public function handle(): int
     {
-
         $this->info('Initializing Package Installation...');
         $this->bar = $this->output->createProgressBar(26);
         $this->bar->advance();
@@ -380,7 +379,6 @@ class AdminifyCommand extends Command
                 $this->error($line.PHP_EOL);
             }
         }
-
         $this->bar->advance();
     }
 }

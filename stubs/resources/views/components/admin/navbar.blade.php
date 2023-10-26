@@ -6,8 +6,8 @@
                 <li class="flex items-center">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <input type="submit" value="Logout"
-                               class="cursor-pointer block text-xs tracking-tight px-2 py-2 font-semibold ease-nav-brand text-sm text-slate-500 hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color rounded-lg hover:text-white">
+                        <input type="submit" value="{{ __('adminify.logout') }}"
+                               class="cursor-pointer capitalize block text-xs tracking-tight px-2 py-2 font-semibold ease-nav-brand text-sm text-slate-500 hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color rounded-lg hover:text-white">
                     </form>
                 </li>
                 <li class="flex items-center pl-4 xl:hidden" id="burger">

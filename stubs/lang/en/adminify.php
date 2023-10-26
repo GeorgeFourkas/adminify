@@ -2,7 +2,9 @@
 
 return [
     /*
-     *  Administration Pages Translations
+     *  Here you can find all the texts that are displayed by the adminify package.
+     * Also it includes the texts from the overridden Laravel Breeze Blade view.
+     *
      */
     'dashboard' => [
         'cards' => [
@@ -26,6 +28,7 @@ return [
         ],
 
         'charts' => [
+            ['title' => 'website visitor sources'],
             ['title' => 'traffic overview'],
             ['title' => 'page views in 2 months'],
             ['title' => 'visitors by country'],
@@ -132,6 +135,38 @@ return [
         'separator_1' => 'taxonomies',
         'separator_2' => 'website settings',
     ],
+    'registration' => [
+        'title' => 'Create New Account',
+        'subtitle' => 'Fill in the required credentials to create your account',
+        'fields' => [
+            'full_name' => 'full name',
+            'email' => 'email',
+            'password' => 'password',
+            'password_confirmation' => 'confirm password',
+            'already_registered' => 'already registered?',
+        ],
+    ],
+    'forgot_pwd' => [
+        'title' => 'forgot password?',
+        'subtitle' => "No worries. We'll send reset instructions.",
+        'email' => 'email',
+        'send' => 'send reset link',
+    ],
+
+    'reset_pwd' => [
+        'title' => 'reset your password',
+        'subtitle' => 'Fill the form to reset your password.',
+        'new_password' => 'new password',
+        'confirm_new_password' => 'new password confirmation',
+        'success' => 'A new verification link has been sent to the email address you provided during registration.',
+    ],
+    'email_verification' => [
+        'title' => 'heads up!',
+        'description' => 'Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.',
+        'success' => 'A new verification link has been sent to the email address you provided during registration.',
+        'button' => 'resend email verification link',
+        'logout' => 'log out',
+    ],
     'create_post' => 'create post',
     'post_title' => 'title',
     'post_created_at' => 'post created at',
@@ -143,8 +178,6 @@ return [
     'post_meta_tag_name' => 'Meta Tag Name',
     'post_meta_tag_value' => 'Meta Tag Value',
     'post_add_meta_action_button_text' => 'Add Field',
-    'dropzone_action_1' => 'click to upload',
-    'dropzone_action_2' => 'or drag and drop',
     'create_new_category_trigger' => 'or, create  new category',
     'create_new_category_modal' => 'create new category',
     'deletion_confirmation' => 'Delete Confirmation',
@@ -191,4 +224,7 @@ return [
     'user_update' => 'Successfully updated user',
     'user_delete' => 'User Deleted Successfully',
     'translations_stored' => 'Successfully Stored Translations',
+    'to' => 'to',
+    'choose_already_uploaded' => 'Choose an already uploaded file',
+    'logout' => 'logout',
 ];

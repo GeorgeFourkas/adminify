@@ -11,7 +11,8 @@
         <div class="flex items-center justify-center space-x-4">
             <div class="rounded-md p-2 opacity-0 gradient-app-theme group-hover:opacity-100"
                  data-category="{{ json_encode($category) }}"
-                 data-parentId="{{ json_encode($parentId ?? [])}}" data-parentName="{{json_encode($parentName ?? [])}}"
+                 data-parentId="{{ json_encode($parentId ?? [])}}"
+                 data-parentName="{{ json_encode($parentName ?? []) }}"
                  edit-category-button>
                 <x-icons.edit class="group-hover:text-white"></x-icons.edit>
             </div>
@@ -20,7 +21,7 @@
                 @method('DELETE')
                 @csrf
                 <button class="m-0 block p-0">
-                    <x-icons.trash />
+                    <x-icons.trash/>
                 </button>
             </form>
         </div>

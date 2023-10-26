@@ -1,11 +1,14 @@
 {
     "comments_enabled": false,
-    "registration_enabled": false,
+    "registration_enabled": true,
     "unregistered_users_can_comment": false,
     "locales": {
         "en": [
             "published"
+        ],
+        "el": [
+            "published"
         ]
     },
-    "default_locale": "en"
+    "default_locale": "el"
 }

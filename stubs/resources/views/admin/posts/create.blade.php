@@ -5,7 +5,7 @@
             @csrf
             <div class="w-full lg:-ml-10">
                 <div class="flex w-full flex-col-reverse items-start justify-start lg:space-x-8 xl:flex-row">
-                    <div class="mx-3 mx-auto mt-10 w-11/12 rounded-lg bg-white px-5 py-8 shadow-soft-2xl lg:w-9/12 lg:px-10">
+                    <div class="mx-3 mx-auto mt-10 w-11/12 rounded-lg bg-white px-5 py-8 shadow-soft-2xl xl:w-9/12 lg:px-10">
                         @foreach($locales as $locale)
                             <div class="mt-10 hidden w-full" id="tab_{{ $locale }}">
                                 <div class="flex flex-col items-start justify-center">

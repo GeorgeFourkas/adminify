@@ -1,24 +1,24 @@
 @php use Carbon\Carbon; @endphp
 <x-layouts.admin>
     @pushonce('scripts')
-        @vite(['resources/js/admin/charts.js', 'resources/js/admin/date-picker.js'])
+        @vite(['resources/js/admin/charts/charts.js', 'resources/js/admin/date-picker.js'])
     @endpushonce
 
     <div class="mx-auto w-full px-6 py-6 font-admin-sans" id="dashboard-container"
          data-availablelocales="{{ json_encode($published_languages) }}">
         <x-admin.session-flash/>
         {{-- Row 1 --}}
-        <div class="-mx-3 flex flex-wrap">
+        <div class="-mx-3 grid grid-cols-1 gap-4 px-5  md:grid-cols-2 lg:grid-cols-4 xl:gap-x-10  xl:px-5">
             <x-admin.statistic-card id="live-users-container" :title="__('adminify.dashboard.cards.0.title')" type="3">
                 <x-icons.spining-arrows/>
             </x-admin.statistic-card>
             <x-admin.statistic-card :title="__('adminify.dashboard.cards.1.title')" type="1">
                 <x-icons.user/>
             </x-admin.statistic-card>
-            <x-admin.statistic-card :title="__('Average Session Time')" type="2">
+            <x-admin.statistic-card :title="__('adminify.dashboard.cards.2.title')" type="2">
                 <x-icons.clock/>
             </x-admin.statistic-card>
-            <x-admin.statistic-card :title="__('Total Posts')" type="4" :card_value="$posts_count">
+            <x-admin.statistic-card :title="__('adminify.dashboard.cards.3.title')" type="4" :card_value="$posts_count">
                 <x-icons.post class="fill-white"></x-icons.post>
             </x-admin.statistic-card>
         </div>
@@ -30,7 +30,7 @@
                     class="relative flex min-w-0 flex-col break-words rounded-2xl bg-white bg-clip-border shadow-soft-xl">
                     <div class="flex-auto px-4">
                         <div class="-mx-3 flex flex-wrap items-center justify-center">
-                            <div class="w-7/12 px-4 py-2">
+                            <div class="w-11/12 md:w-10/12 lg:w-7/12 px-4 py-2">
                                 <div class="mx-auto flex flex-col items-center justify-center">
                                     <div class="flex flex-col">
                                         <p class="mb-1 pt-2 font-semibold capitalize text-slate-700 font-admin-sans">
@@ -116,13 +116,13 @@
                         :end-date-placeholder="Carbon::now()->subDays(2)->format('d-m-Y')"
                     />
                     <div class="flex-auto p-4">
-                        <div class="mb-4 rounded-xl bg-gradient-to-tl from-gray-900 to-slate-800 py-4 pr-1">
+                        <div class="mb-4 rounded-xl bg-gradient-to-tl from-[#141727] to-[#3a416f] py-4 pr-1">
                             <div>
                                 <canvas id="chart-bars" height="147"></canvas>
                             </div>
                         </div>
                         <h6 class="mt-6 mb-0 ml-2 font-semibold capitalize font-admin-sans">
-                            {{__('website visitor sources')}}
+                            {{ __('adminify.dashboard.charts.0.title') }}
                         </h6>
                         <div class="mx-auto w-full max-w-screen-2xl rounded-xl px-6">
                             <div class="-mx-3 mt-0 flex flex-wrap">
@@ -155,7 +155,8 @@
                             :end-date-placeholder="Carbon::now()->subDays(2)->format('d-m-Y')"
                         />
                         <h6 class="capitalize">
-                            {{ __('adminify.dashboard.charts.0.title') }}
+                            {{ __('adminify.dashboard.charts.1.title') }}
+
                         </h6>
                     </div>
                     <div class="flex-auto p-4">
@@ -173,7 +174,7 @@
                 <div
                     class="relative flex h-full min-w-0 flex-col break-words rounded-xl border-0 border-solid bg-white bg-clip-border border-black/12.5 shadow-soft-xl">
                     <div class="mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0 border-black/12.5">
-                        <h6 class="capitalize">{{  __('adminify.dashboard.charts.1.title') }} </h6>
+                        <h6 class="capitalize">{{  __('adminify.dashboard.charts.2.title') }} </h6>
                     </div>
                     <div class="flex-auto p-4">
                         <div id="timeline-container"
@@ -185,8 +186,10 @@
             <div
                 class="my-3 w-full rounded-xl bg-white px-3 px-4 py-6 shadow-soft-xl md:flex-none lg:my-0 lg:w-7/12 lg:flex-none">
                 <h1 class="text-center capitalize text-gray-700 text-md">
-                    {{ __('adminify.dashboard.charts.2.title') }}
+                    {{ __('adminify.dashboard.charts.3.title') }}
                 </h1>
+                <img src="{{ Vite::asset('resources/images/admin/world.png') }}" class="animate-pulse h-full w-auto"
+                     id="map-loader" alt="">
                 <canvas id="map-chart" class=""></canvas>
             </div>
         </div>

@@ -41,6 +41,5 @@
             </svg>
         </div>
     </div>
-
     <textarea class="w-full hidden" {{ $attributes->merge(['name' => $name]) }}>{{ $value }}</textarea>
 </div>

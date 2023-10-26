@@ -2,10 +2,10 @@
     @vite('resources/js/admin/filepond/filepond.js')
 @endpushonce
 @props([
-    'previews' => [],
     'name',
+    'previews' => [],
+    'circular' => false,
     'uploadedChooser' => true,
-    'circular' => false
 ])
 
 @php
@@ -24,7 +24,6 @@ $final = collect($previews)->map(function ($item) {
 @endphp
 
 <div pond_container>
-
     @if($slot->isNotEmpty())
         {{ $slot }}
     @else
@@ -41,20 +40,17 @@ $final = collect($previews)->map(function ($item) {
         pond type="file" id="file" base_url="{{ url('/') }}"
         name="{{ $name }}" {{ $multipleAttribute }}
         previews="{{ $final ?? '' }}">
-
     @if($uploadedChooser)
         <div class="w-1/4 mx-auto h-4 bg-gray-100 animate-pulse mt-4" already_uploaded_loader></div>
         <div class="text-center mt-4 hidden" media_panel_toggler>
             <p class="text-blue-400 cursor-pointer hover:text-blue-600">
-                {{ __('Choose an already uploaded file')  }}
+                {{ __('adminify.choose_already_uploaded')  }}
             </p>
         </div>
         @once
             <x-admin.already-uploaded-media-chooser/>
         @endonce
     @endif
-
-
 </div>
 
 

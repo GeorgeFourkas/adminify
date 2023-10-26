@@ -7,9 +7,8 @@
             'resources/js/admin/full-comment-body-togler.js'
        ])
     @endpushonce
-        <x-admin.session-flash />
-
-        <div class="mx-auto w-full px-6 py-6">
+    <x-admin.session-flash/>
+    <div class="mx-auto w-full px-6 py-6">
         <div class="-mx-3 flex flex-wrap">
             <div class="w-full max-w-full flex-none px-3">
                 <div
@@ -70,13 +69,11 @@
                                             @else
                                                 <p class="text-xssm"> - </p>
                                             @endif
-
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 text-center align-middle text-sm leading-normal shadow-transparent">
                                             <a href="{{ route('post.show', [ $comment->post->slug, '#comment-' . $comment->id]) }}"
                                                class="text-xs font-normal capitalize text-blue-400 hover:text-blue-600">{{ str()->limit($comment->post->title, '30',) }}</a>
                                         </td>
-
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 text-center align-middle text-sm leading-normal shadow-transparent">
                                             <div class="flex items-center justify-center">
                                                 <form action="{{ route('comment.approve', $comment) }}" method="POST"
@@ -90,11 +87,11 @@
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 text-center align-middle shadow-transparent">
                                             <span class="text-xs font-normal leading-tight text-slate-400">
-                                               {{ Carbon::parse($comment->created_at)->format('d-m-Y') }}
+                                                {{ Carbon::parse($comment->created_at)->format('d-m-Y') }}
                                             </span>
                                             <span
                                                 class="mt-1 block text-xs font-normal leading-tight text-slate-400">
-                                               {{ Carbon::parse($comment->created_at)->format('h:i:s') }}
+                                                {{ Carbon::parse($comment->created_at)->format('h:i:s') }}
                                             </span>
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 align-middle shadow-transparent">

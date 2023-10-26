@@ -1,5 +1,6 @@
 import axios from "axios";
-import {drawLineChart, drawSessionSourcesChart} from "@/admin/drawCharts";
+import {drawLineChart} from "./charts/modules/traffic.js";
+import {drawSessionSourcesChart} from "./charts/modules/session-sources.js";
 import {Chart} from "chart.js";
 import flatpickr from "flatpickr";
 import 'flatpickr/dist/flatpickr.css';
@@ -20,11 +21,10 @@ flatpickr("#start-traffic-chart-date-picker", {
     dateFormat: "d-m-Y",
 })
 
-
 drawChartsOnCustomDate(
     document.getElementById('start-source-chart-date-picker'),
     document.getElementById('end-source-chart-date-picker'),
-    '/en/analytics/sources',
+    '/analytics/sources',
     'chart-bars',
     drawSessionSourcesChart,
     document.getElementById('sources-chart-loader'),
@@ -33,7 +33,7 @@ drawChartsOnCustomDate(
 drawChartsOnCustomDate(
     document.getElementById('start-traffic-chart-date-picker'),
     document.getElementById('end-traffic-chart-date-picker'),
-    '/en/analytics/traffic',
+    '/analytics/traffic',
     'chart-line',
     drawLineChart,
     document.getElementById('line-chart-loader'),

@@ -35,7 +35,7 @@
                         </thead>
                         <tbody>
                         @foreach($tags as $tag)
-                            <tr class="cursor-pointer hover:bg-gray-50" data-model="{{json_encode($tag)}}" modalable
+                            <tr class="cursor-pointer hover:bg-gray-50" data-model="{{ json_encode($tag) }}" modalable
                                 data-route="{{ route('tags.update', $tag) }}">
                                 <td class="whitespace-nowrap border-t bg-transparent p-2 align-middle shadow-transparent">
                                     <p class="mb-0 text-xs font-semibold leading-tight">{{ $tag->name }}</p>

@@ -1,13 +1,12 @@
-<div class="mb-6 hidden w-full max-w-full px-10 transition duration-400 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4"
-     data-role="statistic-card">
-    <div class="relative flex min-w-0 flex-col break-words rounded-2xl bg-white bg-clip-border shadow-soft-xl"
+<div class="mb-6 hidden h-full transition duration-400  sm:flex-none xl:mb-0 " data-role="statistic-card">
+    <div class="relative h-full flex min-w-0 flex-col break-words rounded-2xl bg-white bg-clip-border shadow-soft-xl"
          id="{{$attributes->get('id')}}">
         <div class="flex-auto p-4">
             <div class="-mx-3 flex flex-row">
                 <div class="w-2/3 max-w-full flex-none px-3">
                     <div>
                         <p class="mb-0 font-semibold capitalize leading-normal tracking-wide text-slate-600 text-[13px] font-admin-sans">
-                            {{$title}}
+                            {{ $title }}
                         </p>
                         <div class="mt-3 flex items-center">
                             <h5 class="mb-0 text-lg font-bold text-slate-800 card-value font-admin-sans"
@@ -31,7 +30,7 @@
     </div>
 </div>
 
-<div class="mb-6 w-full max-w-full animate-pulse px-10 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4"
+<div class="mb-6 h-full transition animate-pulse duration-400  sm:flex-none xl:mb-0 "
      data-role="statistic-card-skeleton" id="statistic-card-{{$type}}">
     <div class="relative flex min-w-0 flex-col break-words rounded-2xl bg-white bg-clip-border shadow-soft-xl">
         <div class="flex-auto p-4">

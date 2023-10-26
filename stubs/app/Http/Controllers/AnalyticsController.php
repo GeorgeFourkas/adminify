@@ -11,6 +11,7 @@ use App\Traits\BatchAnalytics;
 use App\Traits\Percentage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use League\ISO3166\ISO3166;
 
 class AnalyticsController extends Controller
 {
@@ -22,6 +23,7 @@ class AnalyticsController extends Controller
             Carbon::yesterday()->subDays(2)->startOfDay(),
             Carbon::yesterday()->subDays(2)->endOfDay()
         ));
+
         $result = LaravelGoogleAnalytics::dateRange($period)
             ->metrics('totalUsers')
             ->dimensions('sessionSource')
@@ -91,9 +93,15 @@ class AnalyticsController extends Controller
     {
         $period = $this->getQueryPeriod(Period::years(1));
 
-        return response()->json(
-            LaravelGoogleAnalytics::getTotalUsersByCountry($period)
-        );
+        $countries = LaravelGoogleAnalytics::getTotalUsersByCountry($period);
+        foreach ($countries as &$country) {
+            $iso = new ISO3166();
+            try {
+                $country['numeric'] = $iso->alpha2($country['countryId'])['numeric'] ?? '';
+            } catch (\Exception $exception) {
+            }
+        }
+        return response()->json($countries);
     }
 
     public function batch()

@@ -53,7 +53,7 @@ input.addEventListener('input', () => {
                     suggestContainer.innerHTML = '';
                     response.data.tags.forEach((item) => {
                         suggestContainer.insertAdjacentHTML('beforeend', `
-                                  <li class="relative cursor-pointer select-none py-2 pr-9 pl-3 text-gray-900 hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500 hover:text-white"
+                                  <li class="relative cursor-pointer select-none py-2 pr-9 pl-3 text-gray-900 hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color hover:text-white"
                                        selectable data-id="${item.id}" tabindex="-1"
                                         <span class="block truncate">
                                             <p>${item.name} </p>
@@ -107,7 +107,7 @@ function setSelectedTag(databaseTagName, databaseId) {
         databaseId: databaseId,
         get pill() {
             return `
-              <div class="m-1 cursor-pointer rounded-md bg-green-100 p-1 text-center group hover:bg-gradient-to-tl hover:from-purple-700 hover:to-pink-500" tag-pill>
+              <div class="m-1 cursor-pointer rounded-md bg-green-100 p-1 text-center group hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color" tag-pill>
                 <p class="break-words text-sm text-black group-hover:text-white">
                   ${this.tagName}
                 </p>
