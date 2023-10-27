@@ -74,7 +74,9 @@ class InstallationCommand extends Command
         $this->execShellCommand('npm run build');
 
         $this->replaceInFile('Route::has(', 'Route::hasLocalized(', resource_path('views/welcome.blade.php'));
+
         $this->replaceInFile("url('/dashboard')", "route('dashboard')", resource_path('views/welcome.blade.php'));
+
         $this->replaceInFile('<title>Laravel</title>', '<title>Laravel + Adminify = 	&#10084; </title>', resource_path('views/welcome.blade.php'));
 
         $this->bar->advance();
