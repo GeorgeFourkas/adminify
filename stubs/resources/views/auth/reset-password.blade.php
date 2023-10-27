@@ -45,7 +45,7 @@
                 </div>
                 <div class="flex items-center justify-center mt-8">
                     <button
-                        class="gradient-app-theme px-3 py-2 text-sm text-white rounded-md font-semibold w-full font-admin-sans">
+                        class="gradient-app-theme px-3 py-2 text-sm text-white rounded-md font-semibold w-full ">
                         {{ __('Reset Password') }}
                     </button>
                 </div>

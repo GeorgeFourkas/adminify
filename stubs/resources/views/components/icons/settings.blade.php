@@ -1,6 +1,5 @@
-<svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" class="group-hover:text-white"
+<svg  viewBox="0 0 40 40" version="1.1" class=" w-4 h-4 lg:w-3 lg:h-3 xl:w-5 xl:h-5 group-hover:text-white"
      xmlns="http://www.w3.org/2000/svg">
-    <title>settings</title>
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g transform="translate(-2020.000000, -442.000000)" fill="#FFFFFF"
            fill-rule="nonzero">

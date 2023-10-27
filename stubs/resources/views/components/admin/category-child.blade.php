@@ -1,3 +1,8 @@
+@props([
+    'parentId' => '',
+    '$parentName' => '',
+    'category' => ''
+])
 <div class="py-1 px-3 cursor-pointer {{$category->children->count() > 0 ? 'caret' : ''}}">
     <div class="flex w-full items-center justify-between px-3 py-2 group hover:bg-gray-100">
         <div class="">

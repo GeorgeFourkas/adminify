@@ -4,6 +4,11 @@ import FilePondPluginFilePoster from 'filepond-plugin-file-poster';
 import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.css';
 import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.min.css';
+import el from "filepond/locale/el-el.js"
+
+if (document.documentElement.lang === "el") {
+    FilePond.setOptions(el)
+}
 
 const inputElements = document.querySelectorAll('[pond]')
 const csrfToken = document.querySelector('meta[name="_token"]').content

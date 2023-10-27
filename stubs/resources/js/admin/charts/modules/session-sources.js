@@ -40,6 +40,8 @@ export function drawSessionSourcesChart(response) {
             },
             scales: {
                 y: {
+                    type: 'linear',
+                    grace: '5%',
                     grid: {
                         drawBorder: false,
                         display: false,

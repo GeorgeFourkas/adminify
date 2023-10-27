@@ -8,6 +8,7 @@
             'resources/js/admin/confirm-modal.js',
         ])
     @endpushonce
+
     <x-slot:title>
         {{ __('adminify.settings.page_title') }}
     </x-slot:title>

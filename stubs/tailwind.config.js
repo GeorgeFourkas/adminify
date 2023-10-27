@@ -38,14 +38,10 @@ module.exports = {
                 '360': '360px',
                 'xxs': '0.65rem',
                 'xssm': '0.8rem',
-
             },
             fontFamily: {
                 'admin-sans': ['Open Sans'],
-                'nunito': ['Nunito'],
-                'montserrat': ['Montserrat'],
-                'rubik': ['Rubik'],
-                'source': ['Source Serif Pro']
+                'inter': ['Inter']
             },
             boxShadow: {
                 'soft-xl': '0 20px 27px 0 rgba(0,0,0,0.05)',

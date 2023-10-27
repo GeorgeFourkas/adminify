@@ -1,3 +1,9 @@
+
+@props([
+    'title' => '',
+    'type' => '',
+])
+
 <div class="mb-6 hidden h-full transition duration-400  sm:flex-none xl:mb-0 " data-role="statistic-card">
     <div class="relative h-full flex min-w-0 flex-col break-words rounded-2xl bg-white bg-clip-border shadow-soft-xl"
          id="{{$attributes->get('id')}}">
@@ -5,11 +11,11 @@
             <div class="-mx-3 flex flex-row">
                 <div class="w-2/3 max-w-full flex-none px-3">
                     <div>
-                        <p class="mb-0 font-semibold capitalize leading-normal tracking-wide text-slate-600 text-[13px] font-admin-sans">
+                        <p class="mb-0 font-semibold capitalize leading-normal tracking-wide text-slate-600 text-[13px] ">
                             {{ $title }}
                         </p>
                         <div class="mt-3 flex items-center">
-                            <h5 class="mb-0 text-lg font-bold text-slate-800 card-value font-admin-sans"
+                            <h5 class="mb-0 text-lg font-bold text-slate-800 card-value "
                                 id="statistic-card-value-{{$type}}">
                                 {{$attributes->get('card_value') ?? ''}}
                             </h5>

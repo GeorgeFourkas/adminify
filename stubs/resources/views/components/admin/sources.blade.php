@@ -8,7 +8,7 @@
             class="mr-2 flex h-5 w-5 items-center justify-center rounded bg-center fill-current text-center text-neutral-900 shadow-soft-2xl b">
             {{$slot}}
         </div>
-        <p class="mt-1 mb-0 text-xs font-semibold leading-tight">
+        <p class="mt-1 mb-0 text-xs font-semibold leading-tight hidden lg:inline-block">
             {{ __('adminify.users.page_title') }}
         </p>
     </div>

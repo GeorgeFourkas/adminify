@@ -3,7 +3,7 @@
        class="bg-white max-w-xs ease-nav-brand fixed z-999 inset-y-0 my-4 w-2/3 ml-4 block min-h-screen -translate-x-full flex-wrap items-center justify-between  rounded-2xl mb-2 border-0 p-0 antialiased shadow-soft-2xl transition-transform duration-200 xl:left-0 xl:translate-x-0 lg:w-percent-15 overflow-auto">
     <div class="flex items-center justify-center h-19.5">
         <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-slate-700"
-           href="{{ Route::has('home') ? route('home') : '#' }}" target="_blank">
+           href="{{ Route::hasLocalized('home') ? route('home') : '#' }}" target="_blank">
             <img src="{{ Vite::asset('resources/images/admin/nalcom_logo_black.png') }}"
                  class="inline h-16 max-w-full transition-all duration-200 ease-nav-brand" alt="main_logo"/>
         </a>
@@ -42,7 +42,7 @@
             </x-admin-side-nav-tile>
 
             <li class="mt-4 w-full">
-                <p class="ml-2 pl-6 text-xs font-light uppercase leading-tight opacity-80">
+                <p class="ml-2 pl-6 text-xs font-light capitalize leading-tight opacity-80">
                     {{ __('adminify.menu.separator_1') }}
                 </p>
             </li>
@@ -59,7 +59,7 @@
 
 
             <li class="mt-4 w-full">
-                <p class="ml-2 pl-6 text-xs font-light uppercase leading-tight opacity-80 capitalize">
+                <p class="ml-2 pl-6 text-xs font-light leading-tight opacity-80 capitalize">
                     {{ __('adminify.menu.separator_2') }}
                 </p>
             </li>

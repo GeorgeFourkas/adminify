@@ -32,7 +32,7 @@
 
                 <div class="flex items-center justify-center mt-8">
                     <button
-                        class="capitalize gradient-app-theme px-3 py-2 text-sm text-white rounded-md font-semibold w-full font-admin-sans">
+                        class="capitalize gradient-app-theme px-3 py-2 text-sm text-white rounded-md font-semibold w-full ">
                         {{ __('adminify.forgot_pwd.send') }}
                     </button>
                 </div>

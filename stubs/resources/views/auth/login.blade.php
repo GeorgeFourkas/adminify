@@ -8,7 +8,7 @@
                 </div>
             @endif
             <div class="w-full">
-                <h1 class="text-3xl capitalize text-center font-nunito font-bold text-transparent gradient-app-theme bg-clip-text">
+                <h1 class="text-3xl capitalize text-center font-sans font-bold text-transparent gradient-app-theme bg-clip-text">
                     {{ __('adminify.welcome_back') }}
                 </h1>
                 <p class="text-gray-500 font-light text-center">

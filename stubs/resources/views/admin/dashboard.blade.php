@@ -4,7 +4,7 @@
         @vite(['resources/js/admin/charts/charts.js', 'resources/js/admin/date-picker.js'])
     @endpushonce
 
-    <div class="mx-auto w-full px-6 py-6 font-admin-sans" id="dashboard-container"
+    <div class="mx-auto w-full px-6 py-6 " id="dashboard-container"
          data-availablelocales="{{ json_encode($published_languages) }}">
         <x-admin.session-flash/>
         {{-- Row 1 --}}
@@ -33,13 +33,13 @@
                             <div class="w-11/12 md:w-10/12 lg:w-7/12 px-4 py-2">
                                 <div class="mx-auto flex flex-col items-center justify-center">
                                     <div class="flex flex-col">
-                                        <p class="mb-1 pt-2 font-semibold capitalize text-slate-700 font-admin-sans">
+                                        <p class="mb-1 pt-2 font-semibold capitalize text-slate-700 ">
                                             {{ __('adminify.dashboard.hero.upper_text') }}
                                         </p>
-                                        <h5 class="text-xl font-bold capitalize text-slate-600 font-admin-sans">
+                                        <h5 class="text-xl font-bold capitalize text-slate-600 ">
                                             {{ __('adminify.dashboard.hero.title') }}
                                         </h5>
-                                        <p class="mb-12 text-slate-600 font-admin-sans">
+                                        <p class="mb-12 text-slate-600 ">
                                             {{ __('adminify.dashboard.hero.description') }}
                                         </p>
                                     </div>
@@ -121,7 +121,7 @@
                                 <canvas id="chart-bars" height="147"></canvas>
                             </div>
                         </div>
-                        <h6 class="mt-6 mb-0 ml-2 font-semibold capitalize font-admin-sans">
+                        <h6 class="mt-6 mb-0 ml-2 font-semibold capitalize ">
                             {{ __('adminify.dashboard.charts.0.title') }}
                         </h6>
                         <div class="mx-auto w-full max-w-screen-2xl rounded-xl px-6">
@@ -179,6 +179,16 @@
                     <div class="flex-auto p-4">
                         <div id="timeline-container"
                              class="before:border-r-solid relative before:absolute before:top-0 before:left-4 before:h-full before:border-r-2 before:border-r-slate-100 before:content-[''] before:lg:-ml-px">
+                            <div id="pages_placeholder">
+                                <x-admin.skeletons.top-pages-skeleton />
+                                <x-admin.skeletons.top-pages-skeleton />
+                                <x-admin.skeletons.top-pages-skeleton />
+                                <x-admin.skeletons.top-pages-skeleton />
+                                <x-admin.skeletons.top-pages-skeleton />
+                                <x-admin.skeletons.top-pages-skeleton />
+                                <x-admin.skeletons.top-pages-skeleton />
+                                <x-admin.skeletons.top-pages-skeleton />
+                            </div>
                         </div>
                     </div>
                 </div>

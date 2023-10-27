@@ -1,4 +1,5 @@
 export function drawMostViewedPages(pages) {
+    document.getElementById('pages_placeholder').remove();
     const timelineContainer = document.getElementById('timeline-container');
     pages.forEach((page, index) => {
         if (page?.pageTitle === '(not set)') {

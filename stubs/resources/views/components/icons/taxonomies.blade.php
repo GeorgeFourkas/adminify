@@ -2,7 +2,7 @@
     $isRoute = str()->contains(url()->current(), 'tags') ||  str()->contains(url()->current(), 'tags');
 @endphp
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-     class="w-4 h-4 lg:w-6 lg:h-6 group-hover:fill-white  {{$isRoute ? 'text-white' : 'text-slate-700'}}"
+     class="w-4 h-4 lg:w-3 lg:h-3 xl:w-5 xl:h-5 group-hover:fill-white  {{$isRoute ? 'text-white' : 'text-slate-700'}}"
      fill="currentColor"
 >
     <path fill-rule="evenodd"

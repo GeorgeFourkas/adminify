@@ -1,7 +1,9 @@
 import * as ChartGeo from "chartjs-chart-geo";
 import {Chart} from "chart.js";
+import {chartConfigs} from "../chart-colors.config";
 
 export function drawMapChart(response) {
+    const chartColorRgb = chartConfigs().map.color;
     const analyticsData = response;
     fetch('https://unpkg.com/world-atlas/countries-50m.json').then((r) => r.json()).then((data) => {
         const countries = ChartGeo.topojson.feature(data, data.objects.countries).features;
@@ -31,9 +33,10 @@ export function drawMapChart(response) {
                     borderColor: 'rgb(229,231,235)',
                     backgroundColor: finalData.map((item) => {
                         if (item.value > 0 && Number(item.value / maxUsers).toFixed(1) < 0.05) {
-                            return 'rgb(191,61,171,0.05)'
+                            return rgbToRgba(chartColorRgb, 0.05)
                         }
-                        return 'rgb(191,61,171,' + Number(item.value / maxUsers).toFixed(1) + ')'
+                        const alpha = Number(item.value / maxUsers).toFixed(1).toString()
+                        return rgbToRgba(chartColorRgb, alpha)
                     })
                 }]
             },
@@ -53,4 +56,12 @@ export function drawMapChart(response) {
             }
         });
     });
+}
+
+function rgbToRgba(rgbString, alpha = 1) {
+    if (/^rgb\(\d{1,3},\s*\d{1,3},\s*\d{1,3}\)$/.test(rgbString)) {
+        return rgbString.replace('rgb', 'rgba').replace(')', `, ${alpha})`);
+    } else {
+        throw new Error('Invalid RGB format');
+    }
 }

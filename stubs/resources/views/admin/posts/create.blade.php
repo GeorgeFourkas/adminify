@@ -13,7 +13,7 @@
                                         <x-input-label class="capitalize" for="title"
                                                        :value="__('adminify.post_title')"/>
                                         <x-text-input id="title" type="text" class="mt-1 block w-full"
-                                                      name="{{$locale}}[title]" :value="old($locale.'.title')"/>
+                                                      name="{{ $locale }}[title]" :value="old($locale.'.title')"/>
                                         <x-input-error :messages="$errors->get($locale . '.title')" class="mt-2"/>
                                     </div>
                                     <div class="mt-5 flex w-full flex-col items-start justify-center">

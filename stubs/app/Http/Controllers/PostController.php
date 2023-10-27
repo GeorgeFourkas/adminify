@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    use FileUploadOrSync, Multilingual, ReplaceSameFilesWithUniqueIds;
+    use FileUploadOrSync, Multilingual;
 
     public function create()
     {

@@ -2,7 +2,8 @@
 
 namespace Nalcom\Adminify;
 
-use Nalcom\Adminify\Commands\AdminifyCommand;
+use Nalcom\Adminify\Commands\AdminifyLanguagePublishCommand;
+use Nalcom\Adminify\Commands\InstallationCommand;
 use Nalcom\Adminify\Commands\PrintResourceFileList;
 use Nalcom\Adminify\Commands\RoleSeedCommand;
 use Nalcom\Adminify\Commands\SettingsFileInitialization;
@@ -40,10 +41,11 @@ class AdminifyServiceProvider extends PackageServiceProvider
             ])
             ->hasCommands(
                 [
-                    AdminifyCommand::class,
+                    InstallationCommand::class,
                     RoleSeedCommand::class,
                     PrintResourceFileList::class,
                     SettingsFileInitialization::class,
+                    AdminifyLanguagePublishCommand::class,
                 ]
             );
     }

@@ -2,7 +2,7 @@
     <div class="flex h-screen w-full items-center justify-center lg:w-1/2">
         <form method="POST" action="{{ route('register') }}" class="w-11/12 lg:w-2/3">
             <div class="my-5 w-full">
-                <h1 class="bg-clip-text text-center text-3xl font-bold capitalize text-transparent font-nunito gradient-app-theme">
+                <h1 class="bg-clip-text text-center text-3xl font-bold capitalize text-transparent font-sans gradient-app-theme">
                     {{ __('adminify.registration.title') }}
                 </h1>
                 <p class="text-center font-light text-gray-500">
