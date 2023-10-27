@@ -3,7 +3,8 @@ import {Chart} from "chart.js";
 import {chartConfigs} from "../chart-colors.config";
 
 export function drawMapChart(response) {
-    const chartColorRgb = chartConfigs().map.color;
+    const chartColorRgb = chartConfigs()?.map?.color;
+    const hoverColor = chartConfigs()?.map?.hoverColor;
     const analyticsData = response;
     fetch('https://unpkg.com/world-atlas/countries-50m.json').then((r) => r.json()).then((data) => {
         const countries = ChartGeo.topojson.feature(data, data.objects.countries).features;
@@ -31,6 +32,7 @@ export function drawMapChart(response) {
                     label: 'Countries',
                     data: finalData,
                     borderColor: 'rgb(229,231,235)',
+                    hoverBackgroundColor: hoverColor,
                     backgroundColor: finalData.map((item) => {
                         if (item.value > 0 && Number(item.value / maxUsers).toFixed(1) < 0.05) {
                             return rgbToRgba(chartColorRgb, 0.05)
