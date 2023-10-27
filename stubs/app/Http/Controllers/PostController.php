@@ -11,7 +11,6 @@ use App\Models\Adminify\Post;
 use App\Services\PostService;
 use App\Traits\FileUploadOrSync;
 use App\Traits\Multilingual;
-use App\Traits\ReplaceSameFilesWithUniqueIds;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
