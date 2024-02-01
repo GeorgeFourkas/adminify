@@ -21,7 +21,7 @@
         "ext-intl": "*",
         "akki-io/laravel-google-analytics": "^1.4",
         "astrotomic/laravel-translatable": "^11.12",
-        "codezero/laravel-localized-routes": "^3.1",
+        "codezero/laravel-localized-routes": "^3.1.5",
         "cviebrock/eloquent-sluggable": "^10.0",
         "doctrine/dbal": "^3.6",
         "guzzlehttp/guzzle": "7.5.1",
@@ -87,6 +87,6 @@
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
