@@ -22,7 +22,6 @@
                       clip-rule="evenodd"/>
             </svg>
         </button>
-
         <ul class="absolute z-10 mt-1 hidden max-h-60 w-full overflow-auto rounded-md bg-white py-2 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
             id="tag-suggest">
         </ul>

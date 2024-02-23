@@ -68,6 +68,10 @@ class CategoryService
 
     public function update(): void
     {
+        if (isset($this->data['parent_id']) && $this->data['parent_id'] === "null") {
+            $this->data['parent_id'] = null;
+        }
+        
         $this->category->update($this->data);
     }
 

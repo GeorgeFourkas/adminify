@@ -6,13 +6,10 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Zoha\Metable;
 
 class PostTranslation extends Model
 {
-    use Metable, Sluggable;
-
-    protected $with = ['meta'];
+    use Sluggable;
 
     public $timestamps = false;
 
@@ -21,8 +18,8 @@ class PostTranslation extends Model
     protected function featuredImageUrl(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value,
-            set: fn ($value) => Storage::url(Storage::put('public/posts', $value)),
+            get: fn($value) => $value,
+            set: fn($value) => Storage::url(Storage::put('public/posts', $value)),
         );
     }
 
@@ -30,13 +27,9 @@ class PostTranslation extends Model
     {
         return [
             'slug' => [
-                'source' => 'slug',
+                'source' => $this->title ? 'title' : ['locale', 'post.id'],
             ],
         ];
     }
 
-    public function getSlugAttribute(): string
-    {
-        return is_null($this->title) ? str()->random(10) : $this->title;
-    }
 }

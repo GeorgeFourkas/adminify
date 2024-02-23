@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Admin\Adminify\Category;
 
 use App\Constants\Permissions;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use const _PHPStan_11268e5ee\__;
 
 class UpdateCategoryRequest extends FormRequest
 {
@@ -21,13 +21,25 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            config('app.fallback_locale').'.name' => 'required',
+            config('app.fallback_locale') . '.name' => 'required',
+            'parent_id' => [function ($attribute, $val, $fail) {
+                if ((int)$val == $this->route('category')?->id) {
+                    $fail(__('adminify.errors.category_same_as_parent'));
+                }
+            }]
         ];
     }
 
-    protected function failedValidation(Validator $validator)
+    public function messages()
     {
-        return redirect()->back()
-            ->with('error', __("Category's name in main locale is required"));
+        return [
+            config('app.fallback_locale') . '.name.required' => __("adminify.errors.category_name_required")
+        ];
     }
+
+//    protected function failedValidation(Validator $validator)
+//    {
+//        return redirect()->back()
+//            ->with('error', __("Category's name in main locale is required"));
+//    }
 }

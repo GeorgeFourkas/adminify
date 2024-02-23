@@ -16,17 +16,20 @@ class CreateCategoryRequest extends FormRequest
         return $this->user()->can(Permissions::CREATE_CATEGORIES);
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
-            $this->getApplicationDefaultLocale().'.name' => 'required',
+            config('app.fallback_locale') .'.name' => 'required',
             'parent_id' => 'nullable',
         ];
     }
 
-    protected function failedValidation(Validator $validator)
+    public function messages(): array
     {
-        return redirect()->back()
-            ->with('error', __("Category's name in main locale is required"));
+        return [
+            config('app.fallback_locale') . '.name.required' => __("Category's name in main locale is required")
+        ];
     }
+
+
 }

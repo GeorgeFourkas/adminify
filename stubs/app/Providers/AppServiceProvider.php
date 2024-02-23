@@ -7,18 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     use Multilingual;
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
     public function register()
     {
-
+        str()->macro('readTime', static function (string $string): int {
+            return ceil(str_word_count(str($string)->squish()) / 200);
+        });
     }
 
     public function boot(Request $request)
@@ -42,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('locales', $this->getAndSortPublishedLanguages());
             $view->with('defaultLocale', $this->getApplicationDefaultLocale());
         });
+
     }
 
     private function containsPublishedLocale($segment): bool

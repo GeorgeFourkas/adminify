@@ -40,6 +40,7 @@ return [
         'add_category_button' => 'add category',
         'category_title_input' => 'name',
         'category_parent_id' => 'parent category',
+
     ],
 
     'media' => [
@@ -167,6 +168,11 @@ return [
         'button' => 'resend email verification link',
         'logout' => 'log out',
     ],
+    'errors' => [
+        'category_same_as_parent' => "Parent category can't be the same",
+        'category_name_required' => "Category's name in main locale is required"
+    ],
+
     'create_post' => 'create post',
     'post_title' => 'title',
     'post_created_at' => 'post created at',

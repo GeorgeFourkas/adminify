@@ -47,7 +47,7 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $post = $post->load(['translations.meta', 'tags', 'categories']);
+        $post = $post->load(['translations', 'tags', 'categories']);
 
         $post->translations->each(function ($item, $key) use ($post) {
             $post->translations->put($item->locale, $item);

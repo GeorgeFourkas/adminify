@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Admin\Adminify\AdminController;
 use App\Http\Controllers\Admin\Adminify\AnalyticsController;
+use App\Http\Controllers\Admin\Adminify\BlogController;
 use App\Http\Controllers\Admin\Adminify\CategoryController;
 use App\Http\Controllers\Admin\Adminify\CommentController;
+use App\Http\Controllers\Admin\Adminify\ContactFormController;
 use App\Http\Controllers\Admin\Adminify\FilePondController;
 use App\Http\Controllers\Admin\Adminify\JsonCredentialsAnalyticsController;
 use App\Http\Controllers\Admin\Adminify\LanguageController;
@@ -16,6 +18,16 @@ use App\Http\Controllers\Admin\Adminify\TagController;
 use App\Http\Controllers\Admin\Adminify\TranslationEditorController;
 use App\Http\Controllers\Admin\Adminify\UserController;
 use Illuminate\Support\Facades\Route;
+
+
+Route::get('/blog', [BlogController::class, 'index'])
+    ->name('blog');
+
+Route::get('/article/{slug?}', [BlogController::class, 'show'])
+    ->name('blog.single');
+
+Route::post('/contact/submit', [ContactFormController::class, 'send'])
+    ->name('contact.submit');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/upload/media/async', [FilePondController::class, 'fp'])
@@ -55,7 +67,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         });
     });
 
-    Route::get('analytics/real-time', LiveAnalyticsController::class)
+    Route::get('analytics/real-time', [LiveAnalyticsController::class])
         ->name('live.analytics');
     Route::prefix('/master/admin')->group(function () {
         Route::controller(AdminController::class)->group(function () {
@@ -156,7 +168,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
                 ->name('language.change.default');
             Route::post('/language/change/status', [LanguageController::class, 'status'])
                 ->name('language.status');
-            Route::post('/analytics/credentials/store', JsonCredentialsAnalyticsController::class)
+            Route::post('/analytics/credentials/store', [JsonCredentialsAnalyticsController::class])
                 ->name('json.credentials.store');
         });
     });

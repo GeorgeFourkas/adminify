@@ -8,6 +8,7 @@ use App\Traits\HasMedia;
 use App\Traits\HasTags;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -43,4 +44,23 @@ class Post extends Model implements TranslatableContract
     {
         return $this->morphToMany(Category::class, 'categoryable');
     }
+
+
+    public function scopeWhereCategoryLike(Builder $query, $search)
+    {
+        return $query->whereHas('categories.translations', function ($q) use ($search) {
+            return $q->where('name', 'LIKE', '%' . $search . '%');
+        });
+    }
+
+    public function scopeWhereMatchingTranslationTitleOrTags($query, $term)
+    {
+        return $query
+            ->whereTranslationLike('title', '%' . $term . '%')
+            ->orWhereHas('tags', function ($sub) use ($term) {
+                return $sub->whereTranslationLike('name', '%' . $term . '%');
+            });
+    }
+
+
 }

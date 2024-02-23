@@ -10,10 +10,18 @@ use Nalcom\Adminify\Commands\SettingsFileInitialization;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class AdminifyServiceProvider extends PackageServiceProvider
+class AdminifyTestingServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
+
+        if (!$this->app->runningUnitTests()){
+            die('whhoopsy! wrong environment settings');
+        }
+
+
+        $this->loadRoutesFrom('stubs/routes/adminify.php');
+
         $this->loadJsonTranslationsFrom(__DIR__ . '/../lang');
         $this->publishes([
             __DIR__ . '/../lang' => $this->app->langPath('vendor/adminify'),
@@ -24,6 +32,8 @@ class AdminifyServiceProvider extends PackageServiceProvider
             ->name('adminify')
             ->hasConfigFile()
             ->hasTranslations()
+            ->hasViews('stubs/resources/views/admin')
+            ->hasViewComponents('stubs/resources/views/admin/components')
             ->hasMigrations([
                 '2023_02_06_125056_create_posts_table',
                 '2023_02_07_200913_create_post_translations_table',

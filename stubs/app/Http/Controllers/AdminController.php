@@ -31,7 +31,14 @@ class AdminController extends Controller
     public function posts()
     {
         return view('admin.posts.index', [
-            'posts' => Post::with(['user.roles', 'comments', 'translation'])
+            'users' => \DB::table('posts')->join('users', 'posts.id', '=', 'users.id')->select(['users.name', 'users.id'])->get(),
+            'posts' => Post::withTranslation()
+                ->with(['media', 'user.roles' => fn($q) => $q->select('name')])
+                ->when(request()->has('published'), fn($q) => $q->where('published', request()->input('published')))
+                ->when(request()->input('title'), fn($q) => $q->whereTranslationLike('title', '%' . request()->input('title') . '%'))
+                ->when(request()->input('category'), fn($q) => $q->whereHas('categories', function ($query) {
+                    return $query->where('id', request()->input('category'));
+                }))
                 ->latest()
                 ->paginate(20),
         ]);
@@ -71,7 +78,9 @@ class AdminController extends Controller
     public function users()
     {
         return view('admin.users.index', [
-            'users' => User::with('roles')->paginate(),
+            'users' => User::with(['roles' => function ($q) {
+                return $q->select(['id', 'name']);
+            }])->paginate(),
         ]);
     }
 
@@ -93,7 +102,10 @@ class AdminController extends Controller
     public function categories()
     {
         return view('admin.categories', [
-            'categories' => Category::with(['translation', 'translations'])->tree()->get(),
+            'categories' => Category::withTranslation()
+                ->tree()
+                ->withCount('siblings')
+                ->get(),
         ]);
     }
 
@@ -104,7 +116,7 @@ class AdminController extends Controller
         foreach ($permissions as $perm) {
             $segments = explode('-', $perm->name);
             $model = end($segments);
-            if (str_contains($perm->name, $model) || str_contains($perm->name, $model.'s')) {
+            if (str_contains($perm->name, $model) || str_contains($perm->name, $model . 's')) {
                 $grouped[$model][] = $perm->name;
             }
         }

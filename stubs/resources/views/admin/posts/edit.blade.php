@@ -40,14 +40,21 @@
                     </div>
                     <div class="mx-auto mt-10 w-11/12 rounded-lg bg-white px-5 py-10 shadow-soft-2xl xl:w-3/12">
                         <div class="mt-4 flex items-center justify-center">
-                            <x-admin.radio-toggler :label="__('adminify.publish')" class="mt-4"
-                                                   :value="old('published', $post->published)"/>
+                            <x-admin.radio-toggler
+                                :value="old('published', $post->published)"
+                                :label="__('adminify.publish')"
+                                class="mt-4"
+                            />
                         </div>
                         <x-admin.tag-select :selected="$post->tags" :old="old('tags')"/>
                         <div class="w-full lg:mt-5">
+                            <h3 class="block text-sm font-medium capitalize leading-6 text-gray-900 ">
+                                {{ __('adminify.categories.page_title') }}
+                            </h3>
                             <x-admin.category-select
                                 :categories="$categories"
-                                :selected="$post->categories->pluck('id')->merge(old('categories'))->toArray()"/>
+                                :selected="$post->categories->pluck('id')->merge(old('categories'))->toArray()"
+                            />
                         </div>
                     </div>
                 </div>

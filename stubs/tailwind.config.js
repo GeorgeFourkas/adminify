@@ -15,7 +15,8 @@ module.exports = {
             },
             backgroundImage: {
                 'login': 'url(/resources/images/admin/curved-images/curved6.jpg)',
-                'laptop': 'url(/resources/images/admin/ivancik.jpg)'
+                'laptop': 'url(/resources/images/admin/ivancik.jpg)',
+                'breadcrumb': 'linear-gradient( rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.3)), url(/resources/images/xxxxxx.png)',
             },
             colors: {
                 'adminify-main-color': '#1d4ed8',

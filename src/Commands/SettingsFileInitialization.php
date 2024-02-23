@@ -14,10 +14,7 @@ class SettingsFileInitialization extends Command
     public function handle(): int
     {
 
-        $additional = config('adminify.settings');
-        if (! $additional) {
-            $additional = [];
-        }
+        $additional = config('adminify.settings', []);
 
         Storage::put('settings/settings.json', json_encode(
             [
@@ -28,11 +25,7 @@ class SettingsFileInitialization extends Command
                     'en' => [
                         'published',
                     ],
-                    'el' => [
-                        'published',
-                    ],
                 ],
-                'deposit' => '30',
                 'default_locale' => 'en',
             ]
             + $additional

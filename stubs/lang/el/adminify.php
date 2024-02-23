@@ -159,6 +159,12 @@ return [
         'button' => 'επαναποστολή συνδέσμου επαλήθευσης',
         'logout' => 'αποσύνδεση',
     ],
+    'errors' => [
+        'category_same_as_parent' => "Η γονική κατηγορία δεν μπορεί να είναι η ίδια η κατηγορία",
+        'category_name_required' => "Category's name in main locale is required"
+
+
+    ],
     'create_post' => 'δημιουργία άρθρου',
     'post_title' => 'τίτλος',
     'post_created_at' => 'ημερομηνία δημιουργίας',

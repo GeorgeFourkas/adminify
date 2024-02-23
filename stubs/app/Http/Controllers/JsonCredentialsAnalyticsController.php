@@ -11,6 +11,7 @@ class JsonCredentialsAnalyticsController extends Controller
     public function __invoke(StoreAnalyticsCredentialsFileRequest $request)
     {
         File::cleanDirectory(storage_path('app/analytics'));
+
         $request->credentials->storeAs('analytics', $request->credentials->getClientOriginalName());
 
         return redirect()
