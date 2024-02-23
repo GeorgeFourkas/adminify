@@ -160,9 +160,8 @@ return [
         'logout' => 'αποσύνδεση',
     ],
     'errors' => [
-        'category_same_as_parent' => "Η γονική κατηγορία δεν μπορεί να είναι η ίδια η κατηγορία",
-        'category_name_required' => "Category's name in main locale is required"
-
+        'category_same_as_parent' => 'Η γονική κατηγορία δεν μπορεί να είναι η ίδια η κατηγορία',
+        'category_name_required' => "Category's name in main locale is required",
 
     ],
     'create_post' => 'δημιουργία άρθρου',

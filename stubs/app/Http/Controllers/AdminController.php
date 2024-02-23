@@ -33,10 +33,10 @@ class AdminController extends Controller
         return view('admin.posts.index', [
             'users' => \DB::table('posts')->join('users', 'posts.id', '=', 'users.id')->select(['users.name', 'users.id'])->get(),
             'posts' => Post::withTranslation()
-                ->with(['media', 'user.roles' => fn($q) => $q->select('name')])
-                ->when(request()->has('published'), fn($q) => $q->where('published', request()->input('published')))
-                ->when(request()->input('title'), fn($q) => $q->whereTranslationLike('title', '%' . request()->input('title') . '%'))
-                ->when(request()->input('category'), fn($q) => $q->whereHas('categories', function ($query) {
+                ->with(['media', 'user.roles' => fn ($q) => $q->select('name')])
+                ->when(request()->has('published'), fn ($q) => $q->where('published', request()->input('published')))
+                ->when(request()->input('title'), fn ($q) => $q->whereTranslationLike('title', '%'.request()->input('title').'%'))
+                ->when(request()->input('category'), fn ($q) => $q->whereHas('categories', function ($query) {
                     return $query->where('id', request()->input('category'));
                 }))
                 ->latest()
@@ -116,7 +116,7 @@ class AdminController extends Controller
         foreach ($permissions as $perm) {
             $segments = explode('-', $perm->name);
             $model = end($segments);
-            if (str_contains($perm->name, $model) || str_contains($perm->name, $model . 's')) {
+            if (str_contains($perm->name, $model) || str_contains($perm->name, $model.'s')) {
                 $grouped[$model][] = $perm->name;
             }
         }

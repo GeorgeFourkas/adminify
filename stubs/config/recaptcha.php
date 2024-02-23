@@ -1,4 +1,5 @@
 <?php
+
 return [
     'api_site_key' => env('RECAPTCHA_SITE_KEY', ''),
     'api_secret_key' => env('RECAPTCHA_SECRET_KEY', ''),
@@ -18,7 +19,7 @@ return [
     // @since v4.0.0
     'explicit' => false, // true|false
     // @since v4.3.0
-    'api_domain' => "www.google.com", // default value is "www.google.com"
+    'api_domain' => 'www.google.com', // default value is "www.google.com"
     // @since v5.1.0
     'empty_message' => false,
     // @since v5.1.0
@@ -31,5 +32,5 @@ return [
         'callback' => null, // DO NOT SET "biscolabOnloadCallback"
         'expired-callback' => null, // DO NOT SET "biscolabOnloadCallback"
         'error-callback' => null, // DO NOT SET "biscolabOnloadCallback"
-    ]
+    ],
 ];

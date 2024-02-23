@@ -170,7 +170,7 @@ return [
     ],
     'errors' => [
         'category_same_as_parent' => "Parent category can't be the same",
-        'category_name_required' => "Category's name in main locale is required"
+        'category_name_required' => "Category's name in main locale is required",
     ],
 
     'create_post' => 'create post',

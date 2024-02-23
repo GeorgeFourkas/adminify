@@ -26,5 +26,4 @@ class Category extends Model implements TranslatableContract
     {
         return is_null($this->parent_id);
     }
-
 }

@@ -18,14 +18,14 @@ class BlogController extends Controller
             'categories' => Category::withTranslation()->get(),
             'posts' => Post::withTranslation()
                 ->with('media:id,url', 'categories.translations', 'user.media:id,url')
-                ->when($request->has('category'), fn($query) => $query->whereCategoryLike($request->input('category')))
-                ->when($request->input('query'), fn($q) => $q->whereMatchingTranslationTitleOrTags($request->input('query')))
+                ->when($request->has('category'), fn ($query) => $query->whereCategoryLike($request->input('category')))
+                ->when($request->input('query'), fn ($q) => $q->whereMatchingTranslationTitleOrTags($request->input('query')))
                 ->when($request->has('user'), function ($query) {
-                    $query->whereHas('user', fn($q) => $q->where('name', \request()->input('user'))
+                    $query->whereHas('user', fn ($q) => $q->where('name', \request()->input('user'))
                     );
                 })
                 ->latest()
-                ->paginate(8)
+                ->paginate(8),
         ]);
     }
 
@@ -36,8 +36,7 @@ class BlogController extends Controller
             ->whereTranslation('slug', $slug)
             ->first();
 
-
-        abort_if(!$post, 404);
+        abort_if(! $post, 404);
 
         return view('blog.single', [
             'post' => $post,
@@ -45,7 +44,7 @@ class BlogController extends Controller
                 ->with('media')
                 ->limit(4)
                 ->latest()
-                ->get()
+                ->get(),
         ]);
     }
 }
