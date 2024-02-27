@@ -22,5 +22,4 @@ class ContactFormSubmissionRequest extends FormRequest
             'g-recaptcha-response' => 'recaptcha',
         ];
     }
-
 }

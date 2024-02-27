@@ -19,7 +19,6 @@ use App\Http\Controllers\Admin\Adminify\TranslationEditorController;
 use App\Http\Controllers\Admin\Adminify\UserController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/blog', [BlogController::class, 'index'])
     ->name('blog');
 

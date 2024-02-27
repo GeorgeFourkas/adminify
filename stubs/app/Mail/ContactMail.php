@@ -13,11 +13,9 @@ class ContactMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-
     public function __construct(
         public ContactMailModel $contact
-    )
-    {
+    ) {
     }
 
     /**
@@ -38,7 +36,7 @@ class ContactMail extends Mailable
         return new Content(
             markdown: 'mails.contact-form-message',
             with: [
-                'contact' => $this->contact
+                'contact' => $this->contact,
             ]
         );
     }

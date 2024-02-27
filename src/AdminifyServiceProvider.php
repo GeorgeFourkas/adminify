@@ -14,11 +14,10 @@ class AdminifyServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
-        $this->loadJsonTranslationsFrom(__DIR__ . '/../lang');
+        $this->loadJsonTranslationsFrom(__DIR__.'/../lang');
         $this->publishes([
-            __DIR__ . '/../lang' => $this->app->langPath('vendor/adminify'),
+            __DIR__.'/../lang' => $this->app->langPath('vendor/adminify'),
         ], 'adminify');
-
 
         $package
             ->name('adminify')

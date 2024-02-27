@@ -15,18 +15,16 @@ class AdminifyTestingServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
 
-        if (!$this->app->runningUnitTests()){
-            die('whhoopsy! wrong environment settings');
+        if (! $this->app->runningUnitTests()) {
+            exit('whhoopsy! wrong environment settings');
         }
-
 
         $this->loadRoutesFrom('stubs/routes/adminify.php');
 
-        $this->loadJsonTranslationsFrom(__DIR__ . '/../lang');
+        $this->loadJsonTranslationsFrom(__DIR__.'/../lang');
         $this->publishes([
-            __DIR__ . '/../lang' => $this->app->langPath('vendor/adminify'),
+            __DIR__.'/../lang' => $this->app->langPath('vendor/adminify'),
         ], 'adminify');
-
 
         $package
             ->name('adminify')

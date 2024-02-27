@@ -65,7 +65,7 @@ trait BatchAnalytics
             );
     }
 
-    public function getTraffic(string $startDate = null, string $endDate = null): RunReportRequest
+    public function getTraffic(?string $startDate = null, ?string $endDate = null): RunReportRequest
     {
         if ($startDate && $endDate) {
             $period = Period::create(

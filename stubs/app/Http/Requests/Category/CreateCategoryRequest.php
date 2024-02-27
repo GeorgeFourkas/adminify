@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin\Adminify\Category;
 
 use App\Constants\Permissions;
 use App\Traits\Multilingual;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateCategoryRequest extends FormRequest
@@ -19,7 +18,7 @@ class CreateCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            config('app.fallback_locale') .'.name' => 'required',
+            config('app.fallback_locale').'.name' => 'required',
             'parent_id' => 'nullable',
         ];
     }
@@ -27,9 +26,7 @@ class CreateCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            config('app.fallback_locale') . '.name.required' => __("Category's name in main locale is required")
+            config('app.fallback_locale').'.name.required' => __("Category's name in main locale is required"),
         ];
     }
-
-
 }
