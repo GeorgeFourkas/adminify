@@ -1,13 +1,9 @@
+@php use App\Models\Adminify\Tag; @endphp
 @pushonce('scripts')
     @vite('resources/js/admin/tags-input.js')
 @endpushonce
-@php use App\Models\Adminify\Tag; @endphp
-@props([
-    'selected' => [],
-    'old' => []
-])
+@props(['selected' => [], 'old' => []])
 @php $selected = $old ? Tag::whereIn('id', $old)->get()->toArray() : $selected; @endphp
-
 <div>
     <label for="combobox"
            class="block text-sm font-medium capitalize leading-6 text-gray-900">{{ __('adminify.tags.page_title') }}</label>

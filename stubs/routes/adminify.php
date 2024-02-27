@@ -29,7 +29,7 @@ Route::get('/article/{slug?}', [BlogController::class, 'show'])
 Route::post('/contact/submit', [ContactFormController::class, 'send'])
     ->name('contact.submit');
 
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum', 'canAccessDashboard'])->group(function () {
     Route::post('/upload/media/async', [FilePondController::class, 'fp'])
         ->name('file.upload');
     Route::controller(TranslationEditorController::class)->group(function () {
@@ -170,6 +170,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
                 ->name('language.status');
             Route::post('/analytics/credentials/store', [JsonCredentialsAnalyticsController::class])
                 ->name('json.credentials.store');
+            Route::post('/language/fallback/change', [LanguageController::class, 'fallback'])
+                ->name('settings.fallback.language');
         });
     });
 });

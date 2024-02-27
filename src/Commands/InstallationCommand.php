@@ -13,7 +13,7 @@ class InstallationCommand extends Command
 {
     public $signature = 'adminify:install';
 
-    public $description = 'Installs the nalcom adminify laravel package';
+    public $description = 'Installs the Nalcom adminify laravel package';
 
     protected const ROUTE_MIDDLEWARE_ARRAY = 'protected $middlewareAliases = [';
 
@@ -38,8 +38,7 @@ class InstallationCommand extends Command
         $this->callSilently('storage:link');
         $this->bar->advance();
 
-        $this
-            ->installModels()
+        $this->installModels()
             ->installControllers()
             ->installMailables()
             ->installRequests()
@@ -56,7 +55,7 @@ class InstallationCommand extends Command
             ->installRoutesFile()
             ->replaceAppConfigFile()
             ->publishTranslations()
-            ->addValuesToEnvFiles()
+//            ->addValuesToEnvFiles()
             ->addRegisterMiddlewareToBreezeRoutes();
 
         copy(__DIR__ . '/../../stubs/config/translatable.php', config_path('translatable.php'));
@@ -325,8 +324,9 @@ class InstallationCommand extends Command
     {
         //Middleware Files...
         (new Filesystem)->ensureDirectoryExists(app_path('Http/Middleware'));
-        copy(__DIR__ . '/../../stubs/app/Http/Middleware/Language.php', app_path('Http/Middleware/Language.php'));
+//        copy(__DIR__ . '/../../stubs/app/Http/Middleware/Language.php', app_path('Http/Middleware/Language.php'));
         copy(__DIR__ . '/../../stubs/app/Http/Middleware/RegistrationEnabled.php', app_path('Http/Middleware/RegistrationEnabled.php'));
+        copy(__DIR__ . '/../../stubs/app/Http/Middleware/CanAccessDashboard.php', app_path('Http/Middleware/CanAccessDashboard.php'));
         $this->bar->advance();
 
         return $this;
@@ -335,13 +335,21 @@ class InstallationCommand extends Command
     public function addMiddlewareToHttpKernel(): static
     {
         $kernelContent = file_get_contents(app_path('Http/Kernel.php'));
-
+//     "        'canAccessDashboard' =>  \App\Http\Middleware\RegistrationEnabled::class," . PHP_EOL,
         if (!Str::contains($kernelContent, "'registration.setting' =>")) {
             $this->replaceInFile(self::ROUTE_MIDDLEWARE_ARRAY,
-                self::ROUTE_MIDDLEWARE_ARRAY . PHP_EOL .
-                "        'registration.setting' =>  \App\Http\Middleware\RegistrationEnabled::class," . PHP_EOL,
+                self::ROUTE_MIDDLEWARE_ARRAY .
+                "        'registration.setting' =>  \App\Http\Middleware\RegistrationEnabled::class,",
                 app_path('Http/Kernel.php'));
         }
+
+        if (!Str::contains($kernelContent, "'canAccessDashboard' =>")) {
+            $this->replaceInFile(self::ROUTE_MIDDLEWARE_ARRAY,
+                self::ROUTE_MIDDLEWARE_ARRAY . PHP_EOL .
+                "        'canAccessDashboard' =>  \App\Http\Middleware\CanAccessDashboard::class,",
+                app_path('Http/Kernel.php'));
+        }
+
         $this->bar->advance();
 
         return $this;

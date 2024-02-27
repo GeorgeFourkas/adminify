@@ -31,7 +31,6 @@
                             class="mt-5 mr-2 inline-flex items-center rounded-lg px-5 text-center text-sm font-medium text-white gradient-app-theme py-2.5 focus:outline-none focus:ring-4 focus:ring-red-300">
                         {{ __('adminify.affirmative') }}
                     </button>
-
                     <button type="button" id="cancel"
                             class="rounded-lg border border-gray-200 bg-white px-5 text-sm font-medium text-gray-500 py-2.5 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600">
                         {{ __('adminify.negative') }}

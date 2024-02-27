@@ -8,7 +8,7 @@
                     class="relative mb-6 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid border-transparent bg-white bg-clip-border font-semibold shadow-lg">
                     <div class="flex w-full items-center justify-between">
                         <div
-                            class="mb-0 rounded-t-2xl capitalize border-b-0 border-b-transparent bg-white p-6 pb-0 border-b-solid">
+                            class="mb-0 rounded-t-2xl border-b-0 border-b-transparent bg-white p-6 pb-0 capitalize border-b-solid">
                             <h6>{{ __('adminify.menu.posts') }}</h6>
                         </div>
                         @can(Permissions::CREATE_POSTS)
@@ -26,16 +26,16 @@
                             <table class="mb-0 w-full items-center border-gray-200 align-top text-slate-500">
                                 <thead class="align-bottom">
                                 <tr>
-                                    <th class="whitespace-nowrap capitalize border-b border-gray-200 bg-transparent px-6 py-3 text-left align-middle font-bold uppercase text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
+                                    <th class="whitespace-nowrap border-b border-gray-200 bg-transparent px-6 py-3 text-left align-middle font-bold uppercase capitalize text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
                                         {{ __('adminify.post_title') }}
                                     </th>
-                                    <th class="whitespace-nowrap border-b capitalize border-gray-200 bg-transparent px-6 py-3 pl-2 text-left align-middle font-bold uppercase text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
+                                    <th class="whitespace-nowrap border-b border-gray-200 bg-transparent px-6 py-3 pl-2 text-left align-middle font-bold uppercase capitalize text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
                                         {{ __('adminify.post_author') }}
                                     </th>
-                                    <th class="whitespace-nowrap capitalize border-b border-gray-200 bg-transparent px-6 py-3 text-center align-middle font-bold uppercase text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
+                                    <th class="whitespace-nowrap border-b border-gray-200 bg-transparent px-6 py-3 text-center align-middle font-bold uppercase capitalize text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
                                         {{ __('adminify.post_status') }}
                                     </th>
-                                    <th class="whitespace-nowrap capitalize border-b border-gray-200 bg-transparent px-6 py-3 text-center align-middle font-bold uppercase text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
+                                    <th class="whitespace-nowrap border-b border-gray-200 bg-transparent px-6 py-3 text-center align-middle font-bold uppercase capitalize text-slate-400 opacity-70 shadow-none text-xxs border-b-solid tracking-none">
                                         {{ __('adminify.post_created_at') }}
                                     </th>
                                     <th class="whitespace-nowrap border-b border-solid border-gray-200 bg-transparent px-6 py-3 align-middle font-semibold capitalize text-slate-400 opacity-70 shadow-none tracking-none"></th>
@@ -47,10 +47,9 @@
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 align-middle shadow-transparent">
                                             <div class="flex px-2 py-1">
                                                 <div>
-                                                    <img
-                                                        src="{{ $post->media?->first()?->url }}"
+                                                    <img src="{{ $post->media?->first()?->url }}" alt="user1"
                                                         class="mr-4 inline-flex hidden h-9 w-9 items-center justify-center rounded-xl text-sm text-white transition-all duration-200 ease-soft-in-out sm:block"
-                                                        alt="user1"/>
+                                                    />
                                                 </div>
                                                 <div class="flex flex-col justify-center">
                                                     <a href="{{ Route::has('post.show') ? route('post.show', $post->slug ?? '#') : route('posts.edit', $post) }}"
@@ -85,10 +84,10 @@
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 text-center align-middle shadow-transparent">
                                             <span class="text-xs font-semibold leading-tight text-slate-400">
-                                                {{ Carbon::parse($post->created_at)->format('d-m-Y') }}
+                                                {{ $post->created_at->format('d-m-Y') }}
                                             </span>
                                             <span class="mt-1 block text-xs font-semibold leading-tight text-slate-400">
-                                                {{ Carbon::parse($post->created_at)->format('h:i:s') }}
+                                                {{ $post->created_at->format('h:i:s') }}
                                             </span>
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 align-middle shadow-transparent">
@@ -96,7 +95,7 @@
                                                 @can(Permissions::UPDATE_POSTS)
                                                     <a href="{{ route('posts.edit', $post) }}">
                                                         <div
-                                                            class="cursor-pointer rounded-md p-2 group hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color">
+                                                            class="cursor-pointer rounded-md p-2 group hover:from-adminify-main-color hover:to-adminify-secondary-color hover:bg-gradient-to-tl">
                                                             <x-icons.edit/>
                                                         </div>
                                                     </a>

@@ -1,7 +1,6 @@
 @pushonce('scripts')
     @vite('resources/js/admin/rich-editor.js')
 @endpushonce
-
 @props([
     'value' => '',
     'name' => '',

@@ -6,7 +6,7 @@
             <div class="w-full lg:-ml-10">
                 <div class="flex w-full flex-col-reverse items-start justify-start lg:space-x-8 xl:flex-row">
                     <div
-                        class="mx-3 mx-auto mt-10 w-11/12 rounded-lg bg-white px-5 py-8 shadow-soft-2xl xl:w-9/12 lg:px-10">
+                        class="mx-3 mx-auto mt-10 w-11/12 rounded-lg bg-white px-5 py-8 shadow-soft-2xl lg:px-10 xl:w-9/12">
                         @foreach($locales as $locale)
                             <div class="mt-10 hidden w-full" id="tab_{{ $locale }}">
                                 <div class="flex flex-col items-start justify-center">
@@ -27,7 +27,7 @@
                             </div>
                         @endforeach
                         <div class="mt-5">
-                            <x-filepond class="" name="featured_image_url" :previews="old('featured_image_url')"/>
+                            <x-filepond name="featured_image_url" :previews="old('featured_image_url')"/>
                         </div>
                         <x-input-error :messages="$errors->get('featured_image_url')" class="mt-2"/>
                         <div class="flex items-center justify-center">
@@ -40,7 +40,7 @@
                         </div>
                         <x-admin.tag-select :old="old('tags')"/>
                         <div class="w-full lg:mt-5">
-                            <h3 class="block text-sm font-medium capitalize leading-6 text-gray-900 ">
+                            <h3 class="block text-sm font-medium capitalize leading-6 text-gray-900">
                                 {{ __('adminify.categories.page_title') }}
                             </h3>
                             <x-admin.category-select :categories="$categories" :selected="old('categories')"/>

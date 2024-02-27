@@ -5,11 +5,9 @@
 @pushonce('scripts')
     @vite('resources/js/admin/create-category-from-modal.js')
 @endpushonce
-
 <p class="cursor-pointer text-center capitalize text-blue-400" modal_trigger modal_trigger_for="#create_new_category">
     {{ __('adminify.create_new_category_modal') }}
 </p>
-
 <div class="mt-5 rounded-lg px-3 py-3 {{ $categories->isEmpty() ? 'hidden' : '' }}" id="categories_container">
     @foreach($categories as $category)
         <x-admin.category-check-box

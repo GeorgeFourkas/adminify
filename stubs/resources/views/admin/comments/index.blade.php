@@ -1,11 +1,7 @@
 @php use App\Constants\Permissions;use Illuminate\Support\Carbon; @endphp
 <x-layouts.admin class="admin">
     @pushonce('scripts')
-        @vite([
-            'resources/js/admin/confirm-modal.js',
-            'resources/js/admin/approve-toggler.js',
-            'resources/js/admin/full-comment-body-togler.js'
-       ])
+        @vite(['resources/js/admin/approve-toggler.js', 'resources/js/admin/full-comment-body-togler.js'])
     @endpushonce
     <x-admin.session-flash/>
     <div class="mx-auto w-full px-6 py-6">
@@ -57,7 +53,7 @@
                                             @if($comment->user)
                                                 <div class="flex px-2 py-1">
                                                     <div>
-                                                        <img src="{{($comment->user->media->first()->url ?? '')}}"
+                                                        <img src="{{ $comment?->user?->media?->first()?->url ?? '' }}"
                                                              class="mr-1 inline-flex hidden h-6 w-6 items-center justify-center rounded-xl text-sm text-white transition-all duration-200 ease-soft-in-out sm:block"
                                                              alt="user1"
                                                         />
@@ -79,19 +75,21 @@
                                                 <form action="{{ route('comment.approve', $comment) }}" method="POST"
                                                       comment-approval>
                                                     <div class="max-w-md">
-                                                        <x-admin.radio-toggler label=""
-                                                                               value="{{ $comment->approved }}"/>
+                                                        <x-admin.radio-toggler
+                                                            value="{{ $comment->approved }}"
+                                                            label=""
+                                                        />
                                                     @csrf
                                                 </form>
                                             </div>
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 text-center align-middle shadow-transparent">
                                             <span class="text-xs font-normal leading-tight text-slate-400">
-                                                {{ Carbon::parse($comment->created_at)->format('d-m-Y') }}
+                                                {{ $comment->created_at->format('d-m-Y') }}
                                             </span>
                                             <span
                                                 class="mt-1 block text-xs font-normal leading-tight text-slate-400">
-                                                {{ Carbon::parse($comment->created_at)->format('h:i:s') }}
+                                                {{ $comment->created_at->format('h:i:s') }}
                                             </span>
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 align-middle shadow-transparent">

@@ -3,10 +3,12 @@ const languageBoxes = document.querySelectorAll('[registered-language-form]')
 const input = document.getElementById('language_name')
 const checkbox = document.getElementById('language_status')
 const languageStatusForm = document.getElementById('change_language_status_form')
+const changeFallbackCheckbox = document.getElementById('change_language_fallback')
+const setDefaultLangBtn = document.getElementById('change_default_language')
+
 modal.querySelector('button').addEventListener('click', () => {
     modal.classList.toggle('hidden')
 })
-
 
 modal.addEventListener('click', (e) => {
     if (e.target === e.currentTarget) {
@@ -19,28 +21,54 @@ languageBoxes.forEach((box) => {
         if (box.querySelector('[remove-lange-btn]').contains(e.target)) {
             return;
         }
-        modal.classList.toggle('hidden')
-        const localeData = JSON.parse(box.dataset.locale)
-
-        // const translatorLink = modal.querySelector('#translator_link');
-        // translatorLink.href = localeData?.translator_route
+        modal.classList.toggle('hidden');
+        const localeData = JSON.parse(box.dataset.locale);
         checkbox.checked = localeData.published;
         input.value = localeData.name;
-        const defaultLanguageElement = document.getElementById('change_default_language')
+        const defaultLanguageElement = document.getElementById('change_default_language');
         const makeDefaultLanguageForm = defaultLanguageElement.querySelector('form');
+
         if (!localeData.default) {
-            modal.querySelector('[default_langage_content]').classList.add('hidden')
-            defaultLanguageElement.classList.remove('hidden')
+            document.getElementById('change_language_fallback').classList.remove('hidden');
+            modal.querySelector('[default_langage_content]').classList.add('hidden');
+            defaultLanguageElement.classList.remove('hidden');
             makeDefaultLanguageForm.querySelector('#default_language_name').value = localeData.name;
         } else {
+            document.getElementById('change_language_fallback').classList.add('hidden')
             makeDefaultLanguageForm.querySelector('#default_language_name').value = '';
             modal.querySelector('[default_langage_content]').classList.remove('hidden')
-            defaultLanguageElement.classList.add('hidden')
+            defaultLanguageElement.classList.add('hidden');
         }
+
+        document.getElementById('fallback_language').checked = localeData.fallback;
+
+        if (!localeData.fallback) {
+            languageStatusForm.classList.remove('hidden')
+            document.getElementById('change_language_fallback').classList.remove('hidden')
+            document.querySelector('[make_fallback_lang_container]').classList.add('hidden')
+        } else {
+            languageStatusForm.classList.add('hidden')
+            document.getElementById('change_language_fallback').classList.add('hidden')
+            document.querySelector('[make_fallback_lang_container]').classList.remove('hidden')
+            document.getElementById('fallback_language_name').value = localeData.name;
+        }
+
+        if (!localeData.published) {
+            setDefaultLangBtn.classList.add('hidden')
+            changeFallbackCheckbox.classList.add('hidden')
+            document.getElementById('change_language_fallback').classList.add('hidden')
+        } else {
+            setDefaultLangBtn.classList.remove('hidden')
+            changeFallbackCheckbox.classList.remove('hidden')
+            document.getElementById('change_language_fallback').classList.remove('hidden')
+        }
+
+        changeFallbackCheckbox.addEventListener('change', () => {
+            document.getElementById('fallback_language_name').value = localeData.name;
+            changeFallbackCheckbox.closest('form').submit()
+        })
     });
 })
-
-
 checkbox.addEventListener('change', () => {
     languageStatusForm.submit();
     checkbox.disabled = true;
@@ -48,9 +76,8 @@ checkbox.addEventListener('change', () => {
     languageStatusForm.innerHTML = '';
     document.getElementById('change_default_language').classList.add('hidden')
     recreateNode(modal);
-
     languageStatusForm.insertAdjacentHTML('beforeend', `
-<div class="flex flex-col items-center justify-center">
+                    <div class="flex flex-col items-center justify-center">
                         <div class="mt-3">
                             <p class="text-slate-800">
                                 ${modal.dataset.progress}
@@ -63,8 +90,8 @@ checkbox.addEventListener('change', () => {
                             </svg>
                         </div>
                     </div>
-    `)
-})
+    `);
+});
 
 function recreateNode(el, withChildren) {
     if (withChildren) {

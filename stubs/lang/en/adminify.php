@@ -233,4 +233,7 @@ return [
     'to' => 'to',
     'choose_already_uploaded' => 'Choose an already uploaded file',
     'logout' => 'logout',
+    'fallback_label' => 'Fallback',
+    'fallback' => 'Fallback Language',
+    'fallback_action' => 'Make Fallback Language?'
 ];

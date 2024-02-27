@@ -12,7 +12,9 @@
                             </div>
                             <div>
                                 <div class="flex items-center gap-x-4 text-xs">
-                                    <time datetime="2020-03-16" class="text-gray-500">{{ $post->created_at->translatedFormat('M d, Y') }}</time>
+                                    <time datetime="{{ $post->created_at->format('d-m-Y') }}" class="text-gray-500">
+                                        {{ $post->created_at->translatedFormat('M d, Y') }}
+                                    </time>
                                     @foreach($post?->categories as $category)
                                         <a href="{{ route('blog', ['category' => $category->name]) }}"
                                            class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
@@ -34,7 +36,7 @@
                                 <div class="mt-6 flex border-t border-gray-900/5 pt-6">
                                     <div class="relative flex items-center gap-x-4">
                                         <img
-                                            src="{{ $post->user->media?->first()?->url ?? url('https://ui-avatars.com/api/?name='.$post->user->name)  }}"
+                                            src="{{ $post->user->media?->first()?->url ?? url('https://ui-avatars.com/api/?name=' . $post->user->name)  }}"
                                             alt="" class="h-10 w-10 rounded-full bg-gray-50">
                                         <div class="text-sm leading-6">
                                             <p class="font-semibold text-gray-900">
@@ -81,7 +83,6 @@
                         </form>
                     </div>
                 </div>
-
                 @if($categories->isNotEmpty())
                     <div class="mt-10 px-8 py-10 leading-7 text-neutral-700 shadow-xl mb-10">
                         <div class="text-neutral-700">

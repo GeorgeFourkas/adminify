@@ -20,44 +20,35 @@
                                    highlight="{{ str()->contains(url()->current(), route('dashboard')) }}">
                 <x-icons.home/>
             </x-admin-side-nav-tile>
-
             <x-admin-side-nav-tile :link="route('posts')" text="{{ __('adminify.menu.posts') }}"
                                    highlight="{{ str()->contains(url()->current(), route('posts')) || str()->contains(url()->current(), 'post') }}">
                 <x-icons.post/>
             </x-admin-side-nav-tile>
-
             <x-admin-side-nav-tile :link="route('users')" text="{{ __('adminify.menu.users') }}"
                                    highlight="{{ str()->contains(url()->current(), route('users')) }}">
                 <x-icons.users/>
             </x-admin-side-nav-tile>
-
             <x-admin-side-nav-tile :link="route('comments')" text="{{ __('adminify.menu.comments') }}"
                                    highlight="{{ str()->contains(url()->current(), route('comments')) }}">
                 <x-icons.comment/>
             </x-admin-side-nav-tile>
-
             <x-admin-side-nav-tile :link="route('media')" text="{{ __('adminify.menu.media') }}"
                                    highlight="{{ str()->contains(url()->current(), route('media')) }}">
                 <x-icons.media/>
             </x-admin-side-nav-tile>
-
             <li class="mt-4 w-full">
                 <p class="ml-2 pl-6 text-xs font-light capitalize leading-tight opacity-80">
                     {{ __('adminify.menu.separator_1') }}
                 </p>
             </li>
-
             <x-admin-side-nav-tile :link="route('tags')" text="{{ __('adminify.menu.tags') }}"
                                    highlight="{{ str()->contains(url()->current(), route('tags')) }}">
                 <x-icons.taxonomies/>
             </x-admin-side-nav-tile>
-
             <x-admin-side-nav-tile :link="route('categories')" text="{{ __('adminify.menu.categories') }}"
                                    highlight="{{ str()->contains(url()->current(), route('categories')) }}">
                 <x-icons.category/>
             </x-admin-side-nav-tile>
-
-
             <li class="mt-4 w-full">
                 <p class="ml-2 pl-6 text-xs font-light leading-tight opacity-80 capitalize">
                     {{ __('adminify.menu.separator_2') }}

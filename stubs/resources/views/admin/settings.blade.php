@@ -1,18 +1,10 @@
 <x-layouts.admin>
     @pushonce('scripts')
-        @vite([
-            'resources/js/admin/toggle-permission-submit.js',
-            'resources/js/admin/publish_language_modal.js',
-            'resources/js/admin/feature-settings-form.js',
-            'resources/js/admin/add-new-language.js',
+        @vite(['resources/js/admin/toggle-permission-submit.js','resources/js/admin/publish_language_modal.js',
+            'resources/js/admin/feature-settings-form.js','resources/js/admin/add-new-language.js',
             'resources/js/admin/confirm-modal.js',
         ])
     @endpushonce
-
-    <x-slot:title>
-        {{ __('adminify.settings.page_title') }}
-    </x-slot:title>
-
     <div class="mt-2 flex w-full items-start justify-between px-10">
         <div class="min-h-screen w-full rounded-2xl bg-white px-5 py-5 shadow-soft-2xl lg:mx-5 lg:w-11/12">
             <x-admin.session-flash/>
@@ -108,21 +100,23 @@
                      id="locale-container">
                     @foreach($languages as $key => $status)
                         <div class="">
-                            <form action="{{route('language.delete')}}" class="h-full" method="POST"
+                            <form action="{{ route('language.delete') }}" class="h-full" method="POST"
                                   registered-language-form deletion-form
                                   data-locale="
                               {{
                                      json_encode([
                                             'name'=> $key,
                                             'published'=> in_array('published', $status),
-                                            'default' => $key == config('app.fallback_locale'),
+                                            'default' => $key == $settings['default_locale'],
+                                            'fallback' => $key == $settings['fallback_locale'],
                                             'default_lang_text' => __('adminify.settings.default_language'),
                                             'make_default_lang_text' => __('adminify.settings.make_default_lang_text'),
-                                            'translator_route' => route('translations.manage', ['translating' => $key]),
+                                            'fallback_lang_text' => __('adminify.settings.default_language'),
+                                            'make_fallback_lang_text' => __('adminify.settings.make_default_lang_text'),
                                     ])
                               }}">
                                 @csrf @method('DELETE')
-                                <input type="hidden" name="lang" value="{{$key}}">
+                                <input type="hidden" name="lang" value="{{ $key }}">
                                 <div
                                     class="relative h-full cursor-pointer select-none rounded-lg py-5 transition duration-100 shadow-soft-2xl hover:bg-gray-100">
                                     <div class="flex items-center justify-center px-5">
@@ -132,7 +126,7 @@
                                     </div>
                                     <div class="mt-2 w-full">
                                         <div class="flex items-center justify-center space-x-2">
-                                            @if($key == config('app.fallback_locale'))
+                                            @if($key == $settings['default_locale'])
                                                 <span
                                                     class="inline-block whitespace-nowrap rounded-md py-1 text-center align-baseline text-xs capitalize leading-none text-white gradient-app-theme px-1.5">
                                                     <p class="text-xs font-normal capitalize tracking-wider">
@@ -148,11 +142,19 @@
                                                     </p>
                                                 </span>
                                             @endif
+                                            @if($key == $settings['fallback_locale'])
+                                                <span
+                                                    class="inline-block whitespace-nowrap rounded-md py-1 text-center align-baseline text-xs capitalize leading-none text-white bg-orange-400 px-1.5">
+                                                    <p class="text-xs font-normal capitalize tracking-wider">
+                                                        {{ __('adminify.fallback_label') }}
+                                                    </p>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
                                     <button class="absolute top-1 right-1 rounded-md group hover:bg-red-200"
                                             remove-lange-btn>
-                                        <x-icons.cross class="h-4 w-4 group-hover:text-white"></x-icons.cross>
+                                        <x-icons.cross class="h-4 w-4 group-hover:text-white"/>
                                     </button>
                                 </div>
                             </form>
@@ -273,13 +275,13 @@
             </div>
         </div>
     </div>
-    <div
-        class="fixed top-0 left-0 flex hidden min-h-screen w-full items-center justify-center bg-overlay-body z-1000"
-        publish_lang data-progress="{{ __('adminify.settings.progress') }}">
+    <div class="fixed top-0 left-0 flex hidden min-h-screen w-full items-center justify-center bg-overlay-body z-1000"
+         publish_lang data-progress="{{ __('adminify.settings.progress') }}">
         <div class="relative w-11/12 rounded-lg bg-white py-5 lg:w-1/3">
             <div class="mt-1">
                 <h1 class="text-center text-lg font-semibold capitalize text-slate-800">{{ __('adminify.settings.lang_status') }}</h1>
             </div>
+
             <div class="mt-3 flex flex-col items-center justify-center space-x-5">
                 <div class="" make_default_lang_container>
                     <div class="my-2 flex items-center justify-center space-x-4" default_langage_content>
@@ -291,13 +293,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="" make_fallback_lang_container>
+                    <div class="my-2 flex items-center justify-center space-x-4" fallback_language_content>
+                        <div>
+                            <x-icons.check class="h-6 w-6 text-lime-500"/>
+                        </div>
+                        <div>
+                            <h1 class="text-sm">{{ __('adminify.fallback') }}</h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="my-3">
                     <form class="capitalize" action="{{ route('language.status') }}" method="post"
                           id="change_language_status_form">
                         @csrf
                         <input type="hidden" name="language_name" value="" id="language_name">
-                        <x-admin.radio-toggler value="" id="language_status" name="language_status"
-                                               :label="__('adminify.settings.publish_lang')"
+                        <x-admin.radio-toggler
+                            value=""
+                            id="language_status"
+                            name="language_status"
+                            :label="__('adminify.settings.publish_lang')"
+                        />
+                    </form>
+                </div>
+                <div class="my-3">
+                    <form class="capitalize" action="{{ route('settings.fallback.language') }}" method="post"
+                          id="change_language_fallback">
+                        @csrf
+                        <input type="hidden" name="fallback_language_name" value="" id="fallback_language_name">
+                        <x-admin.radio-toggler
+                            value=""
+                            id="fallback_language"
+                            :label="__('adminify.fallback_action')"
                         />
                     </form>
                 </div>
@@ -309,25 +336,14 @@
                                class="mb-10 capitalize cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">
                     </form>
                 </div>
-
-                {{--                <div class="my-1">--}}
-                {{--                    <div class="my-1" id="">--}}
-                {{--                        <a href="{{ route('translations.manage', ['translating' => 'el']) }}" id="translator_link"--}}
-                {{--                           class="mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">--}}
-                {{--                            {{ __('adminify.settings.manage_translations') }}--}}
-                {{--                        </a>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
-
                 <div
                     class="absolute top-3 right-3 flex items-center justify-center rounded-md group hover:bg-red-200">
                     <button>
-                        <x-icons.cross class="group-hover:text-white"></x-icons.cross>
+                        <x-icons.cross class="group-hover:text-white"/>
                     </button>
                 </div>
             </div>
         </div>
     </div>
     <x-admin.delete-action-confirmation-modal/>
-
 </x-layouts.admin>

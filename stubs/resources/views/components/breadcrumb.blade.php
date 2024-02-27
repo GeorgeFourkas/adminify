@@ -1,8 +1,4 @@
-@props([
-    'text' => '',
-    'bgClass' => 'bg-breadcrumb',
-])
-
+@props(['text' => '','bgClass' => 'bg-breadcrumb',])
 <div class="relative py-40 px-0 leading-6 text-left text-white {{ $bgClass }} bg-cover bg-center">
     <div class="px-3 mx-auto w-full text-left max-w-[1300px]">
         <div class="flex flex-wrap items-center -mx-3 mt-0 text-white">

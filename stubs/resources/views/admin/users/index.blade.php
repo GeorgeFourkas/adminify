@@ -1,13 +1,6 @@
 @php use App\Constants\Permissions;use Illuminate\Support\Carbon; @endphp
 <x-layouts.admin>
-    @pushonce('scripts')
-        @vite([
-            'resources/js/flash-timeout.js',
-            'resources/js/admin/confirm-modal.js',
-        ])
-    @endpushonce
     <x-admin.session-flash/>
-
     <div class="mx-auto w-full px-6 py-6">
         <div class="-mx-3 flex flex-wrap">
             <div class="w-full max-w-full flex-none px-3">
@@ -21,8 +14,10 @@
                         @can(Permissions::CREATE_USERS)
                             <div
                                 class="mb-0 rounded-t-2xl border-b-0 border-b-transparent bg-white p-6 pb-0 border-b-solid">
-                                <x-admin.primary-action-button as="link" :href="route('user.create')"
-                                                               :text="__('adminify.users.action_button')">
+                                <x-admin.primary-action-button
+                                    :text="__('adminify.users.action_button')"
+                                    :href="route('user.create')"
+                                    as="link">
                                     <x-icons.add/>
                                 </x-admin.primary-action-button>
                             </div>
@@ -74,10 +69,10 @@
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 text-center align-middle shadow-transparent">
                                             <span class="text-xs font-normal leading-tight text-slate-400">
-                                                {{ Carbon::parse($user->created_at)->format('d-m-Y') }}
+                                                {{ $user->created_at->format('d-m-Y') }}
                                             </span>
                                             <span class="mt-1 block text-xs font-normal leading-tight text-slate-400">
-                                                {{ Carbon::parse($user->created_at)->format('h:i:s') }}
+                                                {{ $user->created_at->format('h:i:s') }}
                                             </span>
                                         </td>
                                         <td class="whitespace-nowrap border-t bg-transparent p-2 align-middle shadow-transparent">
@@ -85,7 +80,7 @@
                                                 @can(Permissions::UPDATE_USERS)
                                                     <div class="">
                                                         <a href="{{ route('user.edit', $user) }}">
-                                                            <div class="cursor-pointer rounded-md p-2 group hover:bg-gradient-to-tl hover:from-adminify-main-color hover:to-adminify-secondary-color">
+                                                            <div class="cursor-pointer rounded-md p-2 group hover:from-adminify-main-color hover:to-adminify-secondary-color hover:bg-gradient-to-tl">
                                                                 <x-icons.edit/>
                                                             </div>
                                                         </a>

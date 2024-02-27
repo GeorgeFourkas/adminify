@@ -20,9 +20,7 @@
 $final = collect($previews)->map(function ($item) {
     return is_string($item) && json_decode($item) !== null ? json_decode($item) : $item;
 })->toJson();
-
 @endphp
-
 <div pond_container>
     @if($slot->isNotEmpty())
         {{ $slot }}

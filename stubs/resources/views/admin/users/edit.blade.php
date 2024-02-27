@@ -1,8 +1,5 @@
 @php use Spatie\Permission\Models\Role; @endphp
 <x-layouts.admin>
-    @pushonce('scripts')
-        @vite(['resources/js/admin/dropzone.js'])
-    @endpushonce
     <div
         class="container mx-auto flex w-11/12 items-center justify-center rounded-lg bg-white px-5 py-14 shadow-soft-2xl lg:w-2/3">
         <form action="{{ route('user.update', $user) }}" enctype="multipart/form-data" method="POST" autocomplete="off"
@@ -19,12 +16,10 @@
                     </div>
                     <div class="w-full lg:w-1/2">
                         <div class="w-full lg:w-2/3">
-
                             <x-admin.select
                                 id="user_roles_select" name="role" :label=" __('adminify.users.role') "
                                 :value="$user->roles->first()->name ?? ''" :select-texts="Role::all()->pluck('name')"
                             />
-
                         </div>
                     </div>
                 </div>
@@ -82,5 +77,4 @@
             </form>
         </div>
     </div>
-
 </x-layouts.admin>

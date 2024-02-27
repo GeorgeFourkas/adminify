@@ -62,5 +62,10 @@ class Post extends Model implements TranslatableContract
             });
     }
 
+    public function scopeWithAccessRestriction($builder)
+{
+    return $builder->where('user_id', auth()->id());
+}
+
 
 }

@@ -1,4 +1,4 @@
-<div role="status" data-role="statistic-card-skeleton" id="{{$attributes->get('id')}}"
+<div role="status" data-role="statistic-card-skeleton" id="{{ $attributes->get('id') }}"
      class="w-full animate-pulse rounded-xl py-4 shadow-soft-xl dark:border-gray-700 md:p-6">
     <div class="w-32 rounded-full bg-gray-200 h-2.5 mb-2.5 dark:bg-gray-700"></div>
     <div class="mb-10 h-2 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></div>
@@ -25,11 +25,8 @@
         <div class="w-32 rounded-full bg-gray-200 h-2.5 mb-2.5 dark:bg-gray-700"></div>
         <div class="mb-10 h-2 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></div>
     </div>
-
     <div class="mx-auto flex items-center justify-between px-6">
-        {{$slot}}
+        {{ $slot }}
     </div>
-
-
     <span class="sr-only">Loading...</span>
 </div>

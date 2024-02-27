@@ -2,7 +2,6 @@
     'as' => 'input',
     'text' => ''
 ])
-
 @if($as == 'button')
     <button {{ $attributes->merge(
     [

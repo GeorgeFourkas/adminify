@@ -1,6 +1,5 @@
 <x-layouts.admin>
     @pushonce('scripts')
-        {{--        @vite('resources/js/admin/child-toggle.js')--}}
         @vite('resources/js/admin/category-crud.js')
     @endpushonce
     <x-admin.session-flash/>
@@ -26,7 +25,13 @@
             <div class="mt-5 px-5 font-semibold">
                 @foreach($categories->toTree() as $category)
                     <div class="">
-                        <x-admin.category-child parent-id="" parent-name="" :category="$category" :border="false" :last-sibling="false"/>
+                        <x-admin.category-child
+                            parent-id=""
+                            parent-name=""
+                            :category="$category"
+                            :border="false"
+                            :last-sibling="false"
+                        />
                     </div>
                 @endforeach
             </div>
@@ -49,7 +54,7 @@
                                                 :value="__('adminify.categories.category_title_input')"
                                                 for="category-{{  $locale }}"/>
                                             <x-text-input
-                                                id="category-{{$locale}}"
+                                                id="category-{{ $locale }}"
                                                 type="text"
                                                 name="{{ $locale }}[name]"
                                                 class="mt-1"
@@ -65,8 +70,6 @@
                                     :value="__('adminify.categories.category_parent_id')"
                                     for="input_parent_id"
                                 />
-
-
                                 <div>
                                     <div class="relative mt-2" tabindex="0">
                                         <input type="hidden" id="parent_id" name="parent_id">
@@ -86,12 +89,13 @@
                                         <div
                                             class="hidden bg-white max-h-72 absolute z-10 mt-1 w-full overflow-auto rounded-md  py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                                             tabindex="-1" id="container">
-                                            <div data-role="category" class="text-gray-900 relative cursor-default select-none py-1 pl-3 overflow-auto relative">
-                                                <p data-category-id="{{ null }}" class="block font-normal block truncate hover:bg-blue-600 hover:text-white">
-                                                  -
+                                            <div data-role="category"
+                                                 class="text-gray-900 relative cursor-default select-none py-1 pl-3 overflow-auto relative">
+                                                <p data-category-id="{{ null }}"
+                                                   class="block font-normal block truncate hover:bg-blue-600 hover:text-white">
+                                                    -
                                                 </p>
                                             </div>
-
                                             @foreach($categories->toTree() as $category)
                                                 <x-admin.category-child-chooser :category="$category"/>
                                             @endforeach

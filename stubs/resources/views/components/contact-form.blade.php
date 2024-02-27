@@ -1,7 +1,4 @@
-@props([
-    'submit' => true
-])
-
+@props(['submit' => true])
 <form action="{{ route('contact.submit') }}" method="post" class="" id="{{ getFormId() }}">
     @csrf
     {{ $slot }}

@@ -36,11 +36,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('availableLocales', $this->getAllDeclaredLanguages());
         });
 
-        View::composer('admin/*', function ($view) {
+        View::composer(['admin/*', 'components.admin.navbar'], function ($view) {
             $view->with('locales', $this->getAndSortPublishedLanguages());
             $view->with('defaultLocale', $this->getApplicationDefaultLocale());
         });
-
     }
 
     private function containsPublishedLocale($segment): bool

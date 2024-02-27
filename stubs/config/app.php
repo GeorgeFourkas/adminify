@@ -96,7 +96,7 @@ return [
     |
     */
 
-    'fallback_locale' => Valuestore::make(storage_path('app/settings/settings.json'))->get('default_locale'),
+    'fallback_locale' => Valuestore::make(storage_path('app/settings/settings.json'))->get('fallback_locale'),
 
     /*
     |--------------------------------------------------------------------------

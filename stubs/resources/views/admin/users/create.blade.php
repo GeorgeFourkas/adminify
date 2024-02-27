@@ -9,13 +9,17 @@
                 <div class="flex w-full flex-col items-center justify-center lg:flex-row">
                     <div class="w-full lg:w-1/2">
                         <div class="mt-5 flex flex-col items-center justify-center">
-                            <x-filepond class="h-48 w-48" :circular="true" name="profile_picture_url" :previews="old('profile_picture_url')"/>
+                            <x-filepond class="h-48 w-48" :circular="true" name="profile_picture_url"
+                                        :previews="old('profile_picture_url')"
+                            />
                         </div>
                     </div>
                     <div class="w-full lg:w-1/2">
                         <div class="w-full lg:w-2/3">
                             <x-admin.select
-                                name="role" id="user_roles_select" :label="__('adminify.users.role')"
+                                name="role"
+                                id="user_roles_select"
+                                :label="__('adminify.users.role')"
                                 :select-texts="Role::all()->pluck('name')"
                             />
                         </div>
@@ -25,9 +29,8 @@
                     <div class="flex flex-col items-center justify-between lg:space-x-4 lg:flex-row">
                         <div class="flex w-full flex-col items-start justify-center lg:w-1/2">
                             <x-input-label class="capitalize" for="name" :value="__('adminify.users.name')"/>
-                            <x-text-input
-                                id="name" class="mt-1 block w-10/12" type="text" name="name" required
-                                autofocus :value="old('name')"
+                            <x-text-input id="name" class="mt-1 block w-10/12" type="text" name="name" required
+                                          autofocus :value="old('name')"
                             />
                             <x-input-error class="mt-2" :messages="$errors->get('name')"/>
                         </div>

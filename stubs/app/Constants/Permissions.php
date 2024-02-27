@@ -47,4 +47,6 @@ class Permissions
     public const UPDATE_TAGS = 'update-tags';
 
     public const DELETE_TAGS = 'delete-tags';
+
+    public const ACCESS_DASHBOARD = 'access-dashboard';
 }

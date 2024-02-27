@@ -27,6 +27,7 @@ trait SeedsRoles
         }
         if (Role::where('name', 'author')->doesntExist()) {
             $role = Role::create(['name' => 'author']);
+            $permissions[] = Permission::create(['name' => Permissions::ACCESS_DASHBOARD]);
             $permissions[] = Permission::create(['name' => Permissions::CREATE_POSTS]);
             $permissions[] = Permission::create(['name' => Permissions::UPDATE_POSTS]);
             $permissions[] = Permission::create(['name' => Permissions::DELETE_POSTS]);
@@ -76,6 +77,6 @@ trait SeedsRoles
             ]
         )->assignRole('administrator');
 
-        $this->info('Creating administrator with email '.$email);
+        $this->info('Creating administrator with email ' . $email);
     }
 }

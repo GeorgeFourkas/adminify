@@ -42,7 +42,7 @@ module.exports = {
             },
             fontFamily: {
                 'admin-sans': ['Open Sans'],
-                'inter': ['Inter']
+                'roboto': ["Roboto", "sans-serif"]
             },
             boxShadow: {
                 'soft-xl': '0 20px 27px 0 rgba(0,0,0,0.05)',

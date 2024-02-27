@@ -27,8 +27,9 @@ class SettingsFileInitialization extends Command
                     ],
                 ],
                 'default_locale' => 'en',
+                'fallback_locale' => 'en',
             ]
-            + $additional
+            + $additional, JSON_PRETTY_PRINT
         ));
 
         $this->info('Settings Initialized successfully');

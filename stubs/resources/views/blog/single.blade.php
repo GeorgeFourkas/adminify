@@ -5,7 +5,6 @@
         <meta property="og:description" content="{{ str(str_replace('&nbsp', '', strip_tags($post->body)))->words(12) }}" />
         <meta property="og:url" content="{{ url()->current() }}" />
         <meta property="og:image" content="{{ url($post?->media?->first()?->url) }}" />
-
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="{{ config('app.name') }}" />
         <meta name="twitter:title" content="{{ $post->title }}" />
@@ -13,29 +12,26 @@
         <meta name="twitter:image" content="{{ url($post?->media?->first()?->url) }}" />
     @endpush
     <div class="mx-auto mt-14 w-full lg:w-11/12 xl:w-4/5">
-        <div
-            class="relative flex flex-col lg:flex-row w-full items-start justify-center space-x-0 lg:space-x-5 xl:space-x-10">
+        <div class="relative flex flex-col lg:flex-row w-full items-start justify-center space-x-0 lg:space-x-5 xl:space-x-10">
             <div class="mx-auto w-11/12 lg:w-2/3 xl:w-3/4">
                 <div class="mb-16 leading-7 text-neutral-700 transition-all duration-300 rounded-xl">
                     <div class="text-neutral-700 xl:px-10">
                         <div class="relative aspect-[16/9] sm:aspect-[2/1] ">
-                            <img src="{{ $post?->media->first()->url }}"
-                                 alt="" class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover">
+                            <img src="{{ $post?->media->first()->url }}"  alt=""
+                                 class="absolute inset-0 h-full w-full rounded-2xl bg-gray-50 object-cover">
                             <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
                         </div>
                     </div>
                     <div class="xl:px-12 pt-8 pb-12 text-neutral-700">
                         <h3 class="mx-0 mt-0 mb-2 font-sans text-2xl font-bold leading-9 xl:text-3xl text-stone-900">
-                            <a href="#"
-                               class="cursor-pointer hover:text-lingua transition-all duration-300">
+                            <a href="#" class="cursor-pointer transition-all duration-300">
                                 {{ $post->title }}
                             </a>
                         </h3>
                         <ul class="p-0 mx-0 mt-0 mb-5 flex" style="list-style: outside none none;">
                             <li class="inline-flex mr-4 text-xs leading-6 text-left  items-center ">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke-width="1.5"
-                                     stroke="currentColor" class="text-lingua w-3.5 h-3.5">
+                                     stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                           d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"/>
                                 </svg>
@@ -44,19 +40,17 @@
                             <li class="inline-flex mr-4 text-xs leading-6 text-left  items-center ">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5"
-                                     stroke="currentColor" class="w-3.5 h-3.5 text-lingua">
+                                     stroke="currentColor" class="w-3.5 h-3.5">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                           d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                                 </svg>
-
                                 {{ $post?->user?->name }}
                             </li>
                             <li class="inline-flex m-0 text-xs leading-6 text-left">
                                 <a href="#"
                                    class="flex items-center cursor-pointer hover:text-blue-600">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                         stroke-width="1.5"
-                                         stroke="currentColor" class="w-3.5 h-3.5 text-lingua">
+                                         stroke-width="1.5" stroke="currentColor" class="w-3.5 h-3.5 ">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                               d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z"/>
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z"/>
@@ -67,7 +61,6 @@
                                         <span class="border border-gray-100 p-1">#{{ $tag->name }}</span>
                                     @endforeach
                                 </div>
-
                             </li>
                         </ul>
                         <div class="ck-content">
@@ -109,5 +102,4 @@
             </div>
         </div>
     </div>
-
 </x-main-layout>
