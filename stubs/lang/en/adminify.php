@@ -235,5 +235,5 @@ return [
     'logout' => 'logout',
     'fallback_label' => 'Fallback',
     'fallback' => 'Fallback Language',
-    'fallback_action' => 'Make Fallback Language?'
+    'fallback_action' => 'Make Fallback Language?',
 ];

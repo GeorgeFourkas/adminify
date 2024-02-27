@@ -12,6 +12,7 @@ class CanAccessDashboard
         if ($request->user()->cannot(Permissions::ACCESS_DASHBOARD)) {
             return redirect()->to('/');
         }
+
         return $next($request);
     }
 }

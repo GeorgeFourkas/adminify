@@ -45,27 +45,24 @@ class Post extends Model implements TranslatableContract
         return $this->morphToMany(Category::class, 'categoryable');
     }
 
-
     public function scopeWhereCategoryLike(Builder $query, $search)
     {
         return $query->whereHas('categories.translations', function ($q) use ($search) {
-            return $q->where('name', 'LIKE', '%' . $search . '%');
+            return $q->where('name', 'LIKE', '%'.$search.'%');
         });
     }
 
     public function scopeWhereMatchingTranslationTitleOrTags($query, $term)
     {
         return $query
-            ->whereTranslationLike('title', '%' . $term . '%')
+            ->whereTranslationLike('title', '%'.$term.'%')
             ->orWhereHas('tags', function ($sub) use ($term) {
-                return $sub->whereTranslationLike('name', '%' . $term . '%');
+                return $sub->whereTranslationLike('name', '%'.$term.'%');
             });
     }
 
     public function scopeWithAccessRestriction($builder)
-{
-    return $builder->where('user_id', auth()->id());
-}
-
-
+    {
+        return $builder->where('user_id', auth()->id());
+    }
 }

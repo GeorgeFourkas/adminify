@@ -28,7 +28,7 @@ class FallbackLanguageService
          * the default locale
          */
 
-        if ($this->language === $this->getStore()->get('fallback_locale')){
+        if ($this->language === $this->getStore()->get('fallback_locale')) {
             $this->language = $this->getStore()->get('default_locale');
         }
 
@@ -36,7 +36,6 @@ class FallbackLanguageService
 
         return $this;
     }
-
 
     public function cache(): static
     {
@@ -57,5 +56,4 @@ class FallbackLanguageService
         return redirect()->route('settings')
             ->with('success', __('adminify.settings_sync'));
     }
-
 }

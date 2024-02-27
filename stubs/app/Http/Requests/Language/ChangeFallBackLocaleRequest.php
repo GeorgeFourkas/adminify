@@ -17,7 +17,7 @@ class ChangeFallBackLocaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'fallback_language_name' => 'required'
+            'fallback_language_name' => 'required',
         ];
     }
 }
