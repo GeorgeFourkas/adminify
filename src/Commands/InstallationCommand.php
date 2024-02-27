@@ -55,7 +55,7 @@ class InstallationCommand extends Command
             ->installRoutesFile()
             ->replaceAppConfigFile()
             ->publishTranslations()
-//            ->addValuesToEnvFiles()
+            ->addValuesToEnvFiles()
             ->addRegisterMiddlewareToBreezeRoutes();
 
         copy(__DIR__.'/../../stubs/config/translatable.php', config_path('translatable.php'));
