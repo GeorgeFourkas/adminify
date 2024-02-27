@@ -6,7 +6,7 @@
     'selected' => [],
     'tobeChecked' => false
 ])
-<div class="flex w-full items-center mt-4" category-checkbox>
+<div class="mt-4 flex w-full items-center" category-checkbox>
     <input type="checkbox" value="{{ $category->id }}" name="categories[]" @checked($tobeChecked ?? false)
     class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-adminify-secondary-color focus:ring-0 focus:ring-offset-0">
     <label for="" class="ml-2 text-sm font-medium capitalize text-gray-900 dark:text-gray-300">

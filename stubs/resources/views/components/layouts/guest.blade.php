@@ -16,7 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('scripts')
 </head>
-<body class="font-roboto text-gray-900 antialiased">
+<body class="text-gray-900 antialiased font-roboto">
 <div class="flex min-h-screen flex-col items-center justify-center bg-gray-100 pt-6 sm:pt-0">
     <div class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-lg sm:max-w-md sm:rounded-xl">
         {{ $slot }}

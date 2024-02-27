@@ -144,7 +144,7 @@
                                             @endif
                                             @if($key == $settings['fallback_locale'])
                                                 <span
-                                                    class="inline-block whitespace-nowrap rounded-md py-1 text-center align-baseline text-xs capitalize leading-none text-white bg-orange-400 px-1.5">
+                                                    class="inline-block whitespace-nowrap rounded-md bg-orange-400 py-1 text-center align-baseline text-xs capitalize leading-none text-white px-1.5">
                                                     <p class="text-xs font-normal capitalize tracking-wider">
                                                         {{ __('adminify.fallback_label') }}
                                                     </p>
@@ -245,12 +245,12 @@
                 @foreach($roles as $role)
                     <form action="{{ route('permission.alter', $role) }}" method="POST" class="permissions-form">
                         @csrf
-                        <div class="my-4 place-self-end rounded-lg py-2 xl:px-5 relative">
-                            <div class="sticky top-0 bg-white w-full z-999 py-2">
-                                <h1 class="text-left capitalize text-black text-center">{{ $role->name }}</h1>
+                        <div class="relative my-4 place-self-end rounded-lg py-2 xl:px-5">
+                            <div class="sticky top-0 w-full bg-white py-2 z-999">
+                                <h1 class="text-left text-center capitalize text-black">{{ $role->name }}</h1>
                             </div>
                             @foreach($grouped as $key => $group)
-                                <div class="my-4 rounded-lg border border-gray-100 py-5 border border-gray-200 xl:px-3">
+                                <div class="my-4 rounded-lg border border-gray-100 border-gray-200 py-5 xl:px-3">
                                     <h1 class="text-left text-sm capitalize">{{ $key }}</h1>
                                     <div class="grid grid-cols-1 gap-2">
                                         @foreach($group as $permission)
@@ -333,7 +333,7 @@
                         @csrf
                         <input type="hidden" value="" id="default_language_name" name="default_locale">
                         <input type="submit" value="{{ __('adminify.settings.set_default_lang') }}"
-                               class="mb-10 capitalize cursor-pointer rounded-md px-5 py-2 text-sm font-normal text-white gradient-app-theme">
+                               class="mb-10 cursor-pointer rounded-md px-5 py-2 text-sm font-normal capitalize text-white gradient-app-theme">
                     </form>
                 </div>
                 <div

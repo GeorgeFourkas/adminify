@@ -7,10 +7,10 @@
 ])
 <div class="py-1 px-3 cursor-pointer relative
     {{  $lastSibling ? "after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:h-[25px] after:border-l after:border-l-gray-300" : ($category->isRootCategory() ?  : 'border-l border-gray-300') }}">
-    <div class="flex w-full items-center justify-between px-2 py-0.5 group ">
+    <div class="flex w-full items-center justify-between px-2 py-0.5 group">
         <div class="relative">
             @if(!$category->isRootCategory())
-                <div class="absolute -left-5 top-1/2 h-0 w-4 border-t border-gray-300"></div>
+                <div class="absolute top-1/2 -left-5 h-0 w-4 border-t border-gray-300"></div>
             @endif
             <p class="block font-normal text-md {{ $category->isRootCategory() ? 'ml-1' : '' }}">
                 {{ $category->name }}

@@ -4,11 +4,11 @@
         @vite(['resources/js/admin/charts/charts.js', 'resources/js/admin/date-picker.js'])
     @endpushonce
 
-    <div class="mx-auto w-full px-6 py-6 " id="dashboard-container"
+    <div class="mx-auto w-full px-6 py-6" id="dashboard-container"
          data-availablelocales="{{ json_encode($published_languages) }}">
         <x-admin.session-flash/>
         {{-- Row 1 --}}
-        <div class="-mx-3 grid grid-cols-1 gap-4 px-5  md:grid-cols-2 lg:grid-cols-4 xl:gap-x-10  xl:px-5">
+        <div class="-mx-3 grid grid-cols-1 gap-4 px-5 md:grid-cols-2 lg:grid-cols-4 xl:gap-x-10 xl:px-5">
             <x-admin.statistic-card id="live-users-container" :title="__('adminify.dashboard.cards.0.title')" type="3">
                 <x-icons.spining-arrows/>
             </x-admin.statistic-card>
@@ -30,16 +30,16 @@
                     class="relative flex min-w-0 flex-col break-words rounded-2xl bg-white bg-clip-border shadow-soft-xl">
                     <div class="flex-auto px-4">
                         <div class="-mx-3 flex flex-wrap items-center justify-center">
-                            <div class="w-11/12 md:w-10/12 lg:w-7/12 px-4 py-2">
+                            <div class="w-11/12 px-4 py-2 md:w-10/12 lg:w-7/12">
                                 <div class="mx-auto flex flex-col items-center justify-center">
                                     <div class="flex flex-col">
-                                        <p class="mb-1 pt-2 font-semibold capitalize text-slate-700 ">
+                                        <p class="mb-1 pt-2 font-semibold capitalize text-slate-700">
                                             {{ __('adminify.dashboard.hero.upper_text') }}
                                         </p>
-                                        <h5 class="text-xl font-bold capitalize text-slate-600 ">
+                                        <h5 class="text-xl font-bold capitalize text-slate-600">
                                             {{ __('adminify.dashboard.hero.title') }}
                                         </h5>
-                                        <p class="mb-12 text-slate-600 ">
+                                        <p class="mb-12 text-slate-600">
                                             {{ __('adminify.dashboard.hero.description') }}
                                         </p>
                                     </div>
@@ -121,7 +121,7 @@
                                 <canvas id="chart-bars" height="147"></canvas>
                             </div>
                         </div>
-                        <h6 class="mt-6 mb-0 ml-2 font-semibold capitalize ">
+                        <h6 class="mt-6 mb-0 ml-2 font-semibold capitalize">
                             {{ __('adminify.dashboard.charts.0.title') }}
                         </h6>
                         <div class="mx-auto w-full max-w-screen-2xl rounded-xl px-6">
@@ -180,14 +180,14 @@
                         <div id="timeline-container"
                              class="before:border-r-solid relative before:absolute before:top-0 before:left-4 before:h-full before:border-r-2 before:border-r-slate-100 before:content-[''] before:lg:-ml-px">
                             <div id="pages_placeholder">
-                                <x-admin.skeletons.top-pages-skeleton />
-                                <x-admin.skeletons.top-pages-skeleton />
-                                <x-admin.skeletons.top-pages-skeleton />
-                                <x-admin.skeletons.top-pages-skeleton />
-                                <x-admin.skeletons.top-pages-skeleton />
-                                <x-admin.skeletons.top-pages-skeleton />
-                                <x-admin.skeletons.top-pages-skeleton />
-                                <x-admin.skeletons.top-pages-skeleton />
+                                <x-admin.skeletons.top-pages-skeleton/>
+                                <x-admin.skeletons.top-pages-skeleton/>
+                                <x-admin.skeletons.top-pages-skeleton/>
+                                <x-admin.skeletons.top-pages-skeleton/>
+                                <x-admin.skeletons.top-pages-skeleton/>
+                                <x-admin.skeletons.top-pages-skeleton/>
+                                <x-admin.skeletons.top-pages-skeleton/>
+                                <x-admin.skeletons.top-pages-skeleton/>
                             </div>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                 <h1 class="text-center capitalize text-gray-700 text-md">
                     {{ __('adminify.dashboard.charts.3.title') }}
                 </h1>
-                <img src="{{ Vite::asset('resources/images/admin/world.png') }}" class="animate-pulse h-full w-auto"
+                <img src="{{ Vite::asset('resources/images/admin/world.png') }}" class="h-full w-auto animate-pulse"
                      id="map-loader" alt="">
                 <canvas id="map-chart" class=""></canvas>
             </div>

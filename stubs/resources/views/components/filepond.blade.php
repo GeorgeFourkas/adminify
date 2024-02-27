@@ -25,9 +25,9 @@ $final = collect($previews)->map(function ($item) {
     @if($slot->isNotEmpty())
         {{ $slot }}
     @else
-        <div class="h-[76px] w-full rounded-md bg-gray-100 animate-pulse " pond_loader>
-            <div class="w-full h-[76px] flex items-center justify-center">
-                <div class="w-56 h-2 bg-gray-200"></div>
+        <div class="w-full animate-pulse rounded-md bg-gray-100 h-[76px]" pond_loader>
+            <div class="flex w-full items-center justify-center h-[76px]">
+                <div class="h-2 w-56 bg-gray-200"></div>
             </div>
         </div>
     @endif
@@ -39,9 +39,9 @@ $final = collect($previews)->map(function ($item) {
         name="{{ $name }}" {{ $multipleAttribute }}
         previews="{{ $final ?? '' }}">
     @if($uploadedChooser)
-        <div class="w-1/4 mx-auto h-4 bg-gray-100 animate-pulse mt-4" already_uploaded_loader></div>
-        <div class="text-center mt-4 hidden" media_panel_toggler>
-            <p class="text-blue-400 cursor-pointer hover:text-blue-600">
+        <div class="mx-auto mt-4 h-4 w-1/4 animate-pulse bg-gray-100" already_uploaded_loader></div>
+        <div class="mt-4 hidden text-center" media_panel_toggler>
+            <p class="cursor-pointer text-blue-400 hover:text-blue-600">
                 {{ __('adminify.choose_already_uploaded')  }}
             </p>
         </div>

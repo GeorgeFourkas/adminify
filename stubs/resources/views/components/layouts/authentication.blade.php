@@ -18,7 +18,7 @@
 <x-auth-session-status class="mb-4" :status="session('status')"/>
 <div class="flex w-full items-center justify-center">
     {{ $slot }}
-    <div class="relative hidden h-screen w-1/2 lg:block select-none">
+    <div class="relative hidden h-screen w-1/2 select-none lg:block">
         <img class="h-full w-full object-cover"
              src="{{ Vite::asset('resources/images/admin/curved-images/curved8.jpg') }}" alt="">
     </div>

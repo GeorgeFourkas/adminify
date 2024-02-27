@@ -23,7 +23,7 @@ submitBtn.addEventListener('click', (e) => {
             input.classList.remove('border-red-500')
             document.querySelector('label[for="new_category_name"]').classList.remove('text-red-500')
             container.insertAdjacentHTML('beforeend', `
-            <div class="flex w-full items-center mt-4" category-checkbox>
+            <div class="mt-4 flex w-full items-center" category-checkbox>
               <input type="checkbox" value="${response.data.id ?? ''}" name="categories[]" checked class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-adminify-main-color focus:ring-0 focus:ring-offset-0">
               <label for="" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                 ${response.data.name}

@@ -7,9 +7,9 @@
     </div>
     <h1 class="text-center text-2xl font-semibold">{{ __('adminify.media.page_title') }}</h1>
     <div
-        class="mt-1 grid w-full grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 place-content-center content-center gap-5 px-10">
+        class="mt-1 grid w-full grid-cols-2 place-content-center content-center gap-5 px-10 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
         @foreach($media as $med)
-            <div class="cursor-pointer rounded-lg hover:shadow-soft-2xl border border-gray-400" gallery_image
+            <div class="cursor-pointer rounded-lg border border-gray-400 hover:shadow-soft-2xl" gallery_image
                  data-model="{{ json_encode($med) }}" data-route="{{ json_encode(route('media.destroy', $med)) }}">
                 <img src="{{ $med->url }}" alt="media_not_found" class="h-full rounded-sm object-cover object-center">
             </div>

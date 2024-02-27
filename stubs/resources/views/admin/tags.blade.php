@@ -85,7 +85,7 @@
                     </div>
                 @endforeach
                 <div class="flex items-center justify-center">
-                    <x-admin.primary-action-button as="submit" :value="__('adminify.submit')" class="mb-2" />
+                    <x-admin.primary-action-button as="submit" :value="__('adminify.submit')" class="mb-2"/>
                 </div>
             </form>
         </div>

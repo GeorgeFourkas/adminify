@@ -48,7 +48,7 @@
                                             <div class="flex px-2 py-1">
                                                 <div>
                                                     <img src="{{ $post->media?->first()?->url }}" alt="user1"
-                                                        class="mr-4 inline-flex hidden h-9 w-9 items-center justify-center rounded-xl text-sm text-white transition-all duration-200 ease-soft-in-out sm:block"
+                                                         class="mr-4 inline-flex hidden h-9 w-9 items-center justify-center rounded-xl text-sm text-white transition-all duration-200 ease-soft-in-out sm:block"
                                                     />
                                                 </div>
                                                 <div class="flex flex-col justify-center">

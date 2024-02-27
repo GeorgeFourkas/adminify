@@ -80,7 +80,8 @@
                                                 @can(Permissions::UPDATE_USERS)
                                                     <div class="">
                                                         <a href="{{ route('user.edit', $user) }}">
-                                                            <div class="cursor-pointer rounded-md p-2 group hover:from-adminify-main-color hover:to-adminify-secondary-color hover:bg-gradient-to-tl">
+                                                            <div
+                                                                class="cursor-pointer rounded-md p-2 group hover:from-adminify-main-color hover:to-adminify-secondary-color hover:bg-gradient-to-tl">
                                                                 <x-icons.edit/>
                                                             </div>
                                                         </a>
@@ -92,7 +93,7 @@
                                                         @method('DELETE') @csrf
                                                         <button tabindex="-1"
                                                                 class="flex w-full cursor-pointer items-center justify-center rounded-md p-2 group hover:bg-red-500">
-                                                            <x-icons.trash />
+                                                            <x-icons.trash/>
                                                         </button>
                                                     </form>
                                                 @endcan
@@ -102,7 +103,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-                            <x-admin.delete-action-confirmation-modal />
+                            <x-admin.delete-action-confirmation-modal/>
                             <div class="mx-auto flex w-2/3 flex-col">
                                 {{ $users->links() }}
                             </div>

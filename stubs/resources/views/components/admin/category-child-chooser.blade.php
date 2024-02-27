@@ -1,8 +1,9 @@
 @props([
     'category' => new \App\Models\Adminify\Category(),
 ])
-<div data-role="category" class="text-gray-900 relative cursor-default select-none py-1 pl-3 overflow-auto relative">
-    <p data-category-id="{{ $category->id }}" class="block font-normal block truncate hover:bg-blue-600 hover:text-white">
+<div data-role="category" class="relative cursor-default select-none overflow-auto py-1 pl-3 text-gray-900">
+    <p data-category-id="{{ $category->id }}"
+       class="block truncate font-normal hover:bg-blue-600 hover:text-white">
         {{ $category->name }}
     </p>
     @foreach($category?->children as $child)

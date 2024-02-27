@@ -1,6 +1,6 @@
 @props(['highlight' => false, 'link' => '#', 'text' => ''])
 <div>
-    <li class="w-full mt-0.5 group ">
+    <li class="w-full mt-0.5 group">
         <a href="{{ $link }}" class="py-2.5  text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap hover:bg-white hover:shadow-soft-3xl cursor-pointer px-2 text-slate-700 transition-colors rounded-lg
           {{ $highlight ? 'bg-white shadow-soft-3xl' : '' }}">
             <div
@@ -9,9 +9,9 @@
             </div>
             <span
                 class="pointer-events-none ml-1 opacity-100 duration-300 ease-soft text-slate-500 text-xssm group-hover:text-slate-700 {{ $highlight ? 'text-slate-600 font-semibold' : 'text-slate-500' }}">
-               <p class="text-[13px]  capitalize">
-                {{ $text }}
-               </p>
+                <p class="capitalize text-[13px]">
+                    {{ $text }}
+                </p>
             </span>
         </a>
     </li>

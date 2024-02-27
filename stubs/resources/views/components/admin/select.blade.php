@@ -5,7 +5,7 @@
 </label>
 <select
     id="{{ $attributes->get('id') }}" name="{{ $attributes->get('name') ?? 'select'}}"
-    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 p-2.5 focus:border-blue-500 block w-full capitalize">
+    class="block w-full rounded-lg border border-gray-300 bg-gray-50 text-sm capitalize text-gray-900 p-2.5 focus:border-blue-500 focus:ring-blue-500">
     @foreach($selectTexts as $key => $optionText)
         <option class="capitalize"
                 {{ isset($value) && $optionText == $value ? 'selected' : '' }}

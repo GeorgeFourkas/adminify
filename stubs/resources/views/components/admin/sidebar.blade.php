@@ -1,6 +1,6 @@
 @php use Illuminate\Support\Facades\Route; @endphp
 <aside id="sidebar"
-       class="bg-white max-w-xs ease-nav-brand fixed z-999 inset-y-0 my-4 w-2/3 ml-4 block min-h-screen -translate-x-full flex-wrap items-center justify-between  rounded-2xl mb-2 border-0 p-0 antialiased shadow-soft-2xl transition-transform duration-200 xl:left-0 xl:translate-x-0 lg:w-percent-15 overflow-auto">
+       class="fixed inset-y-0 my-4 mb-2 ml-4 block min-h-screen w-2/3 max-w-xs -translate-x-full flex-wrap items-center justify-between overflow-auto rounded-2xl border-0 bg-white p-0 antialiased transition-transform duration-200 ease-nav-brand z-999 shadow-soft-2xl lg:w-percent-15 xl:left-0 xl:translate-x-0">
     <div class="flex items-center justify-center h-19.5">
         <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-slate-700"
            href="{{ Route::hasLocalized('home') ? route('home') : '#' }}" target="_blank">
@@ -50,7 +50,7 @@
                 <x-icons.category/>
             </x-admin-side-nav-tile>
             <li class="mt-4 w-full">
-                <p class="ml-2 pl-6 text-xs font-light leading-tight opacity-80 capitalize">
+                <p class="ml-2 pl-6 text-xs font-light capitalize leading-tight opacity-80">
                     {{ __('adminify.menu.separator_2') }}
                 </p>
             </li>

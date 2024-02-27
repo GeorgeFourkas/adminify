@@ -74,7 +74,7 @@
                                     <div class="relative mt-2" tabindex="0">
                                         <input type="hidden" id="parent_id" name="parent_id">
                                         <button type="button" data-role="category_parent_toggler"
-                                                class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                                class="relative w-full cursor-default rounded-md bg-white pr-10 pl-3 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                             <span id="chosen_text" class="block truncate"> - </span>
                                             <span
                                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -87,12 +87,12 @@
                                             </span>
                                         </button>
                                         <div
-                                            class="hidden bg-white max-h-72 absolute z-10 mt-1 w-full overflow-auto rounded-md  py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                                            class="absolute z-10 mt-1 hidden max-h-72 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                                             tabindex="-1" id="container">
                                             <div data-role="category"
-                                                 class="text-gray-900 relative cursor-default select-none py-1 pl-3 overflow-auto relative">
+                                                 class="relative cursor-default select-none overflow-auto py-1 pl-3 text-gray-900">
                                                 <p data-category-id="{{ null }}"
-                                                   class="block font-normal block truncate hover:bg-blue-600 hover:text-white">
+                                                   class="block truncate font-normal hover:bg-blue-600 hover:text-white">
                                                     -
                                                 </p>
                                             </div>
