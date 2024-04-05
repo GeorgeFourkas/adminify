@@ -5,6 +5,9 @@
     "locales": {
         "en": [
             "published"
+        ],
+        "el": [
+            "published"
         ]
     },
     "default_locale": "en",

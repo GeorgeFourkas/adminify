@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     use Multilingual;
@@ -35,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('availableLocales', $this->getAllDeclaredLanguages());
         });
 
-        View::composer(['admin/*', 'components.admin.navbar'], function ($view) {
+        View::composer(['admin/*', 'components.admin.navbar', 'components.navbar'], function ($view) {
             $view->with('locales', $this->getAndSortPublishedLanguages());
             $view->with('defaultLocale', $this->getApplicationDefaultLocale());
         });

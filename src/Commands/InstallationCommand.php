@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 
 class InstallationCommand extends Command
 {
+
     public $signature = 'adminify:install';
 
     public $description = 'Installs the Nalcom adminify laravel package';
@@ -21,7 +22,8 @@ class InstallationCommand extends Command
 
     public function handle(): int
     {
-        $this->info('Initializing Package Installation...');
+        $this->info('Initializing Package Installation... It will take some time! please be patient');
+
         $this->bar = $this->output->createProgressBar(26);
         $this->bar->advance();
 
@@ -69,6 +71,10 @@ class InstallationCommand extends Command
         $this->callSilently('vendor:publish', [
             '--tag' => 'adminify-migrations',
         ]);
+        $this->callSilently('vendor:publish', [
+            '--tag' => 'blade-flags',
+        ]);
+
         $this->bar->advance();
 
         $this->callSilently('migrate:fresh');
@@ -88,8 +94,22 @@ class InstallationCommand extends Command
         }
 
         $this->bar->advance();
+
         $this->call('roles:init');
+
         $this->bar->advance();
+
+        Artisan::call('translatable:export en');
+        Artisan::call('lang:add en');
+        Artisan::call('adminify:language-publish en');
+
+        Artisan::call('translatable:export el');
+        Artisan::call('lang:add el');
+        Artisan::call('adminify:language-publish el');
+
+
+        $this->call('adminify:seed-basic');
+
         $this->bar->finish();
         $this->newLine()
             ->info('Successfully installed Adminify Package. Have fun using it!');
@@ -305,6 +325,7 @@ class InstallationCommand extends Command
         //Providers
         copy(__DIR__ . '/../../stubs/app/Providers/AppServiceProvider.php', app_path('Providers/AppServiceProvider.php'));
         copy(__DIR__ . '/../../stubs/app/Providers/RouteServiceProvider.php', app_path('Providers/RouteServiceProvider.php'));
+
         $this->bar->advance();
 
         return $this;
@@ -379,9 +400,16 @@ class InstallationCommand extends Command
         copy(__DIR__ . '/../../stubs/routes/adminify.php', base_path('routes/adminify.php'));
 
         File::put(base_path('routes/web.php'), '<?php' . PHP_EOL .
-            "use Illuminate\Support\Facades\Route;" . PHP_EOL . PHP_EOL .
-            "Route::get('/', function () { " . PHP_EOL .
-            "   return view('welcome');" . PHP_EOL .
+            "use Illuminate\Support\Facades\Route;" . PHP_EOL .
+            "use App\Models\Adminify\Post;" . PHP_EOL . PHP_EOL . PHP_EOL . PHP_EOL .
+            "   Route::get('/', function () { " . PHP_EOL .
+            "       return view('welcome', [" . PHP_EOL .
+            "           'posts' => Post::withTranslation()" . PHP_EOL .
+            "                  ->with(['categories.translations', 'tags.translations', 'media'])" . PHP_EOL .
+            "               ->latest()" . PHP_EOL .
+            "               ->limit(3)" . PHP_EOL .
+            "               ->get()" . PHP_EOL .
+            "   ]);" . PHP_EOL .
             '});' . PHP_EOL . PHP_EOL .
             "require __DIR__ . '/adminify.php';" . PHP_EOL .
             "require __DIR__ . '/auth.php';" . PHP_EOL
@@ -402,15 +430,22 @@ class InstallationCommand extends Command
                 'RECAPTCHA_SKIP_IP=' . PHP_EOL,
             ], $additionalEnvValues);
 
+
         if (file_exists(base_path('.env'))) {
+            $envContent = file_get_contents(base_path('.env'));
             foreach ($fields as $field) {
-                file_put_contents('.env', $field, FILE_APPEND);
+                if (!str_contains($envContent, $field)) {
+                    file_put_contents('.env', $field, FILE_APPEND);
+                }
             }
         }
 
         if (file_exists(base_path('.env.example'))) {
+            $envContent = file_get_contents(base_path('.env.example'));
             foreach ($fields as $field) {
-                file_put_contents('.env.example', $field, FILE_APPEND);
+                if (!str_contains($envContent, $field)) {
+                    file_put_contents('.env.example', $field, FILE_APPEND);
+                }
             }
         }
 

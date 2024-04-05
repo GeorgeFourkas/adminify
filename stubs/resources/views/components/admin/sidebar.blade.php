@@ -3,7 +3,7 @@
        class="fixed inset-y-0 my-4 mb-2 ml-4 block min-h-screen w-2/3 max-w-xs -translate-x-full flex-wrap items-center justify-between overflow-auto rounded-2xl border-0 bg-white p-0 antialiased transition-transform duration-200 ease-nav-brand z-999 shadow-soft-2xl lg:w-percent-15 xl:left-0 xl:translate-x-0">
     <div class="flex items-center justify-center h-19.5">
         <a class="m-0 block whitespace-nowrap px-8 py-6 text-sm text-slate-700"
-           href="{{ Route::hasLocalized('home') ? route('home') : '#' }}" target="_blank">
+           href="{{ Route::hasLocalized('home') ? route('home') : url('/') }}" target="_blank">
             <img src="{{ Vite::asset('resources/images/admin/nalcom_logo_black.png') }}"
                  class="inline h-16 max-w-full transition-all duration-200 ease-nav-brand" alt="main_logo"/>
         </a>

@@ -1,5 +1,5 @@
 <x-layouts.admin>
-    <div class="mx-auto w-full lg:w-10/12">
+    <div class="mx-auto w-11/12">
         <x-admin.language-tabs-header :locales="$locales"/>
         <form action="{{ route('posts.save') }}" method="post" enctype="multipart/form-data">
             @csrf

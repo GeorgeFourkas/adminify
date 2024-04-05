@@ -13,7 +13,7 @@
 
     {{$head ?? ''}}
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css'])
     @stack('scripts')
 </head>
 <body class="text-gray-900 antialiased font-roboto">
