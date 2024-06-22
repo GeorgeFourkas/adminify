@@ -9,10 +9,7 @@ class InPublishedLanguagesArray implements Rule
 {
     use Multilingual;
 
-    public function __construct()
-    {
-
-    }
+    public function __construct() {}
 
     public function passes($attribute, $value): bool
     {

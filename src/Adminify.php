@@ -2,6 +2,4 @@
 
 namespace Nalcom\Adminify;
 
-class Adminify
-{
-}
+class Adminify {}

@@ -15,8 +15,7 @@ class ContactMail extends Mailable
 
     public function __construct(
         public ContactMailModel $contact
-    ) {
-    }
+    ) {}
 
     /**
      * Get the message envelope.
